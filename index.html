@@ -227,6 +227,65 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
   .auth-main{font-size:40px;}
   .modal{padding:1.1rem;}
 }
+
+/* ══ ACCUEIL ══ */
+.accueil-welcome{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-style:italic;font-weight:300;
+  color:var(--gold2);margin-bottom:1.25rem;
+  letter-spacing:.08em;
+}
+.home-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.home-tile{
+  border-radius:10px;padding:1.25rem 1rem;
+  display:flex;flex-direction:column;gap:6px;
+  position:relative;overflow:hidden;
+  cursor:pointer;transition:all .2s;
+  border:1px solid transparent;
+}
+.home-tile:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
+.home-tile::before{
+  content:"";position:absolute;
+  width:80px;height:80px;border-radius:50%;
+  top:-10px;right:-10px;opacity:.1;pointer-events:none;
+}
+.home-tile-icon{font-size:2rem;line-height:1;margin-bottom:4px;}
+.home-tile-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:600;letter-spacing:.05em;line-height:1;
+}
+.home-tile-sub{
+  font-family:'DM Mono',monospace;
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:.5;line-height:1.4;
+}
+/* tile colors */
+.t-dollo{background:#020810;border-color:#0A3A6A;}
+.t-dollo::before{background:#5AB4F0;}
+.t-dollo .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-dollo .home-tile-sub{color:#5AB4F0;}
+.t-rec{background:#010A04;border-color:#065C2A;}
+.t-rec::before{background:#34C472;}
+.t-rec .home-tile-name{background:linear-gradient(160deg,#A8F0C4,#34C472,#0E9044);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-rec .home-tile-sub{color:#34C472;}
+.t-mem{background:#080212;border-color:#4E0E8A;}
+.t-mem::before{background:#A855F7;}
+.t-mem .home-tile-name{background:linear-gradient(160deg,#DDB8FF,#A855F7,#7C22C8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-mem .home-tile-sub{color:#A855F7;}
+.t-chat{background:#0E0900;border-color:#6B4400;}
+.t-chat::before{background:#F4A623;}
+.t-chat .home-tile-name{background:linear-gradient(160deg,#FFFBF0,#F4A623,#C47D0E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-chat .home-tile-sub{color:#C47D0E;}
+.t-trucs{background:#0E0604;border-color:#7C3A20;}
+.t-trucs::before{background:#C2714F;}
+.t-trucs .home-tile-name{background:linear-gradient(160deg,#F5C4A8,#C2714F,#8B4513);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-trucs .home-tile-sub{color:#C2714F;}
+.t-trouvailles{background:#060202;border-color:#8A0A0A;}
+.t-trouvailles::before{background:#F06060;}
+.t-trouvailles .home-tile-name{background:linear-gradient(160deg,#FFBDBD,#F06060,#C42020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-trouvailles .home-tile-sub{color:#F06060;}
 </style>
 </head>
 <body>
@@ -315,7 +374,8 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
   </div>
 
   <div class="tabs">
-    <button class="tab active" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
+    <button class="tab active" data-tab="accueil" onclick="goTab('accueil',this)">🏠 Accueil</button>
+    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
     <button class="tab" data-tab="recettes" onclick="goTab('recettes',this)">🍽️ Recettes</button>
     <button class="tab" data-tab="souvenirs" onclick="goTab('souvenirs',this)">📸 Souvenirs</button>
     <button class="tab" data-tab="chat" onclick="goTab('chat',this)">💬 Chat</button>
@@ -325,8 +385,45 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
 
   <div class="content">
 
+    <!-- ══ ACCUEIL ══ -->
+    <div class="section active" id="tab-accueil">
+      <div class="accueil-welcome" id="accueil-welcome">Bonjour 👋</div>
+      <div class="home-grid">
+        <div class="home-tile t-dollo" onclick="goTab('dollo',null)">
+          <div class="home-tile-icon">🛒</div>
+          <div class="home-tile-name">Dollo</div>
+          <div class="home-tile-sub">Liste d'achat</div>
+        </div>
+        <div class="home-tile t-rec" onclick="goTab('recettes',null)">
+          <div class="home-tile-icon">🍽️</div>
+          <div class="home-tile-name">Recettes</div>
+          <div class="home-tile-sub">Nos recettes partagées</div>
+        </div>
+        <div class="home-tile t-mem" onclick="goTab('souvenirs',null)">
+          <div class="home-tile-icon">📸</div>
+          <div class="home-tile-name">Souvenirs</div>
+          <div class="home-tile-sub">Photos & moments</div>
+        </div>
+        <div class="home-tile t-chat" onclick="goTab('chat',null)">
+          <div class="home-tile-icon">💬</div>
+          <div class="home-tile-name">Chat</div>
+          <div class="home-tile-sub">Notre conversation</div>
+        </div>
+        <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
+          <div class="home-tile-icon">✨</div>
+          <div class="home-tile-name">Trucs Utiles</div>
+          <div class="home-tile-sub">Astuces & conseils</div>
+        </div>
+        <div class="home-tile t-trouvailles" onclick="goTab('trouvailles',null)">
+          <div class="home-tile-icon">❤️</div>
+          <div class="home-tile-name">Trouvailles</div>
+          <div class="home-tile-sub">Nos découvertes</div>
+        </div>
+      </div>
+    </div>
+
     <!-- ══ DOLLO ══ -->
-    <div class="section active" id="tab-dollo">
+    <div class="section" id="tab-dollo">
       <div class="section-title">Liste Dollo</div>
       <div class="dollo-toolbar">
         <input class="dollo-search" id="dollo-search" placeholder="Rechercher..." oninput="filterDollo()">
@@ -698,6 +795,8 @@ onAuthStateChanged(auth, async user => {
     document.getElementById('app').style.display = 'block';
     const av = document.getElementById('user-avatar');
     if (user.photoURL) av.src = user.photoURL;
+    const firstName = user.displayName ? user.displayName.split(' ')[0] : 'toi';
+    document.getElementById('accueil-welcome').textContent = 'Bonjour, ' + firstName + ' 👋';
     initApp(user.uid);
   } else {
     currentUser = null;
