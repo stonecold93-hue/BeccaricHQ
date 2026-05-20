@@ -3,127 +3,1386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Golden — My life, organized.</title>
-<meta name="description" content="Golden — My life, organized.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>BeccaricHQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:#030200;font-family:"Cormorant Garamond",serif;margin:0;padding:0;}
-.s{width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(32px,5vw,64px);padding:80px clamp(24px,5vw,80px);position:relative;overflow:hidden;}
-.s::before{content:"";position:absolute;width:80vw;height:80vw;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#F4A623,transparent);opacity:.06;pointer-events:none;}
-.num{font-family:"DM Mono",monospace;font-size:clamp(10px,1vw,13px);letter-spacing:.4em;text-transform:uppercase;color:#C47D0E;opacity:.35;position:absolute;top:32px;left:0;right:0;text-align:center;}
-.wm{display:flex;flex-direction:column;align-items:center;gap:clamp(12px,2vw,20px);z-index:1;}
-.orn{display:flex;align-items:center;gap:12px;}
-.ol{width:clamp(40px,5vw,72px);height:.5px;background:#8A5600;}
-.og{width:clamp(6px,0.6vw,9px);height:clamp(6px,0.6vw,9px);background:#F4A623;transform:rotate(45deg);}
-.gn{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(52px,8vw,120px);line-height:1;letter-spacing:.12em;background:linear-gradient(170deg,#FFFBF0,#F9E07F,#F4A623,#C47D0E,#8A5600);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sub{font-family:"DM Mono",monospace;font-weight:300;font-size:clamp(9px,0.9vw,13px);letter-spacing:.45em;color:#8A5600;text-transform:uppercase;margin-right:-.45em;}
-.logos-wrap{display:flex;flex-direction:column;gap:clamp(8px,1.2vw,16px);width:100%;max-width:clamp(380px,55vw,780px);z-index:1;margin:0 auto;}
-.row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.2vw,16px);}
-a.mini{text-decoration:none;}
-.mini{border:1px solid;border-radius:4px;padding:clamp(10px,1.5vw,20px) clamp(6px,1vw,14px);display:flex;flex-direction:column;align-items:center;gap:clamp(4px,0.6vw,8px);position:relative;overflow:hidden;text-align:center;transition:transform .2s,opacity .2s;}
-.mini:hover{transform:translateY(-3px);opacity:.8;}
-.mini::before{content:"";position:absolute;width:80px;height:80px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.07;pointer-events:none;}
-.mini-type{display:flex;align-items:baseline;}
-.mn{font-family:"Cormorant Garamond",serif;font-weight:300;font-style:italic;font-size:clamp(11px,1.4vw,20px);line-height:1;}
-.ms{width:.5px;height:clamp(10px,1.4vw,20px);margin:0 clamp(3px,0.5vw,8px);align-self:center;}
-.mh{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(11px,1.4vw,20px);letter-spacing:.06em;line-height:1;}
-.ml{font-family:"DM Mono",monospace;font-size:clamp(6px,0.7vw,10px);letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-right:-.2em;}
-.mini-orn{display:flex;align-items:center;gap:clamp(4px,0.6vw,8px);}
-.mo{width:clamp(14px,2vw,28px);height:.5px;}
-.mg{width:clamp(4px,0.5vw,7px);height:clamp(4px,0.5vw,7px);transform:rotate(45deg);flex-shrink:0;}
+:root {
+  --g0: #E0F4FF; --g1: #7EC8F4; --g2: #2389D4; --g3: #0E5CA4; --g4: #0A3A6E; --g5: #061828;
+  --gold0: #FFFBF0; --gold1: #F4A623; --gold2: #C47D0E; --gold3: #8A5600; --gold4: #5A3800;
+  --bg: #060404; --panel: #0E0900; --panel2: #1A1000; --text: #E0F4FF;
+  --muted: #3A2500; --border: #2A1500; --red: #D42020;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-height:100vh;}
 
-.c-k{background:#020810;border-color:#0A4E84;}
-.c-k::before{background:radial-gradient(circle,#5AB4F0,transparent);}
-.c-k .mn{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-k .ms{background:linear-gradient(180deg,transparent,#0A4E84,transparent);}
-.c-k .mh{background:linear-gradient(160deg,#EFF8FF,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-k .ml{color:#5AB4F0;}.c-k .mo{background:#0A4E84;}.c-k .mg{background:#5AB4F0;}
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1000;border:1px solid var(--gold2);color:var(--gold1);padding:.6rem 1.4rem;border-radius:6px;font-size:.72rem;letter-spacing:.1em;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
+#toast.show{opacity:1;}
 
-.c-h{background:#080212;border-color:#4E0E8A;}
-.c-h::before{background:radial-gradient(circle,#A855F7,transparent);}
-.c-h .mn{background:linear-gradient(160deg,#DDB8FF,#A855F7,#7C22C8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-h .ms{background:linear-gradient(180deg,transparent,#4E0E8A,transparent);}
-.c-h .mh{background:linear-gradient(160deg,#FAF0FF,#DDB8FF,#A855F7,#7C22C8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-h .ml{color:#A855F7;}.c-h .mo{background:#4E0E8A;}.c-h .mg{background:#A855F7;}
+/* ── AUTH ── */
+#auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:radial-gradient(ellipse at center,#1A1000 0%,#060404 70%);position:relative;overflow:hidden;}
+#auth-screen::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(ellipse,rgba(244,166,35,0.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.auth-card{display:flex;flex-direction:column;align-items:center;gap:2rem;background:#0E0900;border:1px solid var(--gold3);border-radius:12px;padding:3rem 2.5rem;max-width:400px;width:100%;box-shadow:0 0 80px rgba(244,166,35,0.08);z-index:1;}
 
-.c-p{background:#010A04;border-color:#065C2A;}
-.c-p::before{background:radial-gradient(circle,#34C472,transparent);}
-.c-p .mn{background:linear-gradient(160deg,#A8F0C4,#34C472,#0E9044);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-p .ms{background:linear-gradient(180deg,transparent,#065C2A,transparent);}
-.c-p .mh{background:linear-gradient(160deg,#F0FFF6,#A8F0C4,#34C472,#0E9044);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-p .ml{color:#34C472;}.c-p .mo{background:#065C2A;}.c-p .mg{background:#34C472;}
+/* chest on login */
+.auth-chest{margin-bottom:.5rem;}
 
-.c-v{background:#01100E;border-color:#0A4A42;}
-.c-v::before{background:radial-gradient(circle,#2DD4BF,transparent);}
-.c-v .mn{background:linear-gradient(160deg,#B2FFF8,#2DD4BF,#0F9B87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-v .ms{background:linear-gradient(180deg,transparent,#0A4A42,transparent);}
-.c-v .mh{background:linear-gradient(160deg,#F0FFFD,#B2FFF8,#2DD4BF,#0F9B87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-v .ml{color:#2DD4BF;}.c-v .mo{background:#0A4A42;}.c-v .mg{background:#2DD4BF;}
+/* auth wordmark */
+.auth-wm{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.auth-orn{display:flex;align-items:center;gap:10px;}
+.auth-orn-line{width:40px;height:.5px;background:var(--gold3);}
+.auth-orn-gem{width:5px;height:5px;background:var(--gold1);transform:rotate(45deg);}
+.auth-top{font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;letter-spacing:.3em;color:var(--g2);display:block;}
+.auth-main{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;letter-spacing:.08em;background:linear-gradient(170deg,var(--g0),var(--g1),var(--g2),var(--g4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:.95;}
+.auth-hq{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;font-weight:300;letter-spacing:.5em;color:var(--g3);display:block;margin-top:4px;}
+.auth-tagline{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.35em;color:var(--red);text-transform:uppercase;margin-top:2px;}
 
-.c-b{background:#080600;border-color:#5A3800;}
-.c-b::before{background:radial-gradient(circle,#F4A623,transparent);}
-.c-b .mn{background:linear-gradient(160deg,#E0F4FF,#7EC8F4,#2389D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-b .ms{background:linear-gradient(180deg,transparent,#5A3800,transparent);}
-.c-b .mh{background:linear-gradient(160deg,#E0F4FF,#7EC8F4,#2389D4,#0A3A6E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-b .ml{color:#C47D0E;}.c-b .mo{background:#5A3800;}.c-b .mg{background:#F4A623;}
+.auth-divider{display:flex;align-items:center;gap:1rem;width:100%;}
+.auth-divider-line{flex:1;height:1px;background:var(--border);}
+.auth-divider-text{font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
 
-.c-l{background:#060202;border-color:#8A0A0A;}
-.c-l::before{background:radial-gradient(circle,#F06060,transparent);}
-.c-l .my{font-family:"Cormorant Garamond",serif;font-weight:300;font-style:italic;font-size:clamp(11px,1.4vw,20px);line-height:1;background:linear-gradient(160deg,#FFBDBD,#F06060,#C42020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-l .lf{font-family:"Cormorant Garamond",serif;font-weight:300;font-style:italic;font-size:clamp(11px,1.4vw,20px);line-height:1;background:linear-gradient(160deg,#FFF5F5,#FFBDBD,#F06060);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-l .ms{background:linear-gradient(180deg,transparent,#8A0A0A,transparent);}
-.c-l .mh{background:linear-gradient(160deg,#FFF5F5,#FFBDBD,#F06060,#C42020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.c-l .ml{color:#F06060;}.c-l .mo{background:#8A0A0A;}.c-l .mg{background:#F06060;}
+.btn-google{display:flex;align-items:center;gap:.75rem;background:#0E0900;color:var(--g1);border:1px solid var(--gold3);border-radius:6px;padding:.85rem 2rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;width:100%;justify-content:center;}
+.btn-google:hover{background:#1A1000;border-color:var(--gold1);box-shadow:0 0 30px rgba(244,166,35,0.15);color:var(--g0);}
+.btn-google svg{width:18px;height:18px;flex-shrink:0;}
 
-@media(max-width:480px){.logos-wrap{max-width:100%;}.gn{font-size:clamp(44px,14vw,64px);}}
+.auth-note{font-size:.65rem;letter-spacing:.2em;color:var(--gold4);text-align:center;line-height:1.8;text-transform:uppercase;opacity:.6;}
+
+/* ── APP ── */
+#app{display:none;}
+
+/* ── TOPNAV ── */
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.25rem;background:#080600;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.topnav-logo{display:flex;align-items:baseline;gap:0;}
+.tnav-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:20px;background:linear-gradient(160deg,var(--g0),var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tnav-sep{width:1px;height:14px;background:linear-gradient(180deg,transparent,var(--gold3),transparent);margin:0 6px;align-self:center;}
+.tnav-hq{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;letter-spacing:.08em;background:linear-gradient(160deg,var(--g0),var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.topnav-right{display:flex;align-items:center;gap:.6rem;}
+.user-avatar{width:28px;height:28px;border-radius:50%;border:1px solid var(--gold3);}
+.btn-logout{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:.25rem .6rem;font-size:.6rem;letter-spacing:.1em;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;text-transform:uppercase;}
+.btn-logout:hover{border-color:var(--gold3);color:var(--gold1);}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:.35rem;padding:.6rem 1.25rem;overflow-x:auto;background:#080600;border-bottom:1px solid var(--border);scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{display:flex;align-items:center;gap:.35rem;padding:.35rem .8rem;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.05em;cursor:pointer;white-space:nowrap;transition:all .15s;}
+.tab.active{background:#1A1000;border-color:var(--gold2);color:var(--gold1);box-shadow:0 0 10px rgba(244,166,35,0.1);}
+.tab:hover:not(.active){border-color:var(--gold4);color:var(--gold2);}
+
+/* ── CONTENT ── */
+.content{max-width:720px;margin:0 auto;padding:1.25rem;}
+.section{display:none;}
+.section.active{display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--gold1);margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+
+/* ── BUTTONS ── */
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:#1A1000;border:1px solid var(--gold3);color:var(--gold1);border-radius:5px;padding:.55rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.btn-gold:hover{background:#2A1800;border-color:var(--gold1);box-shadow:0 0 16px rgba(244,166,35,0.15);}
+.btn-gold.primary{background:linear-gradient(135deg,#2A1800,#1A1000);border-color:var(--gold2);}
+.btn-sm{padding:.3rem .7rem;font-size:.62rem;}
+.btn-danger{border-color:#5A1010;color:#F06060;}
+.btn-danger:hover{background:#1A0505;border-color:#F06060;}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:#0E0900;border:1px solid var(--gold3);border-radius:10px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--gold1);}
+.modal input,.modal textarea,.modal select{width:100%;border:1px solid var(--border);border-radius:4px;padding:.55rem .8rem;font-family:'DM Mono',monospace;font-size:.78rem;outline:none;background:var(--bg);color:var(--text);transition:border .15s;}
+.modal input:focus,.modal textarea:focus,.modal select:focus{border-color:var(--gold2);}
+.modal textarea{min-height:80px;resize:vertical;}
+.modal-label{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:.3rem;}
+.modal-actions{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem;}
+.btn-cancel{padding:.5rem 1rem;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:.7rem;cursor:pointer;}
+.btn-cancel:hover{border-color:var(--gold4);color:var(--gold2);}
+
+/* ══════════════════════════════
+   DOLLO
+══════════════════════════════ */
+.dollo-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:.5rem;flex-wrap:wrap;}
+.dollo-search{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.45rem .8rem;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text);outline:none;transition:border .15s;}
+.dollo-search:focus{border-color:var(--gold2);}
+
+.dollo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
+.dollo-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;}
+.dollo-card:hover{border-color:var(--gold3);box-shadow:0 0 20px rgba(244,166,35,0.08);}
+.dollo-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--border);}
+.dollo-card-img img{width:100%;height:100%;object-fit:cover;}
+.dollo-card-img.no-photo{background:linear-gradient(135deg,#1A1000,#0E0900);}
+.dollo-card-body{padding:.65rem .75rem;display:flex;flex-direction:column;gap:.25rem;}
+.dollo-card-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dollo-card-desc{font-size:.6rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.dollo-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* photo upload preview */
+.photo-upload-wrap{position:relative;width:100%;aspect-ratio:4/3;background:#1A1000;border:1px dashed var(--gold4);border-radius:6px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;transition:border .2s;}
+.photo-upload-wrap:hover{border-color:var(--gold2);}
+.photo-upload-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.photo-upload-label{font-size:.65rem;letter-spacing:.15em;color:var(--gold3);text-transform:uppercase;text-align:center;}
+.photo-upload-icon{font-size:1.8rem;opacity:.4;}
+.photo-upload-input{display:none;}
+.photo-change-btn{position:absolute;bottom:8px;right:8px;background:rgba(6,4,4,.8);border:1px solid var(--gold3);color:var(--gold1);border-radius:4px;padding:.2rem .5rem;font-size:.6rem;font-family:'DM Mono',monospace;cursor:pointer;letter-spacing:.1em;}
+
+/* ══════════════════════════════
+   RECETTES
+══════════════════════════════ */
+.scan-box{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;}
+.scan-box-title{font-size:.72rem;letter-spacing:.12em;color:var(--gold2);text-transform:uppercase;margin-bottom:.4rem;}
+.scan-box-sub{font-size:.7rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6;}
+.scan-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;}
+.scan-textarea{width:100%;min-height:70px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.6rem;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text);outline:none;resize:vertical;transition:border .15s;}
+.scan-textarea:focus{border-color:var(--gold2);}
+
+.recette-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.75rem;}
+.recette-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .15s;}
+.recette-card:hover{border-color:var(--gold3);background:var(--panel2);}
+.recette-card-left{flex:1;min-width:0;}
+.recette-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.recette-card-info{font-size:.62rem;color:var(--muted);margin-top:2px;}
+.recette-card-actions{display:flex;gap:.35rem;flex-shrink:0;}
+
+.detail-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--gold1);margin-bottom:.3rem;}
+.detail-notes{font-size:.78rem;color:var(--text);font-style:italic;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border);line-height:1.7;}
+.ing-list-display{display:flex;flex-direction:column;gap:.4rem;}
+.ing-item{display:flex;align-items:center;gap:.6rem;padding:.4rem .7rem;background:var(--panel2);border-radius:5px;}
+.ing-qty{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);min-width:40px;}
+.ing-unit{font-size:.62rem;color:var(--muted);min-width:60px;}
+.ing-name{font-size:.8rem;color:var(--text);}
+.ing-row{display:flex;align-items:center;gap:.4rem;}
+.ing-row input{flex:1;}
+.ing-row input.ing-qty-in{width:60px;flex:none;}
+.ing-row input.ing-unit-in{width:70px;flex:none;}
+.ing-remove{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:0 4px;transition:color .15s;}
+.ing-remove:hover{color:#a03020;}
+
+.scan-status{font-size:.72rem;color:var(--g1);margin-top:.4rem;display:none;letter-spacing:.08em;}
+
+/* ══════════════════════════════
+   SOUVENIRS
+══════════════════════════════ */
+.souvenirs-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;}
+.souvenirs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem;}
+.souvenir-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;position:relative;}
+.souvenir-card:hover{border-color:var(--gold3);box-shadow:0 0 16px rgba(244,166,35,0.1);}
+.souvenir-img{width:100%;aspect-ratio:1;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--border);}
+.souvenir-img img{width:100%;height:100%;object-fit:cover;}
+.souvenir-caption{padding:.5rem .6rem;}
+.souvenir-caption-title{font-family:'Cormorant Garamond',serif;font-size:.9rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.souvenir-caption-date{font-size:.55rem;color:var(--muted);margin-top:2px;}
+.souvenir-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* ══════════════════════════════
+   CHAT
+══════════════════════════════ */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 180px);min-height:400px;}
+.chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.75rem;padding:.5rem 0;margin-bottom:.75rem;}
+.chat-msg{display:flex;flex-direction:column;max-width:78%;}
+.chat-msg.mine{align-self:flex-end;align-items:flex-end;}
+.chat-msg.theirs{align-self:flex-start;align-items:flex-start;}
+.chat-bubble{padding:.6rem .9rem;border-radius:12px;font-size:.8rem;line-height:1.6;}
+.chat-msg.mine .chat-bubble{background:linear-gradient(135deg,#1A1000,#2A1800);border:1px solid var(--gold3);color:var(--gold0);border-bottom-right-radius:3px;}
+.chat-msg.theirs .chat-bubble{background:var(--panel);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:3px;}
+.chat-meta{font-size:.58rem;color:var(--muted);margin-top:3px;letter-spacing:.08em;}
+.chat-input-row{display:flex;gap:.5rem;align-items:flex-end;}
+.chat-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.65rem .9rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;resize:none;min-height:42px;max-height:120px;line-height:1.5;transition:border .15s;}
+.chat-input:focus{border-color:var(--gold2);}
+.chat-send{background:linear-gradient(135deg,#2A1800,#1A1000);border:1px solid var(--gold2);color:var(--gold1);border-radius:8px;padding:.65rem .9rem;cursor:pointer;font-size:1rem;transition:all .2s;flex-shrink:0;}
+.chat-send:hover{border-color:var(--gold1);box-shadow:0 0 12px rgba(244,166,35,0.2);}
+.chat-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* ══════════════════════════════
+   TRUCS UTILES
+══════════════════════════════ */
+.trucs-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.75rem;}
+.truc-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;transition:all .15s;cursor:pointer;}
+.truc-card:hover{border-color:var(--gold3);background:var(--panel2);}
+.truc-card-left{flex:1;min-width:0;}
+.truc-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--gold1);}
+.truc-card-desc{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5;}
+.truc-card-cat{font-size:.58rem;letter-spacing:.15em;color:var(--gold4);text-transform:uppercase;margin-top:.3rem;}
+.trucs-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* ══════════════════════════════
+   TROUVAILLES
+══════════════════════════════ */
+.trouvailles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
+.trouvaille-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;}
+.trouvaille-card:hover{border-color:var(--gold3);box-shadow:0 0 20px rgba(244,166,35,0.08);}
+.trouvaille-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--border);}
+.trouvaille-img img{width:100%;height:100%;object-fit:cover;}
+.trouvaille-body{padding:.65rem .75rem;}
+.trouvaille-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.trouvaille-desc{font-size:.62rem;color:var(--muted);line-height:1.5;margin-top:2px;}
+.trouvailles-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* ── COMING SOON ── */
+.coming-soon{text-align:center;padding:4rem 1rem;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.coming-soon-icon{font-size:3rem;opacity:.3;}
+.coming-soon-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--gold3);}
+.coming-soon-sub{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
+
+@media(max-width:480px){
+  .dollo-grid{grid-template-columns:repeat(2,1fr);}
+  .souvenirs-grid{grid-template-columns:repeat(2,1fr);}
+  .trouvailles-grid{grid-template-columns:repeat(2,1fr);}
+  .auth-main{font-size:40px;}
+  .modal{padding:1.1rem;}
+}
 </style>
 </head>
 <body>
-<div class="s">
-  <span class="num">Golden</span>
-  <div class="wm">
-    <div class="orn"><div class="ol"></div><div class="og"></div><div class="ol"></div></div>
-    <span class="gn">Golden</span>
-    <span class="sub">My life, organized.</span>
+
+<div id="toast"></div>
+
+<!-- ═══════════ AUTH ═══════════ -->
+<div id="auth-screen">
+  <div class="auth-card">
+
+    <!-- coffre SVG -->
+    <div class="auth-chest">
+      <svg width="100" height="78" viewBox="0 0 140 110" fill="none">
+        <defs>
+          <linearGradient id="ab" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C47D0E"/><stop offset="100%" stop-color="#6A3E00"/></linearGradient>
+          <linearGradient id="al" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFE99A"/><stop offset="60%" stop-color="#D4921A"/><stop offset="100%" stop-color="#8A5600"/></linearGradient>
+          <linearGradient id="abd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F4C040"/><stop offset="100%" stop-color="#8A5600"/></linearGradient>
+          <linearGradient id="ak" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE99A"/><stop offset="100%" stop-color="#C47D0E"/></linearGradient>
+        </defs>
+        <ellipse cx="70" cy="107" rx="46" ry="4" fill="#000" opacity=".35"/>
+        <rect x="14" y="60" width="112" height="44" rx="3" fill="url(#ab)"/>
+        <line x1="14" y1="76" x2="126" y2="76" stroke="#7A4800" stroke-width="1" opacity=".5"/>
+        <line x1="14" y1="90" x2="126" y2="90" stroke="#7A4800" stroke-width="1" opacity=".5"/>
+        <rect x="14" y="60" width="112" height="7" fill="url(#abd)"/>
+        <rect x="14" y="97" width="112" height="7" fill="url(#abd)"/>
+        <rect x="14" y="60" width="112" height="3" fill="rgba(255,220,80,.15)"/>
+        <rect x="12" y="22" width="116" height="40" rx="3" fill="url(#al)"/>
+        <line x1="12" y1="34" x2="128" y2="34" stroke="#8A5600" stroke-width="1" opacity=".4"/>
+        <line x1="12" y1="46" x2="128" y2="46" stroke="#8A5600" stroke-width="1" opacity=".4"/>
+        <rect x="12" y="55" width="116" height="8" fill="url(#abd)"/>
+        <rect x="12" y="22" width="116" height="6" fill="url(#abd)"/>
+        <rect x="12" y="22" width="116" height="3" fill="rgba(255,245,180,.25)"/>
+        <circle cx="18" cy="65" r="5" fill="url(#ak)"/><circle cx="122" cy="65" r="5" fill="url(#ak)"/>
+        <circle cx="18" cy="100" r="5" fill="url(#ak)"/><circle cx="122" cy="100" r="5" fill="url(#ak)"/>
+        <circle cx="18" cy="27" r="5" fill="url(#ak)"/><circle cx="122" cy="27" r="5" fill="url(#ak)"/>
+        <circle cx="17" cy="64" r="1.5" fill="rgba(255,255,255,.6)"/><circle cx="121" cy="64" r="1.5" fill="rgba(255,255,255,.6)"/>
+        <rect x="52" y="19" width="36" height="5" rx="2.5" fill="url(#ak)"/>
+        <rect x="53" y="54" width="34" height="18" rx="2" fill="url(#abd)"/>
+        <path d="M63 58 Q63 50 70 50 Q77 50 77 58" stroke="url(#ak)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <rect x="58" y="57" width="24" height="13" rx="2" fill="url(#ak)"/>
+        <circle cx="70" cy="62" r="3" fill="#3A1A00"/>
+        <rect x="68.5" y="64" width="3" height="4" rx="1" fill="#3A1A00"/>
+        <circle cx="69.5" cy="61" r=".8" fill="rgba(255,220,80,.7)"/>
+        <text x="70" y="84" font-family="Cormorant Garamond,serif" font-size="9" font-weight="600" letter-spacing="3" fill="#1A0A00" text-anchor="middle" opacity=".85">BECCARIC</text>
+        <text x="70" y="93" font-family="Cormorant Garamond,serif" font-size="7" font-style="italic" letter-spacing="3" fill="#1A0A00" text-anchor="middle" opacity=".75">HQ</text>
+      </svg>
+    </div>
+
+    <div class="auth-wm">
+      <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
+      <span class="auth-top">notre coin</span>
+      <span class="auth-main">Beccaric</span>
+      <span class="auth-hq">H Q</span>
+      <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
+      <span class="auth-tagline">Our world, our place</span>
+    </div>
+
+    <div class="auth-divider">
+      <div class="auth-divider-line"></div>
+      <span class="auth-divider-text">Connexion sécurisée</span>
+      <div class="auth-divider-line"></div>
+    </div>
+
+    <button class="btn-google" onclick="signInWithGoogle()">
+      <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Continuer avec Google
+    </button>
+
+    <div class="auth-note">Accès privé · 2 personnes autorisées<br>Sécurisé par Firebase Auth</div>
   </div>
-  <div class="logos-wrap">
-    <div class="row">
-      <a class="mini c-k" href="https://stonecold93-hue.github.io/KitchenHQ/" target="_blank">
-        <div class="mini-orn"><div class="mo"></div><div class="mg"></div><div class="mo"></div></div>
-        <div class="mini-type"><span class="mn">Kitchen</span><div class="ms"></div><span class="mh">HQ</span></div>
-        <span class="ml">All in one place</span>
-      </a>
-      <a class="mini c-h" href="https://stonecold93-hue.github.io/househq/" target="_blank">
-        <div class="mini-orn"><div class="mo"></div><div class="mg"></div><div class="mo"></div></div>
-        <div class="mini-type"><span class="mn">House</span><div class="ms"></div><span class="mh">HQ</span></div>
-        <span class="ml">Clean & project organizer</span>
-      </a>
-      <div class="mini c-p">
-        <div class="mini-orn"><div class="mo"></div><div class="mg"></div><div class="mo"></div></div>
-        <div class="mini-type"><span class="mn">Plant</span><div class="ms"></div><span class="mh">HQ</span></div>
-        <span class="ml">Gardening all year</span>
+</div>
+
+<!-- ═══════════ APP ═══════════ -->
+<div id="app">
+
+  <div class="topnav">
+    <div class="topnav-logo">
+      <span class="tnav-name">Beccaric</span>
+      <div class="tnav-sep"></div>
+      <span class="tnav-hq">HQ</span>
+    </div>
+    <div class="topnav-right">
+      <img class="user-avatar" id="user-avatar" src="" alt="">
+      <button class="btn-logout" onclick="logout()">Quitter</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
+    <button class="tab" data-tab="recettes" onclick="goTab('recettes',this)">🍽️ Recettes</button>
+    <button class="tab" data-tab="souvenirs" onclick="goTab('souvenirs',this)">📸 Souvenirs</button>
+    <button class="tab" data-tab="chat" onclick="goTab('chat',this)">💬 Chat</button>
+    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
+    <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">❤️ Trouvailles</button>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ DOLLO ══ -->
+    <div class="section active" id="tab-dollo">
+      <div class="section-title">Liste Dollo</div>
+      <div class="dollo-toolbar">
+        <input class="dollo-search" id="dollo-search" placeholder="Rechercher..." oninput="filterDollo()">
+        <button class="btn-gold primary" onclick="ouvrirDollo()">+ Ajouter</button>
+      </div>
+      <div class="dollo-grid" id="dollo-grid">
+        <div class="dollo-empty" id="dollo-empty" style="grid-column:1/-1">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🛒</div>
+          Aucun item pour l'instant
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="mini c-v">
-        <div class="mini-orn"><div class="mo"></div><div class="mg"></div><div class="mo"></div></div>
-        <div class="mini-type"><span class="mn">Vault</span><div class="ms"></div><span class="mh">HQ</span></div>
-        <span class="ml">Ideas, organized.</span>
+
+    <!-- ══ RECETTES ══ -->
+    <div class="section" id="tab-recettes">
+      <div class="section-title">Nos Recettes</div>
+      <div class="scan-box">
+        <div class="scan-box-title">📥 Ajouter une recette rapidement</div>
+        <div class="scan-box-sub">Collez le texte d'une recette web ou prenez une photo — Claude remplit tout automatiquement !</div>
+        <div class="scan-actions">
+          <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
+          <label class="btn-gold btn-sm" for="scan-photo-camera">📷 Prendre photo<input type="file" id="scan-photo-camera" accept="image/*" capture="environment" style="display:none" onchange="scanPhotoRecette(this)"></label>
+        </div>
+        <textarea class="scan-textarea" id="scan-recette-text" placeholder="Ou collez le texte de la recette ici..."></textarea>
+        <button class="btn-gold" style="margin-top:.4rem;width:100%;justify-content:center" onclick="scanTexteRecette()">🧠 Analyser avec Claude</button>
+        <div class="scan-status" id="scan-status"></div>
       </div>
-      <div class="mini c-b">
-        <div class="mini-orn"><div class="mo"></div><div class="mg"></div><div class="mo"></div></div>
-        <div class="mini-type"><span class="mn">Beccaric</span><div class="ms"></div><span class="mh">HQ</span></div>
-        <span class="ml">Notre coin</span>
+      <button class="btn-gold primary" onclick="ouvrirFormRecette()">+ Saisie manuelle</button>
+      <div class="recette-list" id="recette-list"></div>
+    </div>
+
+    <!-- ══ SOUVENIRS ══ -->
+    <div class="section" id="tab-souvenirs">
+      <div class="section-title">Souvenirs</div>
+      <div class="souvenirs-toolbar">
+        <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos moments partagés</span>
+        <button class="btn-gold primary" onclick="ouvrirSouvenir()">+ Ajouter</button>
       </div>
-      <div class="mini c-l">
-        <div class="mini-orn"><div class="mo"></div><div class="mg"></div><div class="mo"></div></div>
-        <div class="mini-type"><span class="my">My</span><div class="ms"></div><span class="lf">Life</span><div class="ms"></div><span class="mh">HQ</span></div>
-        <span class="ml">Written my story</span>
+      <div class="souvenirs-grid" id="souvenirs-grid">
+        <div class="souvenir-empty" id="souvenirs-empty" style="grid-column:1/-1">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">📸</div>
+          Aucun souvenir encore
+        </div>
       </div>
+    </div>
+
+    <!-- ══ CHAT ══ -->
+    <div class="section" id="tab-chat">
+      <div class="section-title">Notre Chat</div>
+      <div class="chat-wrap">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-empty" id="chat-empty">
+            <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">💬</div>
+            Commencez la conversation !
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <textarea class="chat-input" id="chat-input" placeholder="Écrire un message..." rows="1" onkeydown="chatKeydown(event)" oninput="autoResize(this)"></textarea>
+          <button class="chat-send" onclick="envoyerMessage()">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRUCS UTILES ══ -->
+    <div class="section" id="tab-trucs">
+      <div class="section-title">Trucs Utiles</div>
+      <button class="btn-gold primary" onclick="ouvrirTruc()">+ Ajouter un truc</button>
+      <div class="trucs-list" id="trucs-list">
+        <div class="trucs-empty" id="trucs-empty">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">✨</div>
+          Aucun truc utile encore
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TROUVAILLES ══ -->
+    <div class="section" id="tab-trouvailles">
+      <div class="section-title">Trouvailles</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
+        <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos découvertes & coups de cœur</span>
+        <button class="btn-gold primary" onclick="ouvrirTrouvaille()">+ Ajouter</button>
+      </div>
+      <div class="trouvailles-grid" id="trouvailles-grid">
+        <div class="trouvailles-empty" id="trouvailles-empty" style="grid-column:1/-1">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">❤️</div>
+          Aucune trouvaille encore
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /app -->
+
+<!-- ═══════════ MODALS ═══════════ -->
+
+<!-- DOLLO — Form -->
+<div class="modal-overlay" id="modal-dollo">
+  <div class="modal">
+    <div class="modal-title" id="dollo-modal-title">Nouvel item</div>
+    <div>
+      <div class="modal-label">Photo</div>
+      <div class="photo-upload-wrap" id="dollo-photo-wrap" onclick="document.getElementById('dollo-photo-input').click()">
+        <div class="photo-upload-icon">📷</div>
+        <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
+        <input type="file" id="dollo-photo-input" class="photo-upload-input" accept="image/*" onchange="previewDolloPhoto(this)">
+        <button class="photo-change-btn" id="dollo-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('dollo-photo-input').click()">Changer</button>
+      </div>
+    </div>
+    <div>
+      <div class="modal-label">Nom de l'objet</div>
+      <input type="text" id="dollo-nom" placeholder="Ex: Lampe de salon">
+    </div>
+    <div>
+      <div class="modal-label">Description</div>
+      <textarea id="dollo-desc" placeholder="Description, où acheter, prix approximatif..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="fermerModal('modal-dollo')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderDollo()">💾 Sauvegarder</button>
     </div>
   </div>
 </div>
+
+<!-- DOLLO — Detail/Edit -->
+<div class="modal-overlay" id="modal-dollo-detail">
+  <div class="modal">
+    <div class="modal-title">Modifier l'item</div>
+    <input type="hidden" id="dollo-edit-id">
+    <div>
+      <div class="modal-label">Photo</div>
+      <div class="photo-upload-wrap" id="dollo-edit-photo-wrap" onclick="document.getElementById('dollo-edit-photo-input').click()">
+        <div class="photo-upload-icon">📷</div>
+        <div class="photo-upload-label">Appuyer pour changer la photo</div>
+        <input type="file" id="dollo-edit-photo-input" class="photo-upload-input" accept="image/*" onchange="previewDolloEditPhoto(this)">
+        <button class="photo-change-btn" onclick="event.stopPropagation();document.getElementById('dollo-edit-photo-input').click()">Changer</button>
+      </div>
+    </div>
+    <div>
+      <div class="modal-label">Nom</div>
+      <input type="text" id="dollo-edit-nom">
+    </div>
+    <div>
+      <div class="modal-label">Description</div>
+      <textarea id="dollo-edit-desc"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-gold btn-danger btn-sm" onclick="supprimerDollo()">🗑️ Supprimer</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-dollo-detail')">Annuler</button>
+      <button class="btn-gold primary" onclick="mettreAJourDollo()">💾 Mettre à jour</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECETTE — Form -->
+<div class="modal-overlay" id="modal-recette">
+  <div class="modal">
+    <div class="modal-title" id="recette-modal-title">Nouvelle recette</div>
+    <input type="hidden" id="rec-id">
+    <div>
+      <div class="modal-label">Nom de la recette</div>
+      <input type="text" id="rec-nom" placeholder="Ex: Spaghetti bolognaise">
+    </div>
+    <div>
+      <div class="modal-label">Notes / Instructions</div>
+      <textarea id="rec-notes" placeholder="Étapes, temps de cuisson, conseils..."></textarea>
+    </div>
+    <div>
+      <div class="modal-label" style="margin-bottom:.5rem">Ingrédients</div>
+      <div class="ing-list" id="ing-list-form"></div>
+      <button class="btn-gold btn-sm" style="margin-top:.5rem" onclick="ajouterIngredient()">+ Ingrédient</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="fermerModal('modal-recette')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderRecette()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECETTE — Detail -->
+<div class="modal-overlay" id="modal-recette-detail">
+  <div class="modal">
+    <div class="detail-title" id="detail-title"></div>
+    <div class="detail-notes" id="detail-notes"></div>
+    <div class="modal-label" style="margin-bottom:.5rem">Ingrédients</div>
+    <div class="ing-list-display" id="detail-ings"></div>
+    <div class="modal-actions" style="margin-top:1rem">
+      <button class="btn-gold btn-danger btn-sm" onclick="supprimerRecette()">🗑️</button>
+      <button class="btn-gold btn-sm" onclick="editerRecette()">✏️ Modifier</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-recette-detail')">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- SOUVENIR — Form -->
+<div class="modal-overlay" id="modal-souvenir">
+  <div class="modal">
+    <div class="modal-title">Nouveau souvenir</div>
+    <div>
+      <div class="modal-label">Photo</div>
+      <div class="photo-upload-wrap" id="souvenir-photo-wrap" onclick="document.getElementById('souvenir-photo-input').click()">
+        <div class="photo-upload-icon">📷</div>
+        <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
+        <input type="file" id="souvenir-photo-input" class="photo-upload-input" accept="image/*" onchange="previewSouvenirPhoto(this)">
+        <button class="photo-change-btn" id="souvenir-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('souvenir-photo-input').click()">Changer</button>
+      </div>
+    </div>
+    <div>
+      <div class="modal-label">Titre</div>
+      <input type="text" id="souvenir-titre" placeholder="Ex: Vacances été 2025">
+    </div>
+    <div>
+      <div class="modal-label">Description</div>
+      <textarea id="souvenir-desc" placeholder="Un beau souvenir..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="fermerModal('modal-souvenir')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderSouvenir()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<!-- SOUVENIR — Detail -->
+<div class="modal-overlay" id="modal-souvenir-detail">
+  <div class="modal">
+    <div id="souvenir-detail-img" style="width:100%;border-radius:6px;overflow:hidden;margin-bottom:.75rem;max-height:280px;"></div>
+    <div class="detail-title" id="souvenir-detail-titre"></div>
+    <div class="detail-notes" id="souvenir-detail-desc"></div>
+    <div class="modal-actions">
+      <button class="btn-gold btn-danger btn-sm" onclick="supprimerSouvenir()">🗑️ Supprimer</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-souvenir-detail')">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRUC — Form -->
+<div class="modal-overlay" id="modal-truc">
+  <div class="modal">
+    <div class="modal-title" id="truc-modal-title">Nouveau truc utile</div>
+    <input type="hidden" id="truc-id">
+    <div>
+      <div class="modal-label">Titre</div>
+      <input type="text" id="truc-titre" placeholder="Ex: Enlever une tache de vin">
+    </div>
+    <div>
+      <div class="modal-label">Catégorie</div>
+      <select id="truc-cat">
+        <option value="maison">🏠 Maison</option>
+        <option value="cuisine">🍳 Cuisine</option>
+        <option value="sante">💊 Santé</option>
+        <option value="techno">💻 Techno</option>
+        <option value="autre">✨ Autre</option>
+      </select>
+    </div>
+    <div>
+      <div class="modal-label">Description / Astuce</div>
+      <textarea id="truc-desc" placeholder="Explique le truc..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-gold btn-danger btn-sm" id="truc-delete-btn" style="display:none" onclick="supprimerTruc()">🗑️</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-truc')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderTruc()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<!-- TROUVAILLE — Form -->
+<div class="modal-overlay" id="modal-trouvaille">
+  <div class="modal">
+    <div class="modal-title" id="trouvaille-modal-title">Nouvelle trouvaille</div>
+    <input type="hidden" id="trouvaille-id">
+    <div>
+      <div class="modal-label">Photo</div>
+      <div class="photo-upload-wrap" id="trouvaille-photo-wrap" onclick="document.getElementById('trouvaille-photo-input').click()">
+        <div class="photo-upload-icon">📷</div>
+        <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
+        <input type="file" id="trouvaille-photo-input" class="photo-upload-input" accept="image/*" onchange="previewTrouvaillePhoto(this)">
+        <button class="photo-change-btn" id="trouvaille-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('trouvaille-photo-input').click()">Changer</button>
+      </div>
+    </div>
+    <div>
+      <div class="modal-label">Nom</div>
+      <input type="text" id="trouvaille-nom" placeholder="Ex: Café découvert rue St-Denis">
+    </div>
+    <div>
+      <div class="modal-label">Description</div>
+      <textarea id="trouvaille-desc" placeholder="Pourquoi on aime ça..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-gold btn-danger btn-sm" id="trouvaille-delete-btn" style="display:none" onclick="supprimerTrouvaille()">🗑️</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-trouvaille')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderTrouvaille()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FIREBASE + JS ═══════════ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection,
+         addDoc, deleteDoc, updateDoc, orderBy, query, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref as sRef, uploadString, getDownloadURL, deleteObject }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+// ── CONFIG FIREBASE — remplace avec ta config ──
+const firebaseConfig = {
+  apiKey: "AIzaSyAq-iBu8NyXPc_yvcV_Is3Rw70jkalz_z8",
+  authDomain: "beccarichq.firebaseapp.com",
+  projectId: "beccarichq",
+  storageBucket: "beccarichq.firebasestorage.app",
+  messagingSenderId: "315636256645",
+  appId: "1:315636256645:web:6c9ed0b00e2fcbe901beec"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+// ── ALLOWED USERS ──
+const ALLOWED_EMAILS = ['EMAIL_1@gmail.com', 'EMAIL_2@gmail.com'];
+
+let currentUser = null;
+let currentDetailId = null;
+let dolloPhotoBase64 = null;
+let dolloEditPhotoBase64 = null;
+let souvenirPhotoBase64 = null;
+let trouvaillePhotoBase64 = null;
+
+// ── TOAST ──
+function toast(msg, dur=2800) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), dur);
+}
+window.showToast = toast;
+
+// ── TABS ──
+window.goTab = (id, btn) => {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
+};
+
+// ── MODAL ──
+window.fermerModal = (id) => document.getElementById(id).classList.remove('open');
+function ouvrirModal(id) { document.getElementById(id).classList.add('open'); }
+
+// ── AUTH ──
+const provider = new GoogleAuthProvider();
+window.signInWithGoogle = async () => {
+  try { await signInWithPopup(auth, provider); }
+  catch(e) { toast('❌ Erreur connexion: ' + e.message); }
+};
+window.logout = () => signOut(auth);
+
+onAuthStateChanged(auth, async user => {
+  if (user) {
+    if (!ALLOWED_EMAILS.includes(user.email)) {
+      toast('❌ Accès refusé');
+      await signOut(auth); return;
+    }
+    currentUser = user;
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    const av = document.getElementById('user-avatar');
+    if (user.photoURL) av.src = user.photoURL;
+    initApp(user.uid);
+  } else {
+    currentUser = null;
+    document.getElementById('auth-screen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  }
+});
+
+// ── INIT ──
+function initApp(uid) {
+  listenDollo(uid);
+  listenRecettes(uid);
+  listenSouvenirs(uid);
+  listenChat(uid);
+  listenTrucs(uid);
+  listenTrouvailles(uid);
+}
+
+// ════════════════════════════════
+// DOLLO
+// ════════════════════════════════
+let dolloItems = [];
+
+function listenDollo(uid) {
+  const q = query(collection(db,'users',uid,'dollo'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap => {
+    dolloItems = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderDollo(dolloItems);
+  });
+}
+
+function renderDollo(items) {
+  const grid = document.getElementById('dollo-grid');
+  const empty = document.getElementById('dollo-empty');
+  if (!items.length) { grid.innerHTML = ''; grid.appendChild(empty); empty.style.display='block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = items.map(item => `
+    <div class="dollo-card" onclick="ouvrirDolloDetail('${item.id}')">
+      <div class="dollo-card-img ${item.photoURL ? '' : 'no-photo'}">
+        ${item.photoURL ? `<img src="${item.photoURL}" alt="${item.nom}" loading="lazy">` : '🛒'}
+      </div>
+      <div class="dollo-card-body">
+        <div class="dollo-card-name">${item.nom || 'Sans nom'}</div>
+        ${item.desc ? `<div class="dollo-card-desc">${item.desc}</div>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+window.filterDollo = () => {
+  const q = document.getElementById('dollo-search').value.toLowerCase();
+  renderDollo(q ? dolloItems.filter(i => (i.nom||'').toLowerCase().includes(q)||(i.desc||'').toLowerCase().includes(q)) : dolloItems);
+};
+
+window.ouvrirDollo = () => {
+  document.getElementById('dollo-nom').value = '';
+  document.getElementById('dollo-desc').value = '';
+  dolloPhotoBase64 = null;
+  resetPhotoWrap('dollo-photo-wrap','dollo-photo-input','dollo-change-btn');
+  ouvrirModal('modal-dollo');
+};
+
+window.previewDolloPhoto = (input) => {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    dolloPhotoBase64 = e.target.result;
+    showPhotoPreview('dollo-photo-wrap', e.target.result, 'dollo-change-btn');
+  };
+  reader.readAsDataURL(input.files[0]);
+};
+
+window.sauvegarderDollo = async () => {
+  const nom = document.getElementById('dollo-nom').value.trim();
+  if (!nom) { toast('⚠️ Entre un nom'); return; }
+  const uid = currentUser.uid;
+  try {
+    let photoURL = null;
+    if (dolloPhotoBase64) {
+      const path = `users/${uid}/dollo/${Date.now()}.jpg`;
+      const storageRef = sRef(storage, path);
+      await uploadString(storageRef, dolloPhotoBase64, 'data_url');
+      photoURL = await getDownloadURL(storageRef);
+    }
+    await addDoc(collection(db,'users',uid,'dollo'), {
+      nom, desc: document.getElementById('dollo-desc').value.trim(),
+      photoURL, createdAt: serverTimestamp()
+    });
+    fermerModal('modal-dollo');
+    toast('✅ Item ajouté !');
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+window.ouvrirDolloDetail = (id) => {
+  const item = dolloItems.find(i => i.id === id);
+  if (!item) return;
+  currentDetailId = id;
+  document.getElementById('dollo-edit-id').value = id;
+  document.getElementById('dollo-edit-nom').value = item.nom || '';
+  document.getElementById('dollo-edit-desc').value = item.desc || '';
+  dolloEditPhotoBase64 = null;
+  const wrap = document.getElementById('dollo-edit-photo-wrap');
+  wrap.innerHTML = '';
+  if (item.photoURL) {
+    const img = document.createElement('img');
+    img.src = item.photoURL;
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    wrap.appendChild(img);
+    const btn = document.createElement('button');
+    btn.className = 'photo-change-btn';
+    btn.textContent = 'Changer';
+    btn.onclick = e => { e.stopPropagation(); document.getElementById('dollo-edit-photo-input').click(); };
+    wrap.appendChild(btn);
+  } else {
+    wrap.innerHTML = `<div class="photo-upload-icon">📷</div><div class="photo-upload-label">Appuyer pour ajouter une photo</div>`;
+  }
+  const inp = document.createElement('input');
+  inp.type='file'; inp.id='dollo-edit-photo-input'; inp.accept='image/*';
+  inp.className='photo-upload-input';
+  inp.onchange = e => previewDolloEditPhoto(e.target);
+  wrap.appendChild(inp);
+  ouvrirModal('modal-dollo-detail');
+};
+
+window.previewDolloEditPhoto = (input) => {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    dolloEditPhotoBase64 = e.target.result;
+    showPhotoPreview('dollo-edit-photo-wrap', e.target.result, null);
+  };
+  reader.readAsDataURL(input.files[0]);
+};
+
+window.mettreAJourDollo = async () => {
+  const id = document.getElementById('dollo-edit-id').value;
+  const nom = document.getElementById('dollo-edit-nom').value.trim();
+  if (!nom) { toast('⚠️ Entre un nom'); return; }
+  const uid = currentUser.uid;
+  try {
+    const updates = { nom, desc: document.getElementById('dollo-edit-desc').value.trim() };
+    if (dolloEditPhotoBase64) {
+      const path = `users/${uid}/dollo/${Date.now()}.jpg`;
+      const storageRef = sRef(storage, path);
+      await uploadString(storageRef, dolloEditPhotoBase64, 'data_url');
+      updates.photoURL = await getDownloadURL(storageRef);
+    }
+    await updateDoc(doc(db,'users',uid,'dollo',id), updates);
+    fermerModal('modal-dollo-detail');
+    toast('✅ Mis à jour !');
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+window.supprimerDollo = async () => {
+  if (!confirm('Supprimer cet item ?')) return;
+  const id = document.getElementById('dollo-edit-id').value;
+  const uid = currentUser.uid;
+  try {
+    await deleteDoc(doc(db,'users',uid,'dollo',id));
+    fermerModal('modal-dollo-detail');
+    toast('🗑️ Supprimé');
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+// ════════════════════════════════
+// RECETTES
+// ════════════════════════════════
+let recettes = [];
+
+function listenRecettes(uid) {
+  onSnapshot(collection(db,'users',uid,'recettes'), snap => {
+    recettes = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderRecettes();
+  });
+}
+
+function renderRecettes() {
+  const list = document.getElementById('recette-list');
+  if (!recettes.length) { list.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em">Aucune recette encore</div>'; return; }
+  list.innerHTML = recettes.map(r => `
+    <div class="recette-card" onclick="voirRecette('${r.id}')">
+      <div class="recette-card-left">
+        <div class="recette-card-name">${r.nom}</div>
+        <div class="recette-card-info">${(r.ingredients||[]).length} ingrédient(s)</div>
+      </div>
+      <div class="recette-card-actions">
+        <button class="btn-gold btn-sm" onclick="event.stopPropagation();editerRecetteDirect('${r.id}')">✏️</button>
+        <button class="btn-gold btn-danger btn-sm" onclick="event.stopPropagation();supprimerRecetteDirect('${r.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+window.ouvrirFormRecette = () => {
+  document.getElementById('rec-id').value = '';
+  document.getElementById('rec-nom').value = '';
+  document.getElementById('rec-notes').value = '';
+  document.getElementById('ing-list-form').innerHTML = '';
+  document.getElementById('recette-modal-title').textContent = 'Nouvelle recette';
+  ajouterIngredient();
+  ouvrirModal('modal-recette');
+};
+
+window.ajouterIngredient = () => {
+  const div = document.createElement('div');
+  div.className = 'ing-row';
+  div.innerHTML = `
+    <input class="ing-qty-in" type="text" placeholder="Qté">
+    <input class="ing-unit-in" type="text" placeholder="Unité">
+    <input type="text" placeholder="Ingrédient" style="flex:1">
+    <button class="ing-remove" onclick="this.parentElement.remove()">✕</button>`;
+  document.getElementById('ing-list-form').appendChild(div);
+};
+
+window.sauvegarderRecette = async () => {
+  const nom = document.getElementById('rec-nom').value.trim();
+  if (!nom) { toast('⚠️ Entre un nom'); return; }
+  const uid = currentUser.uid;
+  const ingredients = [...document.querySelectorAll('#ing-list-form .ing-row')].map(row => {
+    const inputs = row.querySelectorAll('input');
+    return { qty: inputs[0].value.trim(), unit: inputs[1].value.trim(), nom: inputs[2].value.trim() };
+  }).filter(i => i.nom);
+  const data = { nom, notes: document.getElementById('rec-notes').value.trim(), ingredients };
+  try {
+    const id = document.getElementById('rec-id').value;
+    if (id) await updateDoc(doc(db,'users',uid,'recettes',id), data);
+    else await addDoc(collection(db,'users',uid,'recettes'), {...data, createdAt: serverTimestamp()});
+    fermerModal('modal-recette');
+    toast('✅ Recette sauvegardée !');
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+window.voirRecette = (id) => {
+  const r = recettes.find(x => x.id===id);
+  if (!r) return;
+  currentDetailId = id;
+  document.getElementById('detail-title').textContent = r.nom;
+  document.getElementById('detail-notes').textContent = r.notes || '';
+  document.getElementById('detail-ings').innerHTML = (r.ingredients||[]).map(i =>
+    `<div class="ing-item"><span class="ing-qty">${i.qty||''}</span><span class="ing-unit">${i.unit||''}</span><span class="ing-name">${i.nom}</span></div>`
+  ).join('') || '<div style="color:var(--muted);font-size:.75rem">Aucun ingrédient</div>';
+  ouvrirModal('modal-recette-detail');
+};
+
+window.editerRecette = () => {
+  fermerModal('modal-recette-detail');
+  editerRecetteDirect(currentDetailId);
+};
+window.editerRecetteDirect = (id) => {
+  const r = recettes.find(x => x.id===id);
+  if (!r) return;
+  document.getElementById('rec-id').value = id;
+  document.getElementById('rec-nom').value = r.nom;
+  document.getElementById('rec-notes').value = r.notes||'';
+  document.getElementById('recette-modal-title').textContent = 'Modifier la recette';
+  const ingList = document.getElementById('ing-list-form');
+  ingList.innerHTML = '';
+  (r.ingredients||[]).forEach(i => {
+    const div = document.createElement('div');
+    div.className='ing-row';
+    div.innerHTML=`<input class="ing-qty-in" type="text" value="${i.qty||''}"><input class="ing-unit-in" type="text" value="${i.unit||''}"><input type="text" value="${i.nom||''}" style="flex:1"><button class="ing-remove" onclick="this.parentElement.remove()">✕</button>`;
+    ingList.appendChild(div);
+  });
+  if (!r.ingredients?.length) ajouterIngredient();
+  ouvrirModal('modal-recette');
+};
+
+window.supprimerRecette = async () => { await supprimerRecetteDirect(currentDetailId); fermerModal('modal-recette-detail'); };
+window.supprimerRecetteDirect = async (id) => {
+  if (!confirm('Supprimer cette recette ?')) return;
+  try {
+    await deleteDoc(doc(db,'users',currentUser.uid,'recettes',id));
+    toast('🗑️ Recette supprimée');
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+// ── SCAN CLAUDE ──
+window.scanPhotoRecette = async (input) => {
+  if (!input.files[0]) return;
+  const status = document.getElementById('scan-status');
+  status.style.display='block'; status.textContent='📷 Lecture de la photo...';
+  const reader = new FileReader();
+  reader.onload = async e => {
+    const base64 = e.target.result.split(',')[1];
+    status.textContent = '🧠 Claude analyse la recette...';
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          model:'claude-sonnet-4-20250514', max_tokens:1500,
+          system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
+{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}`,
+          messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:input.files[0].type,data:base64}},{type:'text',text:'Extrais la recette de cette image en JSON.'}]}]
+        })
+      });
+      const data = await res.json();
+      const text = data.content[0].text;
+      const rec = JSON.parse(text.replace(/```json|```/g,'').trim());
+      remplirFormRecette(rec);
+      status.textContent='✅ Recette détectée — vérifiez et sauvegardez !';
+    } catch(e) { status.textContent='❌ Erreur: '+e.message; }
+  };
+  reader.readAsDataURL(input.files[0]);
+};
+
+window.scanTexteRecette = async () => {
+  const texte = document.getElementById('scan-recette-text').value.trim();
+  if (!texte) { toast('⚠️ Colle du texte d\'abord'); return; }
+  const status = document.getElementById('scan-status');
+  status.style.display='block'; status.textContent='🧠 Claude analyse...';
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1500,
+        system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
+{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}`,
+        messages:[{role:'user',content:'Extrais la recette:\n\n'+texte}]
+      })
+    });
+    const data = await res.json();
+    const rec = JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
+    remplirFormRecette(rec);
+    status.textContent='✅ Recette détectée — vérifiez et sauvegardez !';
+  } catch(e) { status.textContent='❌ Erreur: '+e.message; }
+};
+
+function remplirFormRecette(rec) {
+  document.getElementById('rec-id').value='';
+  document.getElementById('rec-nom').value = rec.nom||'';
+  document.getElementById('rec-notes').value = rec.notes||'';
+  document.getElementById('recette-modal-title').textContent='Recette importée';
+  const ingList = document.getElementById('ing-list-form');
+  ingList.innerHTML='';
+  (rec.ingredients||[]).forEach(i => {
+    const div=document.createElement('div'); div.className='ing-row';
+    div.innerHTML=`<input class="ing-qty-in" type="text" value="${i.qty||''}"><input class="ing-unit-in" type="text" value="${i.unit||''}"><input type="text" value="${i.nom||''}" style="flex:1"><button class="ing-remove" onclick="this.parentElement.remove()">✕</button>`;
+    ingList.appendChild(div);
+  });
+  if (!rec.ingredients?.length) ajouterIngredient();
+  ouvrirModal('modal-recette');
+}
+
+// ════════════════════════════════
+// SOUVENIRS
+// ════════════════════════════════
+let souvenirs = [];
+
+function listenSouvenirs(uid) {
+  const q = query(collection(db,'users',uid,'souvenirs'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap => {
+    souvenirs = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderSouvenirs();
+  });
+}
+
+function renderSouvenirs() {
+  const grid = document.getElementById('souvenirs-grid');
+  const empty = document.getElementById('souvenirs-empty');
+  if (!souvenirs.length) { grid.innerHTML=''; grid.appendChild(empty); empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML = souvenirs.map(s => `
+    <div class="souvenir-card" onclick="voirSouvenir('${s.id}')">
+      <div class="souvenir-img">
+        ${s.photoURL ? `<img src="${s.photoURL}" alt="${s.titre}" loading="lazy">` : '📸'}
+      </div>
+      <div class="souvenir-caption">
+        <div class="souvenir-caption-title">${s.titre||'Souvenir'}</div>
+        <div class="souvenir-caption-date">${s.createdAt?.toDate ? s.createdAt.toDate().toLocaleDateString('fr-CA') : ''}</div>
+      </div>
+    </div>`).join('');
+}
+
+window.ouvrirSouvenir = () => {
+  document.getElementById('souvenir-titre').value='';
+  document.getElementById('souvenir-desc').value='';
+  souvenirPhotoBase64=null;
+  resetPhotoWrap('souvenir-photo-wrap','souvenir-photo-input','souvenir-change-btn');
+  ouvrirModal('modal-souvenir');
+};
+
+window.previewSouvenirPhoto = (input) => {
+  if (!input.files[0]) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ souvenirPhotoBase64=e.target.result; showPhotoPreview('souvenir-photo-wrap',e.target.result,'souvenir-change-btn'); };
+  reader.readAsDataURL(input.files[0]);
+};
+
+window.sauvegarderSouvenir = async () => {
+  const titre=document.getElementById('souvenir-titre').value.trim();
+  if (!titre) { toast('⚠️ Entre un titre'); return; }
+  const uid=currentUser.uid;
+  try {
+    let photoURL=null;
+    if (souvenirPhotoBase64) {
+      const path=`users/${uid}/souvenirs/${Date.now()}.jpg`;
+      const storageRef=sRef(storage,path);
+      await uploadString(storageRef,souvenirPhotoBase64,'data_url');
+      photoURL=await getDownloadURL(storageRef);
+    }
+    await addDoc(collection(db,'users',uid,'souvenirs'),{titre,desc:document.getElementById('souvenir-desc').value.trim(),photoURL,createdAt:serverTimestamp()});
+    fermerModal('modal-souvenir'); toast('✅ Souvenir ajouté !');
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+window.voirSouvenir = (id) => {
+  const s=souvenirs.find(x=>x.id===id);
+  if (!s) return;
+  currentDetailId=id;
+  const imgDiv=document.getElementById('souvenir-detail-img');
+  imgDiv.innerHTML=s.photoURL?`<img src="${s.photoURL}" style="width:100%;max-height:280px;object-fit:cover;border-radius:6px">`:'';
+  document.getElementById('souvenir-detail-titre').textContent=s.titre||'';
+  document.getElementById('souvenir-detail-desc').textContent=s.desc||'';
+  ouvrirModal('modal-souvenir-detail');
+};
+
+window.supprimerSouvenir = async () => {
+  if (!confirm('Supprimer ce souvenir ?')) return;
+  const uid=currentUser.uid;
+  try {
+    await deleteDoc(doc(db,'users',uid,'souvenirs',currentDetailId));
+    fermerModal('modal-souvenir-detail'); toast('🗑️ Supprimé');
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+// ════════════════════════════════
+// CHAT
+// ════════════════════════════════
+function listenChat(uid) {
+  const q=query(collection(db,'beccaric_chat'), orderBy('createdAt','asc'));
+  onSnapshot(q, snap => {
+    const msgs=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderChat(msgs);
+  });
+}
+
+function renderChat(msgs) {
+  const div=document.getElementById('chat-messages');
+  const empty=document.getElementById('chat-empty');
+  if (!msgs.length) { div.innerHTML=''; div.appendChild(empty); empty.style.display='block'; return; }
+  empty.style.display='none';
+  div.innerHTML=msgs.map(m => {
+    const mine=m.uid===currentUser?.uid;
+    const time=m.createdAt?.toDate?m.createdAt.toDate().toLocaleTimeString('fr-CA',{hour:'2-digit',minute:'2-digit'}):'';
+    return `<div class="chat-msg ${mine?'mine':'theirs'}">
+      <div class="chat-bubble">${m.text}</div>
+      <div class="chat-meta">${m.displayName||''} · ${time}</div>
+    </div>`;
+  }).join('');
+  div.scrollTop=div.scrollHeight;
+}
+
+window.envoyerMessage = async () => {
+  const input=document.getElementById('chat-input');
+  const text=input.value.trim();
+  if (!text) return;
+  input.value=''; input.style.height='auto';
+  try {
+    await addDoc(collection(db,'beccaric_chat'),{
+      text, uid:currentUser.uid,
+      displayName:currentUser.displayName||currentUser.email.split('@')[0],
+      createdAt:serverTimestamp()
+    });
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+window.chatKeydown = (e) => { if (e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); envoyerMessage(); } };
+window.autoResize = (el) => { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; };
+
+// ════════════════════════════════
+// TRUCS UTILES
+// ════════════════════════════════
+let trucs=[];
+
+function listenTrucs(uid) {
+  const q=query(collection(db,'users',uid,'trucs'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap => {
+    trucs=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderTrucs();
+  });
+}
+
+const CAT_LABELS={'maison':'🏠 Maison','cuisine':'🍳 Cuisine','sante':'💊 Santé','techno':'💻 Techno','autre':'✨ Autre'};
+
+function renderTrucs() {
+  const list=document.getElementById('trucs-list');
+  const empty=document.getElementById('trucs-empty');
+  if (!trucs.length) { list.innerHTML=''; list.appendChild(empty); empty.style.display='block'; return; }
+  empty.style.display='none';
+  list.innerHTML=trucs.map(t=>`
+    <div class="truc-card" onclick="ouvrirTrucEdit('${t.id}')">
+      <div class="truc-card-left">
+        <div class="truc-card-name">${t.titre}</div>
+        <div class="truc-card-desc">${t.desc||''}</div>
+        <div class="truc-card-cat">${CAT_LABELS[t.cat]||t.cat||''}</div>
+      </div>
+      <span style="color:var(--muted);font-size:.8rem">›</span>
+    </div>`).join('');
+}
+
+window.ouvrirTruc = () => {
+  document.getElementById('truc-id').value='';
+  document.getElementById('truc-titre').value='';
+  document.getElementById('truc-desc').value='';
+  document.getElementById('truc-cat').value='maison';
+  document.getElementById('truc-modal-title').textContent='Nouveau truc utile';
+  document.getElementById('truc-delete-btn').style.display='none';
+  ouvrirModal('modal-truc');
+};
+
+window.ouvrirTrucEdit = (id) => {
+  const t=trucs.find(x=>x.id===id);
+  if (!t) return;
+  document.getElementById('truc-id').value=id;
+  document.getElementById('truc-titre').value=t.titre||'';
+  document.getElementById('truc-desc').value=t.desc||'';
+  document.getElementById('truc-cat').value=t.cat||'autre';
+  document.getElementById('truc-modal-title').textContent='Modifier';
+  document.getElementById('truc-delete-btn').style.display='inline-flex';
+  ouvrirModal('modal-truc');
+};
+
+window.sauvegarderTruc = async () => {
+  const titre=document.getElementById('truc-titre').value.trim();
+  if (!titre) { toast('⚠️ Entre un titre'); return; }
+  const uid=currentUser.uid;
+  const data={titre,desc:document.getElementById('truc-desc').value.trim(),cat:document.getElementById('truc-cat').value};
+  try {
+    const id=document.getElementById('truc-id').value;
+    if (id) await updateDoc(doc(db,'users',uid,'trucs',id),data);
+    else await addDoc(collection(db,'users',uid,'trucs'),{...data,createdAt:serverTimestamp()});
+    fermerModal('modal-truc'); toast('✅ Sauvegardé !');
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+window.supprimerTruc = async () => {
+  if (!confirm('Supprimer ?')) return;
+  const id=document.getElementById('truc-id').value;
+  try {
+    await deleteDoc(doc(db,'users',currentUser.uid,'trucs',id));
+    fermerModal('modal-truc'); toast('🗑️ Supprimé');
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+// ════════════════════════════════
+// TROUVAILLES
+// ════════════════════════════════
+let trouvailles=[];
+
+function listenTrouvailles(uid) {
+  const q=query(collection(db,'users',uid,'trouvailles'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap => {
+    trouvailles=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderTrouvailles();
+  });
+}
+
+function renderTrouvailles() {
+  const grid=document.getElementById('trouvailles-grid');
+  const empty=document.getElementById('trouvailles-empty');
+  if (!trouvailles.length) { grid.innerHTML=''; grid.appendChild(empty); empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML=trouvailles.map(t=>`
+    <div class="trouvaille-card" onclick="ouvrirTrouvailleEdit('${t.id}')">
+      <div class="trouvaille-img ${t.photoURL?'':''}">
+        ${t.photoURL?`<img src="${t.photoURL}" alt="${t.nom}" loading="lazy">`:'❤️'}
+      </div>
+      <div class="trouvaille-body">
+        <div class="trouvaille-name">${t.nom||'Trouvaille'}</div>
+        <div class="trouvaille-desc">${t.desc||''}</div>
+      </div>
+    </div>`).join('');
+}
+
+window.ouvrirTrouvaille = () => {
+  document.getElementById('trouvaille-id').value='';
+  document.getElementById('trouvaille-nom').value='';
+  document.getElementById('trouvaille-desc').value='';
+  trouvaillePhotoBase64=null;
+  resetPhotoWrap('trouvaille-photo-wrap','trouvaille-photo-input','trouvaille-change-btn');
+  document.getElementById('trouvaille-modal-title').textContent='Nouvelle trouvaille';
+  document.getElementById('trouvaille-delete-btn').style.display='none';
+  ouvrirModal('modal-trouvaille');
+};
+
+window.ouvrirTrouvailleEdit = (id) => {
+  const t=trouvailles.find(x=>x.id===id);
+  if (!t) return;
+  document.getElementById('trouvaille-id').value=id;
+  document.getElementById('trouvaille-nom').value=t.nom||'';
+  document.getElementById('trouvaille-desc').value=t.desc||'';
+  trouvaillePhotoBase64=null;
+  const wrap=document.getElementById('trouvaille-photo-wrap');
+  wrap.innerHTML='';
+  if (t.photoURL) {
+    const img=document.createElement('img');
+    img.src=t.photoURL;
+    img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    wrap.appendChild(img);
+  } else {
+    wrap.innerHTML=`<div class="photo-upload-icon">📷</div><div class="photo-upload-label">Appuyer pour ajouter</div>`;
+  }
+  const inp=document.createElement('input');
+  inp.type='file'; inp.accept='image/*'; inp.className='photo-upload-input';
+  inp.onchange=e=>previewTrouvaillePhoto(e.target);
+  wrap.appendChild(inp);
+  wrap.onclick=()=>inp.click();
+  const chgBtn=document.createElement('button');
+  chgBtn.className='photo-change-btn'; chgBtn.textContent='Changer';
+  chgBtn.onclick=e=>{e.stopPropagation();inp.click();};
+  wrap.appendChild(chgBtn);
+  document.getElementById('trouvaille-modal-title').textContent='Modifier';
+  document.getElementById('trouvaille-delete-btn').style.display='inline-flex';
+  ouvrirModal('modal-trouvaille');
+};
+
+window.previewTrouvaillePhoto = (input) => {
+  if (!input.files[0]) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ trouvaillePhotoBase64=e.target.result; showPhotoPreview('trouvaille-photo-wrap',e.target.result,'trouvaille-change-btn'); };
+  reader.readAsDataURL(input.files[0]);
+};
+
+window.sauvegarderTrouvaille = async () => {
+  const nom=document.getElementById('trouvaille-nom').value.trim();
+  if (!nom) { toast('⚠️ Entre un nom'); return; }
+  const uid=currentUser.uid;
+  const data={nom,desc:document.getElementById('trouvaille-desc').value.trim()};
+  try {
+    let photoURL=null;
+    if (trouvaillePhotoBase64) {
+      const path=`users/${uid}/trouvailles/${Date.now()}.jpg`;
+      const storageRef=sRef(storage,path);
+      await uploadString(storageRef,trouvaillePhotoBase64,'data_url');
+      photoURL=await getDownloadURL(storageRef);
+    }
+    const id=document.getElementById('trouvaille-id').value;
+    if (id) {
+      const updates={...data};
+      if (trouvaillePhotoBase64) updates.photoURL=photoURL;
+      await updateDoc(doc(db,'users',uid,'trouvailles',id),updates);
+    } else {
+      await addDoc(collection(db,'users',uid,'trouvailles'),{...data,photoURL,createdAt:serverTimestamp()});
+    }
+    fermerModal('modal-trouvaille'); toast('✅ Sauvegardé !');
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+window.supprimerTrouvaille = async () => {
+  if (!confirm('Supprimer ?')) return;
+  const id=document.getElementById('trouvaille-id').value;
+  try {
+    await deleteDoc(doc(db,'users',currentUser.uid,'trouvailles',id));
+    fermerModal('modal-trouvaille'); toast('🗑️ Supprimé');
+  } catch(e) { toast('❌ '+e.message); }
+};
+
+// ════════════════════════════════
+// UTILS PHOTO
+// ════════════════════════════════
+function showPhotoPreview(wrapId, dataUrl, changeBtnId) {
+  const wrap=document.getElementById(wrapId);
+  let img=wrap.querySelector('img.preview');
+  if (!img) {
+    wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e=>e.style.display='none');
+    img=document.createElement('img');
+    img.className='preview';
+    img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    wrap.insertBefore(img, wrap.firstChild);
+  }
+  img.src=dataUrl;
+  if (changeBtnId) { const b=document.getElementById(changeBtnId); if(b) b.style.display='block'; }
+}
+
+function resetPhotoWrap(wrapId, inputId, changeBtnId) {
+  const wrap=document.getElementById(wrapId);
+  wrap.querySelectorAll('img.preview').forEach(e=>e.remove());
+  wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e=>e.style.display='');
+  if (changeBtnId) { const b=document.getElementById(changeBtnId); if(b) b.style.display='none'; }
+  const inp=document.getElementById(inputId);
+  if (inp) inp.value='';
+}
+
+// close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if(e.target===overlay) overlay.classList.remove('open'); });
+});
+</script>
 </body>
 </html>
