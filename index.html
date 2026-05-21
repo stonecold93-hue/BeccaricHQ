@@ -1140,6 +1140,7 @@ window.scanPhotoRecette = async (input) => {
         })
       });
       const data = await res.json();
+      if (!data.content || !data.content[0]) { status.textContent='❌ Réponse invalide: '+JSON.stringify(data); return; }
       const text = data.content[0].text;
       const rec = JSON.parse(text.replace(/```json|```/g,'').trim());
       remplirFormRecette(rec);
@@ -1155,8 +1156,10 @@ window.scanTexteRecette = async () => {
   const status = document.getElementById('scan-status');
   status.style.display='block'; status.textContent='🧠 Claude analyse...';
   try {
+    const apiKey = localStorage.getItem('bhq_api_key') || document.getElementById('api-key-input')?.value;
+    if (!apiKey) { toast('⚠️ Entre ta clé API Anthropic d\'abord'); return; }
     const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body: JSON.stringify({
         model:'claude-sonnet-4-20250514', max_tokens:1500,
         system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
@@ -1165,6 +1168,7 @@ window.scanTexteRecette = async () => {
       })
     });
     const data = await res.json();
+    if (!data.content || !data.content[0]) { status.textContent='❌ Réponse invalide: '+JSON.stringify(data); return; }
     const rec = JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
     remplirFormRecette(rec);
     status.textContent='✅ Recette détectée — vérifiez et sauvegardez !';
