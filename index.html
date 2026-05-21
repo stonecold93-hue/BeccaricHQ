@@ -1283,8 +1283,9 @@ window.sauvegarderSouvenir = async () => {
   toast('⏳ Upload en cours...');
   try {
     const photoURLs = [];
+    const albumId = Date.now();
     for (let i=0; i<souvenirPhotosBase64.length; i++) {
-      const path = `users/${uid}/souvenirs/${Date.now()}_${i}.jpg`;
+      const path = `users/${uid}/souvenirs/${albumId}_${i}.jpg`;
       const storageRef = sRef(storage, path);
       await uploadString(storageRef, souvenirPhotosBase64[i], 'data_url');
       const url = await getDownloadURL(storageRef);
