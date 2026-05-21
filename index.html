@@ -286,6 +286,16 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
 .t-trouvailles::before{background:#F06060;}
 .t-trouvailles .home-tile-name{background:linear-gradient(160deg,#FFBDBD,#F06060,#C42020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .t-trouvailles .home-tile-sub{color:#F06060;}
+
+/* ══ IDÉES ══ */
+.idees-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;}
+.idee-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.85rem 1.1rem;cursor:pointer;transition:all .15s;position:relative;}
+.idee-card:hover{border-color:var(--gold3);background:var(--panel2);}
+.idee-card-titre{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--gold1);margin-bottom:3px;}
+.idee-card-desc{font-size:.72rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.idee-card-meta{font-size:.58rem;color:var(--gold4);margin-top:6px;letter-spacing:.1em;}
+.idee-card-auteur{position:absolute;top:10px;right:10px;font-size:.6rem;color:var(--gold3);letter-spacing:.08em;background:#1A1000;padding:2px 7px;border-radius:10px;border:1px solid var(--gold4);}
+.idees-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
 </style>
 </head>
 <body>
@@ -378,7 +388,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
     <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
     <button class="tab" data-tab="recettes" onclick="goTab('recettes',this)">🍽️ Recettes</button>
     <button class="tab" data-tab="souvenirs" onclick="goTab('souvenirs',this)">📸 Souvenirs</button>
-    <button class="tab" data-tab="chat" onclick="goTab('chat',this)">💬 Chat</button>
+    <button class="tab" data-tab="idees" onclick="goTab('idees',this)">🆘 À l'aide</button>
     <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
     <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">❤️ Trouvailles</button>
   </div>
@@ -404,10 +414,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
           <div class="home-tile-name">Souvenirs</div>
           <div class="home-tile-sub">Photos & moments</div>
         </div>
-        <div class="home-tile t-chat" onclick="goTab('chat',null)">
-          <div class="home-tile-icon">💬</div>
-          <div class="home-tile-name">Chat</div>
-          <div class="home-tile-sub">Notre conversation</div>
+        <div class="home-tile t-chat" onclick="goTab('idees',null)">
+          <div class="home-tile-icon">💡</div>
+          <div class="home-tile-name">À l'aide</div>
+          <div class="home-tile-sub">Aide pour projet</div>
         </div>
         <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
           <div class="home-tile-icon">✨</div>
@@ -470,19 +480,17 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
       </div>
     </div>
 
-    <!-- ══ CHAT ══ -->
-    <div class="section" id="tab-chat">
-      <div class="section-title">Notre Chat</div>
-      <div class="chat-wrap">
-        <div class="chat-messages" id="chat-messages">
-          <div class="chat-empty" id="chat-empty">
-            <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">💬</div>
-            Commencez la conversation !
-          </div>
-        </div>
-        <div class="chat-input-row">
-          <textarea class="chat-input" id="chat-input" placeholder="Écrire un message..." rows="1" onkeydown="chatKeydown(event)" oninput="autoResize(this)"></textarea>
-          <button class="chat-send" onclick="envoyerMessage()">➤</button>
+    <!-- ══ IDÉES ══ -->
+    <div class="section" id="tab-idees">
+      <div class="section-title">🆘 À l'aide</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
+        <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Aide pour projet</span>
+        <button class="btn-gold primary" onclick="ouvrirIdee()">+ Nouvelle demande</button>
+      </div>
+      <div class="idees-list" id="idees-list">
+        <div class="idees-empty" id="idees-empty">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">💡</div>
+          Aucune demande encore !
         </div>
       </div>
     </div>
@@ -658,6 +666,27 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-
   </div>
 </div>
 
+<!-- IDÉE — Form -->
+<div class="modal-overlay" id="modal-idee">
+  <div class="modal">
+    <div class="modal-title" id="idee-modal-title">Nouvelle demande</div>
+    <input type="hidden" id="idee-id">
+    <div>
+      <div class="modal-label">Titre</div>
+      <input type="text" id="idee-titre" placeholder="Ex: Aide pour mon projet, question...">
+    </div>
+    <div>
+      <div class="modal-label">Description</div>
+      <textarea id="idee-desc" placeholder="Décris ta demande..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-gold btn-danger btn-sm" id="idee-delete-btn" style="display:none" onclick="supprimerIdee()">🗑️</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-idee')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderIdee()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
 <!-- TRUC — Form -->
 <div class="modal-overlay" id="modal-truc">
   <div class="modal">
@@ -795,7 +824,8 @@ onAuthStateChanged(auth, async user => {
     document.getElementById('app').style.display = 'block';
     const av = document.getElementById('user-avatar');
     if (user.photoURL) av.src = user.photoURL;
-    const firstName = user.displayName ? user.displayName.split(' ')[0] : 'toi';
+    const emailToName = {'stonecold93@gmail.com':'Eric','rebeccamontambeault20@gmail.com':'Becca'};
+    const firstName = emailToName[user.email] || (user.displayName ? user.displayName.split(' ')[0] : 'toi');
     document.getElementById('accueil-welcome').textContent = 'Bonjour, ' + firstName + ' 👋';
     initApp(user.uid);
   } else {
@@ -810,7 +840,7 @@ function initApp(uid) {
   listenDollo(uid);
   listenRecettes(uid);
   listenSouvenirs(uid);
-  listenChat(uid);
+  listenIdees(uid);
   listenTrucs(uid);
   listenTrouvailles(uid);
 }
@@ -1082,7 +1112,7 @@ window.scanPhotoRecette = async (input) => {
     status.textContent = '🧠 Claude analyse la recette...';
     try {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST', headers:{'Content-Type':'application/json'},
+        method:'POST', headers:{'Content-Type':'application/json','anthropic-dangerous-allow-browser':'true'},
         body: JSON.stringify({
           model:'claude-sonnet-4-20250514', max_tokens:1500,
           system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
@@ -1107,7 +1137,7 @@ window.scanTexteRecette = async () => {
   status.style.display='block'; status.textContent='🧠 Claude analyse...';
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json'},
+      method:'POST', headers:{'Content-Type':'application/json','anthropic-dangerous-allow-browser':'true'},
       body: JSON.stringify({
         model:'claude-sonnet-4-20250514', max_tokens:1500,
         system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
@@ -1221,48 +1251,75 @@ window.supprimerSouvenir = async () => {
 };
 
 // ════════════════════════════════
-// CHAT
+// IDÉES
 // ════════════════════════════════
-function listenChat(uid) {
-  const q=query(collection(db,'beccaric_chat'), orderBy('createdAt','asc'));
+let idees=[];
+
+function listenIdees(uid) {
+  const q=query(collection(db,'users',uid,'idees'), orderBy('createdAt','desc'));
   onSnapshot(q, snap => {
-    const msgs=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderChat(msgs);
+    idees=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderIdees();
   });
 }
 
-function renderChat(msgs) {
-  const div=document.getElementById('chat-messages');
-  const empty=document.getElementById('chat-empty');
-  if (!msgs.length) { div.innerHTML=''; div.appendChild(empty); empty.style.display='block'; return; }
+function renderIdees() {
+  const list=document.getElementById('idees-list');
+  const empty=document.getElementById('idees-empty');
+  if (!idees.length) { list.innerHTML=''; list.appendChild(empty); empty.style.display='block'; return; }
   empty.style.display='none';
-  div.innerHTML=msgs.map(m => {
-    const mine=m.uid===currentUser?.uid;
-    const time=m.createdAt?.toDate?m.createdAt.toDate().toLocaleTimeString('fr-CA',{hour:'2-digit',minute:'2-digit'}):'';
-    return `<div class="chat-msg ${mine?'mine':'theirs'}">
-      <div class="chat-bubble">${m.text}</div>
-      <div class="chat-meta">${m.displayName||''} · ${time}</div>
-    </div>`;
-  }).join('');
-  div.scrollTop=div.scrollHeight;
+  list.innerHTML=idees.map(i=>`
+    <div class="idee-card" onclick="ouvrirIdeeEdit('${i.id}')">
+      <div class="idee-card-auteur">${i.auteur||''}</div>
+      <div class="idee-card-titre">${i.titre||''}</div>
+      <div class="idee-card-desc">${i.desc||''}</div>
+      <div class="idee-card-meta">${i.createdAt?.toDate?i.createdAt.toDate().toLocaleDateString('fr-CA'):''}</div>
+    </div>`).join('');
 }
 
-window.envoyerMessage = async () => {
-  const input=document.getElementById('chat-input');
-  const text=input.value.trim();
-  if (!text) return;
-  input.value=''; input.style.height='auto';
+window.ouvrirIdee = () => {
+  document.getElementById('idee-id').value='';
+  document.getElementById('idee-titre').value='';
+  document.getElementById('idee-desc').value='';
+  document.getElementById('idee-modal-title').textContent='Nouvelle demande';
+  document.getElementById('idee-delete-btn').style.display='none';
+  ouvrirModal('modal-idee');
+};
+
+window.ouvrirIdeeEdit = (id) => {
+  const i=idees.find(x=>x.id===id);
+  if (!i) return;
+  document.getElementById('idee-id').value=id;
+  document.getElementById('idee-titre').value=i.titre||'';
+  document.getElementById('idee-desc').value=i.desc||'';
+  document.getElementById('idee-modal-title').textContent='Modifier';
+  document.getElementById('idee-delete-btn').style.display='inline-flex';
+  ouvrirModal('modal-idee');
+};
+
+window.sauvegarderIdee = async () => {
+  const titre=document.getElementById('idee-titre').value.trim();
+  if (!titre) { toast('⚠️ Entre un titre'); return; }
+  const uid=currentUser.uid;
+  const emailToName={'stonecold93@gmail.com':'Eric','rebeccamontambeault20@gmail.com':'Becca'};
+  const auteur=emailToName[currentUser.email]||currentUser.email.split('@')[0];
+  const data={titre,desc:document.getElementById('idee-desc').value.trim(),auteur};
   try {
-    await addDoc(collection(db,'beccaric_chat'),{
-      text, uid:currentUser.uid,
-      displayName:currentUser.displayName||currentUser.email.split('@')[0],
-      createdAt:serverTimestamp()
-    });
+    const id=document.getElementById('idee-id').value;
+    if (id) await updateDoc(doc(db,'users',uid,'idees',id),data);
+    else await addDoc(collection(db,'users',uid,'idees'),{...data,createdAt:serverTimestamp()});
+    fermerModal('modal-idee'); toast('✅ Sauvegardé !');
   } catch(e) { toast('❌ '+e.message); }
 };
 
-window.chatKeydown = (e) => { if (e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); envoyerMessage(); } };
-window.autoResize = (el) => { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; };
+window.supprimerIdee = async () => {
+  if (!confirm('Supprimer ?')) return;
+  const id=document.getElementById('idee-id').value;
+  try {
+    await deleteDoc(doc(db,'users',currentUser.uid,'idees',id));
+    fermerModal('modal-idee'); toast('🗑️ Supprimé');
+  } catch(e) { toast('❌ '+e.message); }
+};
 
 // ════════════════════════════════
 // TRUCS UTILES
