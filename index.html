@@ -792,7 +792,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChang
 import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection,
          addDoc, deleteDoc, updateDoc, orderBy, query, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref as sRef, uploadString, getDownloadURL, deleteObject }
+import { getStorage, ref as sRef, uploadString, uploadBytes, getDownloadURL, deleteObject }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 // ── CONFIG FIREBASE — remplace avec ta config ──
@@ -1264,15 +1264,12 @@ window.previewSouvenirPhotos = (input) => {
   if (!input.files.length) return;
   const preview = document.getElementById('souvenir-photos-preview');
   Array.from(input.files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      souvenirPhotosBase64.push(e.target.result);
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      img.style.cssText = 'width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--border)';
-      preview.appendChild(img);
-    };
-    reader.readAsDataURL(file);
+    souvenirPhotosBase64.push(file);
+    const url = URL.createObjectURL(file);
+    const img = document.createElement('img');
+    img.src = url;
+    img.style.cssText = 'width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--border)';
+    preview.appendChild(img);
   });
 };
 
@@ -1285,9 +1282,10 @@ window.sauvegarderSouvenir = async () => {
     const photoURLs = [];
     const albumId = Date.now();
     for (let i=0; i<souvenirPhotosBase64.length; i++) {
-      const path = `users/${uid}/souvenirs/${albumId}_${i}.jpg`;
+      const file = souvenirPhotosBase64[i];
+      const path = `users/${uid}/souvenirs/${albumId}_${i}`;
       const storageRef = sRef(storage, path);
-      await uploadString(storageRef, souvenirPhotosBase64[i], 'data_url');
+      await uploadBytes(storageRef, file);
       const url = await getDownloadURL(storageRef);
       photoURLs.push(url);
     }
