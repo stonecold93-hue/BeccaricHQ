@@ -455,12 +455,12 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         <div class="scan-box-title">📥 Ajouter une recette rapidement</div>
         <div class="scan-box-sub">Collez le texte d'une recette web ou prenez une photo — Claude remplit tout automatiquement !</div>
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;">
-          <span style="font-size:.65rem;color:var(--gold2);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">🔑 Clé API</span>
-          <input type="password" id="api-key-input" placeholder="sk-ant-..." 
-            style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none"
-            oninput="saveApiKey(this.value)"/>
-          <span style="font-size:.6rem;color:var(--gold3)">🔒 Local</span>
+          <input type="password" id="api-key-input" placeholder="Clé API Anthropic (sk-ant-...)" 
+            style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none"/>
+          <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;" title="Voir/cacher">👁️</button>
+          <button onclick="saveApiKey()" class="btn-gold btn-sm">💾 Sauver</button>
         </div>
+        <div id="api-key-status" style="font-size:.65rem;margin-bottom:.5rem;display:none;">✅ Clé active</div>
         <div class="scan-actions">
           <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
           <label class="btn-gold btn-sm" for="scan-photo-camera">📷 Prendre photo<input type="file" id="scan-photo-camera" accept="image/*" capture="environment" style="display:none" onchange="scanPhotoRecette(this)"></label>
@@ -1555,14 +1555,29 @@ function resetPhotoWrap(wrapId, inputId, changeBtnId) {
 }
 
 // ── API KEY ──
-window.saveApiKey = (key) => {
-  if (key.startsWith('sk-ant-')) localStorage.setItem('bhq_api_key', key);
+window.saveApiKey = () => {
+  const input = document.getElementById('api-key-input');
+  const key = input?.value.trim();
+  if (key && key.startsWith('sk-ant-')) {
+    localStorage.setItem('bhq_api_key', key);
+    const status = document.getElementById('api-key-status');
+    if (status) { status.style.display='block'; status.textContent='✅ Clé active'; status.style.color='#34C472'; }
+  } else {
+    const status = document.getElementById('api-key-status');
+    if (status) { status.style.display='block'; status.textContent='❌ Clé invalide (doit commencer par sk-ant-)'; status.style.color='#F06060'; }
+  }
+};
+window.toggleApiKey = () => {
+  const input = document.getElementById('api-key-input');
+  if (input) input.type = input.type === 'password' ? 'text' : 'password';
 };
 setTimeout(() => {
   const saved = localStorage.getItem('bhq_api_key');
   if (saved) {
     const input = document.getElementById('api-key-input');
     if (input) input.value = saved;
+    const status = document.getElementById('api-key-status');
+    if (status) { status.style.display='block'; status.textContent='✅ Clé active'; status.style.color='#34C472'; }
   }
 }, 800);
 
