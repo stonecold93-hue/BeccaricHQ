@@ -1277,17 +1277,21 @@ window.sauvegarderSouvenir = async () => {
   const titre = document.getElementById('souvenir-titre').value.trim();
   if (!titre) { toast('⚠️ Entre un titre'); return; }
   const uid = currentUser.uid;
-  toast('⏳ Upload en cours...');
   try {
     const photoURLs = [];
     const albumId = Date.now();
-    for (let i=0; i<souvenirPhotosBase64.length; i++) {
-      const file = souvenirPhotosBase64[i];
-      const path = `users/${uid}/souvenirs/${albumId}_${i}`;
-      const storageRef = sRef(storage, path);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
-      photoURLs.push(url);
+    if (souvenirPhotosBase64.length > 0) {
+      toast('⏳ Photo 1 sur ' + souvenirPhotosBase64.length + '...');
+      for (let i=0; i<souvenirPhotosBase64.length; i++) {
+        toast('⏳ Photo ' + (i+1) + ' sur ' + souvenirPhotosBase64.length + '...');
+        const file = souvenirPhotosBase64[i];
+        const ext = file.name ? file.name.split('.').pop() : 'jpg';
+        const path = `users/${uid}/souvenirs/${albumId}_${i}.${ext}`;
+        const storageRef = sRef(storage, path);
+        const snap = await uploadBytes(storageRef, file);
+        const url = await getDownloadURL(snap.ref);
+        photoURLs.push(url);
+      }
     }
     await addDoc(collection(db,'users',uid,'souvenirs'), {
       titre,
@@ -1298,7 +1302,9 @@ window.sauvegarderSouvenir = async () => {
     });
     fermerModal('modal-souvenir');
     toast('✅ Album sauvegardé !');
-  } catch(e) { toast('❌ '+e.message); }
+  } catch(e) {
+    toast('❌ Erreur: ' + e.code + ' — ' + e.message, 6000);
+  }
 };
 
 window.voirSouvenir = (id) => {
