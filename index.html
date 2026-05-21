@@ -1131,7 +1131,7 @@ window.scanPhotoRecette = async (input) => {
       const apiKey = localStorage.getItem('bhq_api_key') || document.getElementById('api-key-input')?.value;
       if (!apiKey) { status.textContent='⚠️ Entre ta clé API Anthropic d\'abord'; return; }
       const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-allow-browser':'true'},
+        method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
         body: JSON.stringify({
           model:'claude-sonnet-4-20250514', max_tokens:1500,
           system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
@@ -1156,7 +1156,7 @@ window.scanTexteRecette = async () => {
   status.style.display='block'; status.textContent='🧠 Claude analyse...';
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json','anthropic-dangerous-allow-browser':'true'},
+      method:'POST', headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
       body: JSON.stringify({
         model:'claude-sonnet-4-20250514', max_tokens:1500,
         system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
