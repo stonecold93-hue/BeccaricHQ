@@ -454,6 +454,13 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="scan-box">
         <div class="scan-box-title">📥 Ajouter une recette rapidement</div>
         <div class="scan-box-sub">Collez le texte d'une recette web ou prenez une photo — Claude remplit tout automatiquement !</div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;">
+          <span style="font-size:.65rem;color:var(--gold2);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">🔑 Clé API</span>
+          <input type="password" id="api-key-input" placeholder="sk-ant-..." 
+            style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none"
+            oninput="saveApiKey(this.value)"/>
+          <span style="font-size:.6rem;color:var(--gold3)">🔒 Local</span>
+        </div>
         <div class="scan-actions">
           <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
           <label class="btn-gold btn-sm" for="scan-photo-camera">📷 Prendre photo<input type="file" id="scan-photo-camera" accept="image/*" capture="environment" style="display:none" onchange="scanPhotoRecette(this)"></label>
@@ -1121,8 +1128,10 @@ window.scanPhotoRecette = async (input) => {
     const base64 = e.target.result.split(',')[1];
     status.textContent = '🧠 Claude analyse la recette...';
     try {
+      const apiKey = localStorage.getItem('bhq_api_key') || document.getElementById('api-key-input')?.value;
+      if (!apiKey) { status.textContent='⚠️ Entre ta clé API Anthropic d\'abord'; return; }
       const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST', headers:{'Content-Type':'application/json','anthropic-dangerous-allow-browser':'true'},
+        method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-allow-browser':'true'},
         body: JSON.stringify({
           model:'claude-sonnet-4-20250514', max_tokens:1500,
           system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
@@ -1544,6 +1553,18 @@ function resetPhotoWrap(wrapId, inputId, changeBtnId) {
   const inp=document.getElementById(inputId);
   if (inp) inp.value='';
 }
+
+// ── API KEY ──
+window.saveApiKey = (key) => {
+  if (key.startsWith('sk-ant-')) localStorage.setItem('bhq_api_key', key);
+};
+setTimeout(() => {
+  const saved = localStorage.getItem('bhq_api_key');
+  if (saved) {
+    const input = document.getElementById('api-key-input');
+    if (input) input.value = saved;
+  }
+}, 800);
 
 // close modal on overlay click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
