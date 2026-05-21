@@ -470,7 +470,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         </div>
         <div id="api-key-status" style="font-size:.65rem;margin-bottom:.5rem;display:none;">✅ Clé active</div>
         <div class="scan-actions">
-          <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
+          <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/jpeg,image/png,image/heic,image/heif,image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
           <label class="btn-gold btn-sm" for="scan-photo-camera">📷 Prendre photo<input type="file" id="scan-photo-camera" accept="image/*" capture="environment" style="display:none" onchange="scanPhotoRecette(this)"></label>
         </div>
         <textarea class="scan-textarea" id="scan-recette-text" placeholder="Ou collez le texte de la recette ici..."></textarea>
@@ -552,7 +552,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="photo-upload-wrap" id="dollo-photo-wrap" onclick="document.getElementById('dollo-photo-input').click()">
         <div class="photo-upload-icon">📷</div>
         <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
-        <input type="file" id="dollo-photo-input" class="photo-upload-input" accept="image/*" onchange="previewDolloPhoto(this)">
+        <input type="file" id="dollo-photo-input" class="photo-upload-input" accept="image/jpeg,image/png,image/heic,image/heif,image/*" onchange="previewDolloPhoto(this)">
         <button class="photo-change-btn" id="dollo-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('dollo-photo-input').click()">Changer</button>
       </div>
     </div>
@@ -650,7 +650,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="photo-upload-wrap" id="souvenir-photo-wrap" onclick="document.getElementById('souvenir-photo-input').click()">
         <div class="photo-upload-icon">📷</div>
         <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
-        <input type="file" id="souvenir-photo-input" class="photo-upload-input" accept="image/*" onchange="previewSouvenirPhoto(this)">
+        <input type="file" id="souvenir-photo-input" class="photo-upload-input" accept="image/jpeg,image/png,image/heic,image/heif,image/*" onchange="previewSouvenirPhoto(this)">
         <button class="photo-change-btn" id="souvenir-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('souvenir-photo-input').click()">Changer</button>
       </div>
     </div>
