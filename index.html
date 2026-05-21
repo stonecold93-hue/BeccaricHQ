@@ -1133,7 +1133,7 @@ window.scanPhotoRecette = async (input) => {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
         method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
         body: JSON.stringify({
-          model:'claude-sonnet-4-20250514', max_tokens:1500,
+          model:'claude-sonnet-4-5', max_tokens:1500,
           system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
 {"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}`,
           messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:input.files[0].type,data:base64}},{type:'text',text:'Extrais la recette de cette image en JSON.'}]}]
@@ -1161,7 +1161,7 @@ window.scanTexteRecette = async () => {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body: JSON.stringify({
-        model:'claude-sonnet-4-20250514', max_tokens:1500,
+        model:'claude-sonnet-4-5', max_tokens:1500,
         system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
 {"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}`,
         messages:[{role:'user',content:'Extrais la recette:\n\n'+texte}]
