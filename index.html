@@ -1585,6 +1585,21 @@ setTimeout(() => {
   }
 }, 800);
 
+// ── PREVENT BACK BUTTON EXIT ──
+// Push a state so back button comes back here instead of leaving
+history.pushState(null, '', window.location.href);
+window.addEventListener('popstate', () => {
+  history.pushState(null, '', window.location.href);
+  // Go back to accueil instead of leaving
+  goTab('accueil', null);
+});
+
+// Confirm before closing tab/window
+window.addEventListener('beforeunload', (e) => {
+  e.preventDefault();
+  e.returnValue = '';
+});
+
 // close modal on overlay click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => { if(e.target===overlay) overlay.classList.remove('open'); });
