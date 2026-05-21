@@ -1143,7 +1143,8 @@ window.scanPhotoRecette = async (input) => {
         body: JSON.stringify({
           model:'claude-sonnet-4-5', max_tokens:1500,
           system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
-{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}`,
+{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}
+Règle importante: garde les unités EXACTEMENT comme dans la recette originale. Si c'est en tasses, garde tasses. Si c'est en oz, garde oz. Si c'est en cuillères à soupe, garde cuillères à soupe. Ne convertis JAMAIS en ml ou en grammes.`,
           messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:input.files[0].type,data:base64}},{type:'text',text:'Extrais la recette de cette image en JSON.'}]}]
         })
       });
@@ -1171,7 +1172,8 @@ window.scanTexteRecette = async () => {
       body: JSON.stringify({
         model:'claude-sonnet-4-5', max_tokens:1500,
         system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
-{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}`,
+{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}
+Règle importante: garde les unités EXACTEMENT comme dans la recette originale. Si c'est en tasses, garde tasses. Si c'est en oz, garde oz. Si c'est en cuillères à soupe, garde cuillères à soupe. Ne convertis JAMAIS en ml ou en grammes.`,
         messages:[{role:'user',content:'Extrais la recette:\n\n'+texte}]
       })
     });
