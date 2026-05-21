@@ -657,8 +657,9 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="modal-label" style="margin-bottom:.4rem">Photos <span style="color:var(--muted);font-size:.6rem">(plusieurs permises)</span></div>
       <label class="btn-gold btn-sm" style="cursor:pointer;display:inline-flex">
         📷 Ajouter des photos
-        <input type="file" id="souvenir-photos-input" accept="image/jpeg,image/png,image/heic,image/heif,image/*" multiple style="display:none" onchange="previewSouvenirPhotos(this)">
+        <input type="file" id="souvenir-photos-input" accept="image/jpeg,image/jpg" multiple style="display:none" onchange="previewSouvenirPhotos(this)">
       </label>
+      <div style="font-size:.6rem;color:var(--muted);margin-top:.3rem;letter-spacing:.08em">Format JPEG seulement (.jpg)</div>
       <div id="souvenir-photos-preview" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:.6rem;"></div>
     </div>
     <div class="modal-actions">
@@ -1261,44 +1262,26 @@ window.ouvrirSouvenir = () => {
 };
 
 function compressImage(file, maxSize=1200, quality=0.75) {
-  return new Promise((resolve, reject) => {
-    const url = URL.createObjectURL(file);
-    const img = new Image();
-    img.onload = () => {
-      let w = img.width, h = img.height;
-      if (w > maxSize || h > maxSize) {
-        if (w > h) { h = Math.round(h * maxSize/w); w = maxSize; }
-        else { w = Math.round(w * maxSize/h); h = maxSize; }
-      }
-      const canvas = document.createElement('canvas');
-      canvas.width = w; canvas.height = h;
-      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-      canvas.toBlob(blob => { URL.revokeObjectURL(url); resolve(blob); }, 'image/jpeg', quality);
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      // HEIC fallback — read as ArrayBuffer and draw via FileReader
-      const reader = new FileReader();
-      reader.onload = e => {
-        const img2 = new Image();
-        img2.onload = () => {
-          let w = img2.width||1200, h = img2.height||1200;
-          if (w > maxSize || h > maxSize) {
-            if (w > h) { h = Math.round(h * maxSize/w); w = maxSize; }
-            else { w = Math.round(w * maxSize/h); h = maxSize; }
-          }
-          const canvas = document.createElement('canvas');
-          canvas.width = w; canvas.height = h;
-          canvas.getContext('2d').drawImage(img2, 0, 0, w, h);
-          canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
-        };
-        img2.onerror = () => resolve(file);
-        img2.src = e.target.result;
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if (w > maxSize || h > maxSize) {
+          if (w > h) { h = Math.round(h * maxSize/w); w = maxSize; }
+          else { w = Math.round(w * maxSize/h); h = maxSize; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob(blob => resolve(blob || file), 'image/jpeg', quality);
       };
-      reader.onerror = () => resolve(file);
-      reader.readAsDataURL(file);
+      img.onerror = () => resolve(file);
+      img.src = e.target.result;
     };
-    img.src = url;
+    reader.onerror = () => resolve(file);
+    reader.readAsDataURL(file);
   });
 }
 
