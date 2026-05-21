@@ -1260,6 +1260,26 @@ window.ouvrirSouvenir = () => {
   ouvrirModal('modal-souvenir');
 };
 
+function compressImage(file, maxSize=1200, quality=0.75) {
+  return new Promise(resolve => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      let w = img.width, h = img.height;
+      if (w > maxSize || h > maxSize) {
+        if (w > h) { h = Math.round(h * maxSize/w); w = maxSize; }
+        else { w = Math.round(w * maxSize/h); h = maxSize; }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  });
+}
+
 window.previewSouvenirPhotos = (input) => {
   if (!input.files.length) return;
   const preview = document.getElementById('souvenir-photos-preview');
@@ -1289,11 +1309,11 @@ window.sauvegarderSouvenir = async () => {
     const total = souvenirPhotosBase64.length;
     for (let i=0; i<total; i++) {
       progressDiv.textContent = `⏳ Photo ${i+1} de ${total} en cours...`;
-      const file = souvenirPhotosBase64[i];
-      const ext = file.name ? file.name.split('.').pop() : 'jpg';
-      const path = `users/${uid}/souvenirs/${albumId}_${i}.${ext}`;
+      const rawFile = souvenirPhotosBase64[i];
+      const compressed = await compressImage(rawFile);
+      const path = `users/${uid}/souvenirs/${albumId}_${i}.jpg`;
       const storageRef = sRef(storage, path);
-      const snap = await uploadBytes(storageRef, file);
+      const snap = await uploadBytes(storageRef, compressed);
       const url = await getDownloadURL(snap.ref);
       photoURLs.push(url);
       progressDiv.textContent = `✅ Photo ${i+1} de ${total} uploadée !`;
@@ -1309,6 +1329,8 @@ window.sauvegarderSouvenir = async () => {
     progressDiv.textContent = '✅ Album sauvegarde!';
     setTimeout(() => progressDiv.remove(), 2000);
     fermerModal('modal-souvenir');
+    souvenirPhotosBase64=[];
+    document.getElementById('souvenir-photos-preview').innerHTML='';
   } catch(e) {
     progressDiv.textContent = '❌ Erreur: ' + e.message;
     setTimeout(() => progressDiv.remove(), 5000);
@@ -1703,8 +1725,8 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
     <div>
       <div class="modal-label">Clé API Anthropic</div>
       <div style="display:flex;align-items:center;gap:.5rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;margin-top:.3rem;">
-        <input type="password" id="api-key-input" placeholder="sk-ant-..." 
-          style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none"/>
+        <input type="text" id="api-key-input" placeholder="sk-ant-..." autocomplete="off" autocorrect="off" spellcheck="false"
+          style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none;-webkit-text-security:disc"/>
         <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;">👁️</button>
       </div>
       <div id="api-key-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
