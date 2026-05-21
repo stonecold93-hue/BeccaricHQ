@@ -388,6 +388,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     <span class="tnav-tagline">Nous c'est pour la vie</span>
     <div class="topnav-right">
       <img class="user-avatar" id="user-avatar" src="" alt="">
+      <button class="btn-logout" onclick="ouvrirSettings()" title="Paramètres">⚙️</button>
       <button class="btn-logout" onclick="logout()">Quitter</button>
     </div>
   </div>
@@ -462,13 +463,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="scan-box">
         <div class="scan-box-title">📥 Ajouter une recette rapidement</div>
         <div class="scan-box-sub">Collez le texte d'une recette web ou prenez une photo — Claude remplit tout automatiquement !</div>
-        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;">
-          <input type="password" id="api-key-input" placeholder="Clé API Anthropic (sk-ant-...)" 
-            style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none"/>
-          <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;" title="Voir/cacher">👁️</button>
-          <button onclick="saveApiKey()" class="btn-gold btn-sm">💾 Sauver</button>
-        </div>
-        <div id="api-key-status" style="font-size:.65rem;margin-bottom:.5rem;display:none;">✅ Clé active</div>
+<div id="api-key-status" style="display:none;"></div>
         <div class="scan-actions">
           <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/jpeg,image/png,image/heic,image/heif,image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
           <label class="btn-gold btn-sm" for="scan-photo-camera">📷 Prendre photo<input type="file" id="scan-photo-camera" accept="image/*" capture="environment" style="display:none" onchange="scanPhotoRecette(this)"></label>
@@ -1595,6 +1590,16 @@ setTimeout(() => {
   }
 }, 800);
 
+// ── SETTINGS ──
+window.ouvrirSettings = () => {
+  const pwd = prompt('🔐 Mot de passe paramètres :');
+  if (pwd === 'Leia2022') {
+    ouvrirModal('modal-settings');
+  } else if (pwd !== null) {
+    toast('❌ Mot de passe incorrect');
+  }
+};
+
 // ── PREVENT BACK BUTTON EXIT ──
 // Push a state so back button comes back here instead of leaving
 history.pushState(null, '', window.location.href);
@@ -1615,5 +1620,25 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => { if(e.target===overlay) overlay.classList.remove('open'); });
 });
 </script>
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="modal-settings">
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-title">⚙️ Paramètres</div>
+    <div>
+      <div class="modal-label">Clé API Anthropic</div>
+      <div style="display:flex;align-items:center;gap:.5rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;margin-top:.3rem;">
+        <input type="password" id="api-key-input" placeholder="sk-ant-..." 
+          style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none"/>
+        <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;">👁️</button>
+      </div>
+      <div id="api-key-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="fermerModal('modal-settings')">Fermer</button>
+      <button class="btn-gold primary" onclick="saveApiKey()">💾 Sauver</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
