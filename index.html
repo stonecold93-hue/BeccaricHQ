@@ -165,17 +165,18 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .scan-status{font-size:.72rem;color:var(--g1);margin-top:.4rem;display:none;letter-spacing:.08em;}
 
 /* ══════════════════════════════
-   SOUVENIRS
+   SOUVENIRS — ALBUM STYLE
 ══════════════════════════════ */
-.souvenirs-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;}
-.souvenirs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem;}
-.souvenir-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;position:relative;}
-.souvenir-card:hover{border-color:var(--gold3);box-shadow:0 0 16px rgba(244,166,35,0.1);}
-.souvenir-img{width:100%;aspect-ratio:1;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--border);}
-.souvenir-img img{width:100%;height:100%;object-fit:cover;}
-.souvenir-caption{padding:.5rem .6rem;}
-.souvenir-caption-title{font-family:'Cormorant Garamond',serif;font-size:.9rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.souvenir-caption-date{font-size:.55rem;color:var(--muted);margin-top:2px;}
+.souvenirs-list{display:flex;flex-direction:column;gap:.75rem;}
+.souvenir-album{background:var(--panel);border:1px solid #1E4060;border-radius:10px;display:flex;align-items:center;gap:.85rem;padding:.75rem;cursor:pointer;transition:all .2s;}
+.souvenir-album:hover{border-color:var(--gold2);background:var(--panel2);}
+.souvenir-thumb{width:64px;height:64px;border-radius:8px;overflow:hidden;background:#0A1828;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;position:relative;}
+.souvenir-thumb img{width:100%;height:100%;object-fit:cover;}
+.souvenir-thumb-count{position:absolute;bottom:3px;right:4px;background:rgba(0,0,0,.7);color:#fff;font-size:.5rem;font-family:"DM Mono",monospace;padding:1px 4px;border-radius:4px;}
+.souvenir-info{flex:1;min-width:0;}
+.souvenir-info-title{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:600;color:#A0D8F0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.souvenir-info-date{font-size:.62rem;color:var(--muted);margin-top:2px;}
+.souvenir-info-desc{font-size:.68rem;color:#7A9AAA;margin-top:3px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
 .souvenir-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
 
 /* ══════════════════════════════
@@ -479,12 +480,12 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     <!-- ══ SOUVENIRS ══ -->
     <div class="section" id="tab-souvenirs">
       <div class="section-title">Souvenirs</div>
-      <div class="souvenirs-toolbar">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
         <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos moments partagés</span>
-        <button class="btn-gold primary" onclick="ouvrirSouvenir()">+ Ajouter</button>
+        <button class="btn-gold primary" onclick="ouvrirSouvenir()">+ Nouvel album</button>
       </div>
-      <div class="souvenirs-grid" id="souvenirs-grid">
-        <div class="souvenir-empty" id="souvenirs-empty" style="grid-column:1/-1">
+      <div class="souvenirs-list" id="souvenirs-list">
+        <div class="souvenir-empty" id="souvenirs-empty">
           <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">📸</div>
           Aucun souvenir encore
         </div>
@@ -639,23 +640,26 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 <!-- SOUVENIR — Form -->
 <div class="modal-overlay" id="modal-souvenir">
   <div class="modal">
-    <div class="modal-title">Nouveau souvenir</div>
-    <div>
-      <div class="modal-label">Photo</div>
-      <div class="photo-upload-wrap" id="souvenir-photo-wrap" onclick="document.getElementById('souvenir-photo-input').click()">
-        <div class="photo-upload-icon">📷</div>
-        <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
-        <input type="file" id="souvenir-photo-input" class="photo-upload-input" accept="image/jpeg,image/png,image/heic,image/heif,image/*" onchange="previewSouvenirPhoto(this)">
-        <button class="photo-change-btn" id="souvenir-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('souvenir-photo-input').click()">Changer</button>
-      </div>
-    </div>
+    <div class="modal-title">Nouvel album</div>
     <div>
       <div class="modal-label">Titre</div>
       <input type="text" id="souvenir-titre" placeholder="Ex: Vacances été 2025">
     </div>
     <div>
+      <div class="modal-label">Date</div>
+      <input type="date" id="souvenir-date">
+    </div>
+    <div>
       <div class="modal-label">Description</div>
-      <textarea id="souvenir-desc" placeholder="Un beau souvenir..."></textarea>
+      <textarea id="souvenir-desc" placeholder="Un beau souvenir..." style="min-height:60px"></textarea>
+    </div>
+    <div>
+      <div class="modal-label" style="margin-bottom:.4rem">Photos <span style="color:var(--muted);font-size:.6rem">(plusieurs permises)</span></div>
+      <label class="btn-gold btn-sm" style="cursor:pointer;display:inline-flex">
+        📷 Ajouter des photos
+        <input type="file" id="souvenir-photos-input" accept="image/jpeg,image/png,image/heic,image/heif,image/*" multiple style="display:none" onchange="previewSouvenirPhotos(this)">
+      </label>
+      <div id="souvenir-photos-preview" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:.6rem;"></div>
     </div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="fermerModal('modal-souvenir')">Annuler</button>
@@ -667,12 +671,24 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 <!-- SOUVENIR — Detail -->
 <div class="modal-overlay" id="modal-souvenir-detail">
   <div class="modal">
-    <div id="souvenir-detail-img" style="width:100%;border-radius:6px;overflow:hidden;margin-bottom:.75rem;max-height:280px;"></div>
     <div class="detail-title" id="souvenir-detail-titre"></div>
-    <div class="detail-notes" id="souvenir-detail-desc"></div>
+    <div style="font-size:.65rem;color:var(--muted);margin-bottom:.5rem" id="souvenir-detail-date"></div>
+    <div class="detail-notes" id="souvenir-detail-desc" style="margin-bottom:.75rem"></div>
+    <div id="souvenir-detail-photos" style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:.75rem;"></div>
     <div class="modal-actions">
       <button class="btn-gold btn-danger btn-sm" onclick="supprimerSouvenir()">🗑️ Supprimer</button>
       <button class="btn-cancel" onclick="fermerModal('modal-souvenir-detail')">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- SOUVENIR — Photo plein écran -->
+<div class="modal-overlay" id="modal-photo-fullscreen">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;max-width:90vw;">
+    <img id="fullscreen-img" src="" style="max-width:90vw;max-height:75vh;border-radius:8px;object-fit:contain" onclick="fermerModal('modal-photo-fullscreen')">
+    <div style="display:flex;gap:.75rem;">
+      <button class="btn-gold" onclick="telechargerPhoto()">⬇️ Télécharger</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-photo-fullscreen')">Fermer</button>
     </div>
   </div>
 </div>
@@ -1197,9 +1213,10 @@ function remplirFormRecette(rec) {
 }
 
 // ════════════════════════════════
-// SOUVENIRS
+// SOUVENIRS — ALBUM
 // ════════════════════════════════
 let souvenirs = [];
+let souvenirPhotosBase64 = [];
 
 function listenSouvenirs(uid) {
   const q = query(collection(db,'users',uid,'souvenirs'), orderBy('createdAt','desc'));
@@ -1210,71 +1227,107 @@ function listenSouvenirs(uid) {
 }
 
 function renderSouvenirs() {
-  const grid = document.getElementById('souvenirs-grid');
+  const list = document.getElementById('souvenirs-list');
   const empty = document.getElementById('souvenirs-empty');
-  if (!souvenirs.length) { grid.innerHTML=''; grid.appendChild(empty); empty.style.display='block'; return; }
+  if (!souvenirs.length) { list.innerHTML=''; list.appendChild(empty); empty.style.display='block'; return; }
   empty.style.display='none';
-  grid.innerHTML = souvenirs.map(s => `
-    <div class="souvenir-card" onclick="voirSouvenir('${s.id}')">
-      <div class="souvenir-img">
-        ${s.photoURL ? `<img src="${s.photoURL}" alt="${s.titre}" loading="lazy">` : '📸'}
+  list.innerHTML = souvenirs.map(s => {
+    const photos = s.photos||[];
+    const cover = photos[0] || s.photoURL || null;
+    const count = photos.length || (s.photoURL ? 1 : 0);
+    const dateStr = s.date || (s.createdAt?.toDate ? s.createdAt.toDate().toLocaleDateString('fr-CA') : '');
+    return `<div class="souvenir-album" onclick="voirSouvenir('${s.id}')">
+      <div class="souvenir-thumb">
+        ${cover ? `<img src="${cover}" alt="">` : '📸'}
+        ${count > 1 ? `<div class="souvenir-thumb-count">${count} photos</div>` : ''}
       </div>
-      <div class="souvenir-caption">
-        <div class="souvenir-caption-title">${s.titre||'Souvenir'}</div>
-        <div class="souvenir-caption-date">${s.createdAt?.toDate ? s.createdAt.toDate().toLocaleDateString('fr-CA') : ''}</div>
+      <div class="souvenir-info">
+        <div class="souvenir-info-title">${s.titre||'Souvenir'}</div>
+        <div class="souvenir-info-date">${dateStr}</div>
+        ${s.desc ? `<div class="souvenir-info-desc">${s.desc}</div>` : ''}
       </div>
-    </div>`).join('');
+      <span style="color:var(--muted);font-size:.9rem">›</span>
+    </div>`;
+  }).join('');
 }
 
 window.ouvrirSouvenir = () => {
   document.getElementById('souvenir-titre').value='';
   document.getElementById('souvenir-desc').value='';
-  souvenirPhotoBase64=null;
-  resetPhotoWrap('souvenir-photo-wrap','souvenir-photo-input','souvenir-change-btn');
+  document.getElementById('souvenir-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('souvenir-photos-preview').innerHTML='';
+  souvenirPhotosBase64=[];
   ouvrirModal('modal-souvenir');
 };
 
-window.previewSouvenirPhoto = (input) => {
-  if (!input.files[0]) return;
-  const reader=new FileReader();
-  reader.onload=e=>{ souvenirPhotoBase64=e.target.result; showPhotoPreview('souvenir-photo-wrap',e.target.result,'souvenir-change-btn'); };
-  reader.readAsDataURL(input.files[0]);
+window.previewSouvenirPhotos = (input) => {
+  if (!input.files.length) return;
+  const preview = document.getElementById('souvenir-photos-preview');
+  Array.from(input.files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      souvenirPhotosBase64.push(e.target.result);
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.cssText = 'width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--border)';
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
 };
 
 window.sauvegarderSouvenir = async () => {
-  const titre=document.getElementById('souvenir-titre').value.trim();
+  const titre = document.getElementById('souvenir-titre').value.trim();
   if (!titre) { toast('⚠️ Entre un titre'); return; }
-  const uid=currentUser.uid;
+  const uid = currentUser.uid;
+  toast('⏳ Upload en cours...');
   try {
-    let photoURL=null;
-    if (souvenirPhotoBase64) {
-      const path=`users/${uid}/souvenirs/${Date.now()}.jpg`;
-      const storageRef=sRef(storage,path);
-      await uploadString(storageRef,souvenirPhotoBase64,'data_url');
-      photoURL=await getDownloadURL(storageRef);
+    const photoURLs = [];
+    for (let i=0; i<souvenirPhotosBase64.length; i++) {
+      const path = `users/${uid}/souvenirs/${Date.now()}_${i}.jpg`;
+      const storageRef = sRef(storage, path);
+      await uploadString(storageRef, souvenirPhotosBase64[i], 'data_url');
+      const url = await getDownloadURL(storageRef);
+      photoURLs.push(url);
     }
-    await addDoc(collection(db,'users',uid,'souvenirs'),{titre,desc:document.getElementById('souvenir-desc').value.trim(),photoURL,createdAt:serverTimestamp()});
-    fermerModal('modal-souvenir'); toast('✅ Souvenir ajouté !');
+    await addDoc(collection(db,'users',uid,'souvenirs'), {
+      titre,
+      desc: document.getElementById('souvenir-desc').value.trim(),
+      date: document.getElementById('souvenir-date').value,
+      photos: photoURLs,
+      createdAt: serverTimestamp()
+    });
+    fermerModal('modal-souvenir');
+    toast('✅ Album sauvegardé !');
   } catch(e) { toast('❌ '+e.message); }
 };
 
 window.voirSouvenir = (id) => {
-  const s=souvenirs.find(x=>x.id===id);
+  const s = souvenirs.find(x=>x.id===id);
   if (!s) return;
-  currentDetailId=id;
-  const imgDiv=document.getElementById('souvenir-detail-img');
-  imgDiv.innerHTML=s.photoURL?`<img src="${s.photoURL}" style="width:100%;max-height:280px;object-fit:cover;border-radius:6px">`:'';
-  document.getElementById('souvenir-detail-titre').textContent=s.titre||'';
-  document.getElementById('souvenir-detail-desc').textContent=s.desc||'';
+  currentDetailId = id;
+  document.getElementById('souvenir-detail-titre').textContent = s.titre||'';
+  document.getElementById('souvenir-detail-date').textContent = s.date||'';
+  document.getElementById('souvenir-detail-desc').textContent = s.desc||'';
+  const photos = s.photos||[];
+  document.getElementById('souvenir-detail-photos').innerHTML = photos.map(url =>
+    `<img src="${url}" onclick="voirPhotoPlein('${url}')" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--border)" loading="lazy">`
+  ).join('');
   ouvrirModal('modal-souvenir-detail');
 };
 
+window.voirPhotoPlein = (url) => {
+  document.getElementById('fullscreen-img').src = url;
+  ouvrirModal('modal-photo-fullscreen');
+};
+
 window.supprimerSouvenir = async () => {
-  if (!confirm('Supprimer ce souvenir ?')) return;
-  const uid=currentUser.uid;
+  if (!confirm('Supprimer cet album ?')) return;
+  const uid = currentUser.uid;
   try {
     await deleteDoc(doc(db,'users',uid,'souvenirs',currentDetailId));
-    fermerModal('modal-souvenir-detail'); toast('🗑️ Supprimé');
+    fermerModal('modal-souvenir-detail');
+    toast('🗑️ Album supprimé');
   } catch(e) { toast('❌ '+e.message); }
 };
 
@@ -1589,6 +1642,16 @@ setTimeout(() => {
     if (status) { status.style.display='block'; status.textContent='✅ Clé active'; status.style.color='#34C472'; }
   }
 }, 800);
+
+// ── TÉLÉCHARGER PHOTO ──
+window.telechargerPhoto = () => {
+  const img = document.getElementById('fullscreen-img');
+  const a = document.createElement('a');
+  a.href = img.src;
+  a.download = 'souvenir_beccarichq.jpg';
+  a.target = '_blank';
+  a.click();
+};
 
 // ── SETTINGS ──
 window.ouvrirSettings = () => {
