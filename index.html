@@ -100,22 +100,26 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .btn-cancel:hover{border-color:var(--gold4);color:var(--gold2);}
 
 /* ══════════════════════════════
-   DOLLO
+   LISTES D ACHAT (Dollo / Quincaillerie / Walmart)
 ══════════════════════════════ */
-.dollo-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:.5rem;flex-wrap:wrap;}
-.dollo-search{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.45rem .8rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#C8C8C8;outline:none;transition:border .15s;}
-.dollo-search:focus{border-color:var(--gold2);}
-
-.dollo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
-.dollo-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;}
-.dollo-card:hover{border-color:var(--gold3);box-shadow:0 0 20px rgba(244,166,35,0.08);}
-.dollo-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--border);}
-.dollo-card-img img{width:100%;height:100%;object-fit:cover;}
-.dollo-card-img.no-photo{background:linear-gradient(135deg,#1A1000,#0E0900);}
-.dollo-card-body{padding:.65rem .75rem;display:flex;flex-direction:column;gap:.25rem;}
-.dollo-card-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.dollo-card-desc{font-size:.6rem;color:#7A9AAA;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.dollo-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+.liste-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:.5rem;flex-wrap:wrap;}
+.liste-search{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.45rem .8rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#C8C8C8;outline:none;transition:border .15s;}
+.liste-search:focus{border-color:var(--gold2);}
+.liste-compteur{font-size:.6rem;color:var(--muted);letter-spacing:.1em;}
+.liste-ul{display:flex;flex-direction:column;gap:.45rem;margin-top:.25rem;}
+.liste-item{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.75rem 1rem;display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;transition:all .2s;position:relative;}
+.liste-item:hover{border-color:var(--gold4);}
+.liste-item.achete{opacity:.45;border-color:var(--border);}
+.liste-item.achete .liste-item-nom{text-decoration:line-through;color:var(--muted);}
+.liste-check{width:20px;height:20px;border-radius:50%;border:1.5px solid #3A6A9A;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;}
+.liste-item.achete .liste-check{background:#3A6A9A;border-color:#3A6A9A;}
+.liste-item-body{flex:1;min-width:0;}
+.liste-item-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;line-height:1.3;}
+.liste-item-desc{font-size:.62rem;color:#7A9AAA;margin-top:2px;line-height:1.5;}
+.liste-item-del{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;padding:2px 5px;opacity:0;transition:opacity .15s;}
+.liste-item:hover .liste-item-del{opacity:.6;}
+.liste-item-del:hover{opacity:1 !important;color:#F06060;}
+.liste-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
 
 /* photo upload preview */
 .photo-upload-wrap{position:relative;width:100%;aspect-ratio:4/3;background:#1A1000;border:1px dashed var(--gold4);border-radius:6px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;transition:border .2s;}
@@ -177,7 +181,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .coming-soon-sub{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
 
 @media(max-width:480px){
-  .dollo-grid{grid-template-columns:repeat(2,1fr);}
 
   .trouvailles-grid{grid-template-columns:repeat(2,1fr);}
   .auth-main{font-size:40px;}
@@ -233,6 +236,14 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .t-trouvailles{background:#060202;border-color:#8A0A0A;}
 .t-trouvailles::before{background:#F06060;}
 .t-trouvailles .home-tile-name{background:linear-gradient(160deg,#FFBDBD,#F06060,#C42020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-quinc{background:#010A04;border-color:#065C2A;}
+.t-quinc::before{background:#34C472;}
+.t-quinc .home-tile-name{background:linear-gradient(160deg,#A8F0C4,#34C472,#1A7A3C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-quinc .home-tile-sub{color:#34C472;}
+.t-walmart{background:#00060A;border-color:#004080;}
+.t-walmart::before{background:#0071CE;}
+.t-walmart .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#0071CE,#004080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-walmart .home-tile-sub{color:#0071CE;}
 .t-trouvailles .home-tile-sub{color:#F06060;}
 
 </style>
@@ -325,7 +336,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
   <div class="tabs">
     <button class="tab active" data-tab="accueil" onclick="goTab('accueil',this)">🏠 Accueil</button>
-    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
+    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
+    <button class="tab" data-tab="quinc" onclick="goTab('quinc',this)">🔧 Quincaillerie</button>
+    <button class="tab" data-tab="walmart" onclick="goTab('walmart',this)">🏪 Walmart</button>
+    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
     <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">❤️ Trouvailles</button>
   </div>
 
@@ -349,19 +363,60 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
           <div class="home-tile-name">Trouvailles</div>
           <div class="home-tile-sub">Nos découvertes</div>
         </div>
+        <div class="home-tile t-quinc" onclick="goTab('quinc',null)">
+          <div class="home-tile-icon">🔧</div>
+          <div class="home-tile-name">Quincaillerie</div>
+          <div class="home-tile-sub">Liste materiel</div>
+        </div>
+        <div class="home-tile t-walmart" onclick="goTab('walmart',null)">
+          <div class="home-tile-icon">🏪</div>
+          <div class="home-tile-name">Walmart</div>
+          <div class="home-tile-sub">Liste epicerie</div>
+        </div>
       </div>
     </div>
 
     <!-- ══ DOLLO ══ -->
     <div class="section" id="tab-dollo">
-      <div class="section-title">Liste Dollo</div>
-      <div class="dollo-toolbar">
-        <input class="dollo-search" id="dollo-search" placeholder="Rechercher..." oninput="filterDollo()">
-        <button class="btn-gold primary" onclick="ouvrirDollo()">+ Ajouter</button>
+      <div class="section-title">🛒 Dollo</div>
+      <div class="liste-toolbar">
+        <input class="liste-search" id="dollo-search" placeholder="Rechercher..." oninput="filterDollo()">
+        <span class="liste-compteur" id="dollo-compteur"></span>
+        <button class="btn-gold primary" onclick="ouvrirListeModal('dollo')">+ Ajouter</button>
       </div>
-      <div class="dollo-grid" id="dollo-grid">
-        <div class="dollo-empty" id="dollo-empty" style="grid-column:1/-1">
+      <div class="liste-ul" id="dollo-list">
+        <div class="liste-empty" id="dollo-empty">
           <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🛒</div>
+          Aucun item pour l'instant
+        </div>
+      </div>
+    </div>
+    <!-- ══ QUINCAILLERIE ══ -->
+    <div class="section" id="tab-quinc">
+      <div class="section-title">🔧 Quincaillerie</div>
+      <div class="liste-toolbar">
+        <input class="liste-search" id="quinc-search" placeholder="Rechercher..." oninput="filterListe('quinc')">
+        <span class="liste-compteur" id="quinc-compteur"></span>
+        <button class="btn-gold primary" onclick="ouvrirListeModal('quinc')">+ Ajouter</button>
+      </div>
+      <div class="liste-ul" id="quinc-list">
+        <div class="liste-empty" id="quinc-empty">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🔧</div>
+          Aucun item pour l'instant
+        </div>
+      </div>
+    </div>
+    <!-- ══ WALMART ══ -->
+    <div class="section" id="tab-walmart">
+      <div class="section-title">🏪 Walmart</div>
+      <div class="liste-toolbar">
+        <input class="liste-search" id="walmart-search" placeholder="Rechercher..." oninput="filterListe('walmart')">
+        <span class="liste-compteur" id="walmart-compteur"></span>
+        <button class="btn-gold primary" onclick="ouvrirListeModal('walmart')">+ Ajouter</button>
+      </div>
+      <div class="liste-ul" id="walmart-list">
+        <div class="liste-empty" id="walmart-empty">
+          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🏪</div>
           Aucun item pour l'instant
         </div>
       </div>
@@ -398,60 +453,24 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
 <!-- ═══════════ MODALS ═══════════ -->
 
-<!-- DOLLO — Form -->
-<div class="modal-overlay" id="modal-dollo">
+<!-- LISTE — Modal ajout/edit generique (Dollo, Quincaillerie, Walmart) -->
+<div class="modal-overlay" id="modal-liste">
   <div class="modal">
-    <div class="modal-title" id="dollo-modal-title">Nouvel item</div>
-    <div>
-      <div class="modal-label">Photo</div>
-      <div class="photo-upload-wrap" id="dollo-photo-wrap" onclick="document.getElementById('dollo-photo-input').click()">
-        <div class="photo-upload-icon">📷</div>
-        <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
-        <input type="file" id="dollo-photo-input" class="photo-upload-input" accept="image/jpeg,image/png,image/heic,image/heif,image/*" onchange="previewDolloPhoto(this)">
-        <button class="photo-change-btn" id="dollo-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('dollo-photo-input').click()">Changer</button>
-      </div>
-    </div>
-    <div>
-      <div class="modal-label">Nom de l'objet</div>
-      <input type="text" id="dollo-nom" placeholder="Ex: Lampe de salon">
-    </div>
-    <div>
-      <div class="modal-label">Description</div>
-      <textarea id="dollo-desc" placeholder="Description, où acheter, prix approximatif..."></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="fermerModal('modal-dollo')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderDollo()">💾 Sauvegarder</button>
-    </div>
-  </div>
-</div>
-
-<!-- DOLLO — Detail/Edit -->
-<div class="modal-overlay" id="modal-dollo-detail">
-  <div class="modal">
-    <div class="modal-title">Modifier l'item</div>
-    <input type="hidden" id="dollo-edit-id">
-    <div>
-      <div class="modal-label">Photo</div>
-      <div class="photo-upload-wrap" id="dollo-edit-photo-wrap" onclick="document.getElementById('dollo-edit-photo-input').click()">
-        <div class="photo-upload-icon">📷</div>
-        <div class="photo-upload-label">Appuyer pour changer la photo</div>
-        <input type="file" id="dollo-edit-photo-input" class="photo-upload-input" accept="image/*" onchange="previewDolloEditPhoto(this)">
-        <button class="photo-change-btn" onclick="event.stopPropagation();document.getElementById('dollo-edit-photo-input').click()">Changer</button>
-      </div>
-    </div>
+    <div class="modal-title" id="liste-modal-title">Nouvel item</div>
+    <input type="hidden" id="liste-section">
+    <input type="hidden" id="liste-edit-id">
     <div>
       <div class="modal-label">Nom</div>
-      <input type="text" id="dollo-edit-nom">
+      <input type="text" id="liste-nom" placeholder="Ex: Ampoules LED">
     </div>
     <div>
-      <div class="modal-label">Description</div>
-      <textarea id="dollo-edit-desc"></textarea>
+      <div class="modal-label">Description <span style="color:var(--muted);font-size:.6rem">(optionnel)</span></div>
+      <textarea id="liste-desc" placeholder="Quantite, format, details..."></textarea>
     </div>
     <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" onclick="supprimerDollo()">🗑️ Supprimer</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-dollo-detail')">Annuler</button>
-      <button class="btn-gold primary" onclick="mettreAJourDollo()">💾 Mettre à jour</button>
+      <button class="btn-gold btn-danger btn-sm" id="liste-delete-btn" style="display:none" onclick="supprimerListeItem()">🗑️</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-liste')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderListeItem()">💾 Sauvegarder</button>
     </div>
   </div>
 </div>
@@ -558,8 +577,6 @@ const ALLOWED_EMAILS = ['stonecold93@gmail.com', 'rebeccamontambeault20@gmail.co
 
 let currentUser = null;
 let currentDetailId = null;
-let dolloPhotoBase64 = null;
-let dolloEditPhotoBase64 = null;
 let trouvaillePhotoBase64 = null;
 
 // ── TOAST ──
@@ -615,153 +632,157 @@ onAuthStateChanged(auth, async user => {
 
 // ── INIT ──
 function initApp(uid) {
-  listenDollo(uid);
+  listenDollo();
+  listenQuinc();
+  listenWalmart();
   listenTrucs(uid);
   listenTrouvailles(uid);
 }
 
 // ════════════════════════════════
-// DOLLO
+// LISTES D ACHAT — generique (Dollo / Quincaillerie / Walmart)
 // ════════════════════════════════
-let dolloItems = [];
 
-function listenDollo(uid) {
-  const q = query(collection(db,'beccaric_dollo'), orderBy('createdAt','desc'));
+const LISTE_CONFIG = {
+  dollo:   { col: 'beccaric_dollo',        emoji: '🛒' },
+  quinc:   { col: 'beccaric_quincaillerie', emoji: '🔧' },
+  walmart: { col: 'beccaric_walmart',       emoji: '🏪' },
+};
+
+let listeData = { dollo: [], quinc: [], walmart: [] };
+
+function listenDollo()   { listenListe('dollo'); }
+function listenQuinc()   { listenListe('quinc'); }
+function listenWalmart() { listenListe('walmart'); }
+
+function listenListe(section) {
+  const col = LISTE_CONFIG[section].col;
+  const q = query(collection(db, col), orderBy('createdAt','desc'));
   onSnapshot(q, snap => {
-    dolloItems = snap.docs.map(d => ({id:d.id,...d.data()}));
-    renderDollo(dolloItems);
+    listeData[section] = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderListe(section);
   });
 }
 
-function renderDollo(items) {
-  const grid = document.getElementById('dollo-grid');
-  const empty = document.getElementById('dollo-empty');
-  if (!items.length) { grid.innerHTML = ''; grid.appendChild(empty); empty.style.display='block'; return; }
+function renderListe(section) {
+  const ul    = document.getElementById(section + '-list');
+  const empty = document.getElementById(section + '-empty');
+  const cpt   = document.getElementById(section + '-compteur');
+  const items = listeData[section];
+  const reste = items.filter(i => !i.achete).length;
+  if (!items.length) {
+    ul.innerHTML = '';
+    ul.appendChild(empty);
+    empty.style.display = 'block';
+    if (cpt) cpt.textContent = '';
+    return;
+  }
   empty.style.display = 'none';
-  grid.innerHTML = items.map(item => `
-    <div class="dollo-card" onclick="ouvrirDolloDetail('${item.id}')">
-      <div class="dollo-card-img ${item.photoURL ? '' : 'no-photo'}">
-        ${item.photoURL ? `<img src="${item.photoURL}" alt="${item.nom}" loading="lazy">` : '🛒'}
+  if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
+  ul.innerHTML = items.map(item => `
+    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}">
+      <div class="liste-check" onclick="toggleAchete('${section}','${item.id}',${!item.achete})">${item.achete ? '✓' : ''}</div>
+      <div class="liste-item-body" onclick="ouvrirListeEdit('${section}','${item.id}')">
+        <div class="liste-item-nom">${item.nom || ''}</div>
+        ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
       </div>
-      <div class="dollo-card-body">
-        <div class="dollo-card-name">${item.nom || 'Sans nom'}</div>
-        ${item.desc ? `<div class="dollo-card-desc">${item.desc}</div>` : ''}
-      </div>
+      <button class="liste-item-del" onclick="event.stopPropagation();supprimerListeItemDirect('${section}','${item.id}')">✕</button>
     </div>`).join('');
 }
 
-window.filterDollo = () => {
-  const q = document.getElementById('dollo-search').value.toLowerCase();
-  renderDollo(q ? dolloItems.filter(i => (i.nom||'').toLowerCase().includes(q)||(i.desc||'').toLowerCase().includes(q)) : dolloItems);
-};
-
-window.ouvrirDollo = () => {
-  document.getElementById('dollo-nom').value = '';
-  document.getElementById('dollo-desc').value = '';
-  dolloPhotoBase64 = null;
-  resetPhotoWrap('dollo-photo-wrap','dollo-photo-input','dollo-change-btn');
-  ouvrirModal('modal-dollo');
-};
-
-window.previewDolloPhoto = (input) => {
-  if (!input.files[0]) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    dolloPhotoBase64 = e.target.result;
-    showPhotoPreview('dollo-photo-wrap', e.target.result, 'dollo-change-btn');
-  };
-  reader.readAsDataURL(input.files[0]);
-};
-
-window.sauvegarderDollo = async () => {
-  const nom = document.getElementById('dollo-nom').value.trim();
-  if (!nom) { toast('⚠️ Entre un nom'); return; }
-  const uid = currentUser.uid;
-  try {
-    let photoURL = null;
-    if (dolloPhotoBase64) {
-      const path = `beccaric_dollo/${Date.now()}.jpg`;
-      const storageRef = sRef(storage, path);
-      await uploadString(storageRef, dolloPhotoBase64, 'data_url');
-      photoURL = await getDownloadURL(storageRef);
-    }
-    await addDoc(collection(db,'beccaric_dollo'), {
-      nom, desc: document.getElementById('dollo-desc').value.trim(),
-      photoURL, createdAt: serverTimestamp()
-    });
-    fermerModal('modal-dollo');
-    toast('✅ Item ajouté !');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-window.ouvrirDolloDetail = (id) => {
-  const item = dolloItems.find(i => i.id === id);
-  if (!item) return;
-  currentDetailId = id;
-  document.getElementById('dollo-edit-id').value = id;
-  document.getElementById('dollo-edit-nom').value = item.nom || '';
-  document.getElementById('dollo-edit-desc').value = item.desc || '';
-  dolloEditPhotoBase64 = null;
-  const wrap = document.getElementById('dollo-edit-photo-wrap');
-  wrap.innerHTML = '';
-  if (item.photoURL) {
-    const img = document.createElement('img');
-    img.src = item.photoURL;
-    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-    wrap.appendChild(img);
-    const btn = document.createElement('button');
-    btn.className = 'photo-change-btn';
-    btn.textContent = 'Changer';
-    btn.onclick = e => { e.stopPropagation(); document.getElementById('dollo-edit-photo-input').click(); };
-    wrap.appendChild(btn);
-  } else {
-    wrap.innerHTML = `<div class="photo-upload-icon">📷</div><div class="photo-upload-label">Appuyer pour ajouter une photo</div>`;
+window.filterDollo = () => filterListe('dollo');
+window.filterListe = (section) => {
+  const q = document.getElementById(section + '-search').value.toLowerCase();
+  const filtered = q ? listeData[section].filter(i =>
+    (i.nom||'').toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q)
+  ) : listeData[section];
+  // render directement avec filtre
+  const ul    = document.getElementById(section + '-list');
+  const empty = document.getElementById(section + '-empty');
+  const cpt   = document.getElementById(section + '-compteur');
+  if (!filtered.length) {
+    ul.innerHTML = ''; ul.appendChild(empty); empty.style.display='block';
+    if (cpt) cpt.textContent = '';
+    return;
   }
-  const inp = document.createElement('input');
-  inp.type='file'; inp.id='dollo-edit-photo-input'; inp.accept='image/*';
-  inp.className='photo-upload-input';
-  inp.onchange = e => previewDolloEditPhoto(e.target);
-  wrap.appendChild(inp);
-  ouvrirModal('modal-dollo-detail');
+  empty.style.display = 'none';
+  const reste = filtered.filter(i => !i.achete).length;
+  if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
+  ul.innerHTML = filtered.map(item => `
+    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}">
+      <div class="liste-check" onclick="toggleAchete('${section}','${item.id}',${!item.achete})">${item.achete ? '✓' : ''}</div>
+      <div class="liste-item-body" onclick="ouvrirListeEdit('${section}','${item.id}')">
+        <div class="liste-item-nom">${item.nom || ''}</div>
+        ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
+      </div>
+      <button class="liste-item-del" onclick="event.stopPropagation();supprimerListeItemDirect('${section}','${item.id}')">✕</button>
+    </div>`).join('');
 };
 
-window.previewDolloEditPhoto = (input) => {
-  if (!input.files[0]) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    dolloEditPhotoBase64 = e.target.result;
-    showPhotoPreview('dollo-edit-photo-wrap', e.target.result, null);
-  };
-  reader.readAsDataURL(input.files[0]);
+window.toggleAchete = async (section, id, achete) => {
+  const col = LISTE_CONFIG[section].col;
+  try { await updateDoc(doc(db, col, id), { achete }); }
+  catch(e) { toast('❌ ' + e.message); }
 };
 
-window.mettreAJourDollo = async () => {
-  const id = document.getElementById('dollo-edit-id').value;
-  const nom = document.getElementById('dollo-edit-nom').value.trim();
+window.ouvrirListeModal = (section) => {
+  document.getElementById('liste-section').value = section;
+  document.getElementById('liste-edit-id').value = '';
+  document.getElementById('liste-nom').value = '';
+  document.getElementById('liste-desc').value = '';
+  document.getElementById('liste-modal-title').textContent = 'Nouvel item';
+  document.getElementById('liste-delete-btn').style.display = 'none';
+  ouvrirModal('modal-liste');
+};
+
+window.ouvrirListeEdit = (section, id) => {
+  const item = listeData[section].find(i => i.id === id);
+  if (!item) return;
+  document.getElementById('liste-section').value = section;
+  document.getElementById('liste-edit-id').value = id;
+  document.getElementById('liste-nom').value = item.nom || '';
+  document.getElementById('liste-desc').value = item.desc || '';
+  document.getElementById('liste-modal-title').textContent = 'Modifier';
+  document.getElementById('liste-delete-btn').style.display = 'inline-flex';
+  ouvrirModal('modal-liste');
+};
+
+window.sauvegarderListeItem = async () => {
+  const section = document.getElementById('liste-section').value;
+  const id      = document.getElementById('liste-edit-id').value;
+  const nom     = document.getElementById('liste-nom').value.trim();
   if (!nom) { toast('⚠️ Entre un nom'); return; }
-  const uid = currentUser.uid;
+  const col  = LISTE_CONFIG[section].col;
+  const desc = document.getElementById('liste-desc').value.trim();
   try {
-    const updates = { nom, desc: document.getElementById('dollo-edit-desc').value.trim() };
-    if (dolloEditPhotoBase64) {
-      const path = `beccaric_dollo/${Date.now()}.jpg`;
-      const storageRef = sRef(storage, path);
-      await uploadString(storageRef, dolloEditPhotoBase64, 'data_url');
-      updates.photoURL = await getDownloadURL(storageRef);
+    if (id) {
+      await updateDoc(doc(db, col, id), { nom, desc });
+      toast('✅ Mis a jour !');
+    } else {
+      await addDoc(collection(db, col), { nom, desc, achete: false, createdAt: serverTimestamp() });
+      toast('✅ Ajoute !');
     }
-    await updateDoc(doc(db,'beccaric_dollo',id), updates);
-    fermerModal('modal-dollo-detail');
-    toast('✅ Mis à jour !');
+    fermerModal('modal-liste');
   } catch(e) { toast('❌ ' + e.message); }
 };
 
-window.supprimerDollo = async () => {
-  if (!confirm('Supprimer cet item ?')) return;
-  const id = document.getElementById('dollo-edit-id').value;
-  const uid = currentUser.uid;
+window.supprimerListeItem = async () => {
+  const section = document.getElementById('liste-section').value;
+  const id      = document.getElementById('liste-edit-id').value;
+  if (!id) return;
+  const col = LISTE_CONFIG[section].col;
   try {
-    await deleteDoc(doc(db,'beccaric_dollo',id));
-    fermerModal('modal-dollo-detail');
-    toast('🗑️ Supprimé');
+    await deleteDoc(doc(db, col, id));
+    fermerModal('modal-liste');
+    toast('🗑️ Supprime');
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+window.supprimerListeItemDirect = async (section, id) => {
+  const col = LISTE_CONFIG[section].col;
+  try {
+    await deleteDoc(doc(db, col, id));
+    toast('🗑️ Supprime');
   } catch(e) { toast('❌ ' + e.message); }
 };
 
