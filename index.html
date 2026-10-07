@@ -127,55 +127,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .photo-change-btn{position:absolute;bottom:8px;right:8px;background:rgba(6,4,4,.8);border:1px solid var(--gold3);color:var(--gold1);border-radius:4px;padding:.2rem .5rem;font-size:.6rem;font-family:'DM Mono',monospace;cursor:pointer;letter-spacing:.1em;}
 
 /* ══════════════════════════════
-   RECETTES
-══════════════════════════════ */
-.scan-box{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;}
-.scan-box-title{font-size:.72rem;letter-spacing:.12em;color:var(--gold2);text-transform:uppercase;margin-bottom:.4rem;}
-.scan-box-sub{font-size:.7rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6;}
-.scan-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;}
-.scan-textarea{width:100%;min-height:70px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.6rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#C8C8C8;outline:none;resize:vertical;transition:border .15s;}
-.scan-textarea:focus{border-color:var(--gold2);}
-
-.recette-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.75rem;}
-.recette-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .15s;}
-.recette-card:hover{border-color:var(--gold2);background:var(--panel2);}
-.recette-card-left{flex:1;min-width:0;}
-.recette-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:#A0D8F0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.recette-card-info{font-size:.62rem;color:#7A9AAA;margin-top:2px;}
-.recette-card-actions{display:flex;gap:.35rem;flex-shrink:0;}
-
-.detail-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--gold1);margin-bottom:.3rem;}
-.detail-notes{font-size:.78rem;color:#C8D8E8;font-style:italic;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border);line-height:1.7;}
-.ing-list-display{display:flex;flex-direction:column;gap:.4rem;}
-.ing-item{display:flex;align-items:center;gap:.6rem;padding:.4rem .7rem;background:var(--panel2);border-radius:5px;}
-.ing-qty{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);min-width:40px;}
-.ing-unit{font-size:.62rem;color:var(--muted);min-width:60px;}
-.ing-name{font-size:.8rem;color:#C8D8E8;}
-.ing-row{display:flex;align-items:center;gap:.4rem;}
-.ing-row input{flex:1;}
-.ing-row input.ing-qty-in{width:60px;flex:none;}
-.ing-row input.ing-unit-in{width:70px;flex:none;}
-.ing-remove{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:0 4px;transition:color .15s;}
-.ing-remove:hover{color:#a03020;}
-
-.scan-status{font-size:.72rem;color:var(--g1);margin-top:.4rem;display:none;letter-spacing:.08em;}
-
-/* ══════════════════════════════
-   SOUVENIRS — ALBUM STYLE
-══════════════════════════════ */
-.souvenirs-list{display:flex;flex-direction:column;gap:.75rem;}
-.souvenir-album{background:var(--panel);border:1px solid #1E4060;border-radius:10px;display:flex;align-items:center;gap:.85rem;padding:.75rem;cursor:pointer;transition:all .2s;}
-.souvenir-album:hover{border-color:var(--gold2);background:var(--panel2);}
-.souvenir-thumb{width:64px;height:64px;border-radius:8px;overflow:hidden;background:#0A1828;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;position:relative;}
-.souvenir-thumb img{width:100%;height:100%;object-fit:cover;}
-.souvenir-thumb-count{position:absolute;bottom:3px;right:4px;background:rgba(0,0,0,.7);color:#fff;font-size:.5rem;font-family:"DM Mono",monospace;padding:1px 4px;border-radius:4px;}
-.souvenir-info{flex:1;min-width:0;}
-.souvenir-info-title{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:600;color:#A0D8F0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.souvenir-info-date{font-size:.62rem;color:var(--muted);margin-top:2px;}
-.souvenir-info-desc{font-size:.68rem;color:#7A9AAA;margin-top:3px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
-.souvenir-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
-
-/* ══════════════════════════════
    CHAT
 ══════════════════════════════ */
 .chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 180px);min-height:400px;}
@@ -227,7 +178,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
 @media(max-width:480px){
   .dollo-grid{grid-template-columns:repeat(2,1fr);}
-  .souvenirs-grid{grid-template-columns:repeat(2,1fr);}
+
   .trouvailles-grid{grid-template-columns:repeat(2,1fr);}
   .auth-main{font-size:40px;}
   .modal{padding:1.1rem;}
@@ -271,14 +222,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .t-dollo::before{background:#5AB4F0;}
 .t-dollo .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .t-dollo .home-tile-sub{color:#5AB4F0;}
-.t-rec{background:#010A04;border-color:#065C2A;}
-.t-rec::before{background:#34C472;}
-.t-rec .home-tile-name{background:linear-gradient(160deg,#A8F0C4,#34C472,#0E9044);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-rec .home-tile-sub{color:#34C472;}
-.t-mem{background:#080212;border-color:#4E0E8A;}
-.t-mem::before{background:#A855F7;}
-.t-mem .home-tile-name{background:linear-gradient(160deg,#DDB8FF,#A855F7,#7C22C8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-mem .home-tile-sub{color:#A855F7;}
 .t-chat{background:#0E0900;border-color:#6B4400;}
 .t-chat::before{background:#F4A623;}
 .t-chat .home-tile-name{background:linear-gradient(160deg,#FFFBF0,#F4A623,#C47D0E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -292,15 +235,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .t-trouvailles .home-tile-name{background:linear-gradient(160deg,#FFBDBD,#F06060,#C42020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .t-trouvailles .home-tile-sub{color:#F06060;}
 
-/* ══ IDÉES ══ */
-.idees-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;}
-.idee-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.85rem 1.1rem;cursor:pointer;transition:all .15s;position:relative;}
-.idee-card:hover{border-color:var(--gold2);background:var(--panel2);}
-.idee-card-titre{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:#A0D8F0;margin-bottom:3px;}
-.idee-card-desc{font-size:.72rem;color:#8AAABB;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.idee-card-meta{font-size:.58rem;color:var(--gold4);margin-top:6px;letter-spacing:.1em;}
-.idee-card-auteur{position:absolute;top:10px;right:10px;font-size:.6rem;color:var(--gold3);letter-spacing:.08em;background:#1A1000;padding:2px 7px;border-radius:10px;border:1px solid var(--gold4);}
-.idees-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
 </style>
 </head>
 <body>
@@ -381,7 +315,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <span class="tnav-name">Beccaric</span>
       <div class="tnav-sep"></div>
       <span class="tnav-hq">HQ</span>
-      <span class="tnav-tagline">Nous c'est pour la vie</span>
     </div>
     <div class="topnav-right">
       <button class="btn-settings" onclick="ouvrirSettings()" title="Paramètres">⚙️</button>
@@ -392,11 +325,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
   <div class="tabs">
     <button class="tab active" data-tab="accueil" onclick="goTab('accueil',this)">🏠 Accueil</button>
-    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
-    <button class="tab" data-tab="recettes" onclick="goTab('recettes',this)">🍽️ Recettes</button>
-    <button class="tab" data-tab="souvenirs" onclick="goTab('souvenirs',this)">📸 Souvenirs</button>
-    <button class="tab" data-tab="idees" onclick="goTab('idees',this)">🆘 À l'aide</button>
-    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
+    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
     <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">❤️ Trouvailles</button>
   </div>
 
@@ -410,23 +339,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
           <div class="home-tile-icon">🛒</div>
           <div class="home-tile-name">Dollo</div>
           <div class="home-tile-sub">Liste d'achat</div>
-        </div>
-        <div class="home-tile t-rec" onclick="goTab('recettes',null)">
-          <div class="home-tile-icon">🍽️</div>
-          <div class="home-tile-name">Recettes</div>
-          <div class="home-tile-sub">Nos recettes partagées</div>
-        </div>
-        <div class="home-tile t-mem" onclick="goTab('souvenirs',null)">
-          <div class="home-tile-icon">📸</div>
-          <div class="home-tile-name">Souvenirs</div>
-          <div class="home-tile-sub">Photos & moments</div>
-        </div>
-        <div class="home-tile t-chat" onclick="goTab('idees',null)">
-          <div class="home-tile-icon">💡</div>
-          <div class="home-tile-name">À l'aide</div>
-          <div class="home-tile-sub">Aide pour projet</div>
-        </div>
-        <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
+        </div>        <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
           <div class="home-tile-icon">✨</div>
           <div class="home-tile-name">Trucs Utiles</div>
           <div class="home-tile-sub">Astuces & conseils</div>
@@ -453,56 +366,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         </div>
       </div>
     </div>
-
-    <!-- ══ RECETTES ══ -->
-    <div class="section" id="tab-recettes">
-      <div class="section-title">Nos Recettes</div>
-      <div class="scan-box">
-        <div class="scan-box-title">📥 Ajouter une recette rapidement</div>
-        <div class="scan-box-sub">Collez le texte d'une recette web ou prenez une photo — Claude remplit tout automatiquement !</div>
-<div id="api-key-status" style="display:none;"></div>
-        <div class="scan-actions">
-          <label class="btn-gold btn-sm" for="scan-photo-gallery">🖼️ Photo recette<input type="file" id="scan-photo-gallery" accept="image/jpeg,image/png,image/heic,image/heif,image/*" style="display:none" onchange="scanPhotoRecette(this)"></label>
-          <label class="btn-gold btn-sm" for="scan-photo-camera">📷 Prendre photo<input type="file" id="scan-photo-camera" accept="image/*" capture="environment" style="display:none" onchange="scanPhotoRecette(this)"></label>
-        </div>
-        <textarea class="scan-textarea" id="scan-recette-text" placeholder="Ou collez le texte de la recette ici..."></textarea>
-        <button class="btn-gold" style="margin-top:.4rem;width:100%;justify-content:center" onclick="scanTexteRecette()">🧠 Analyser avec Claude</button>
-        <div class="scan-status" id="scan-status"></div>
-      </div>
-      <button class="btn-gold primary" onclick="ouvrirFormRecette()">+ Saisie manuelle</button>
-      <div class="recette-list" id="recette-list"></div>
-    </div>
-
-    <!-- ══ SOUVENIRS ══ -->
-    <div class="section" id="tab-souvenirs">
-      <div class="section-title">Souvenirs</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
-        <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos moments partagés</span>
-        <button class="btn-gold primary" onclick="ouvrirSouvenir()">+ Nouvel album</button>
-      </div>
-      <div class="souvenirs-list" id="souvenirs-list">
-        <div class="souvenir-empty" id="souvenirs-empty">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">📸</div>
-          Aucun souvenir encore
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ IDÉES ══ -->
-    <div class="section" id="tab-idees">
-      <div class="section-title">🆘 À l'aide</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
-        <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Aide pour projet</span>
-        <button class="btn-gold primary" onclick="ouvrirIdee()">+ Nouvelle demande</button>
-      </div>
-      <div class="idees-list" id="idees-list">
-        <div class="idees-empty" id="idees-empty">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">💡</div>
-          Aucune demande encore !
-        </div>
-      </div>
-    </div>
-
     <!-- ══ TRUCS UTILES ══ -->
     <div class="section" id="tab-trucs">
       <div class="section-title">Trucs Utiles</div>
@@ -593,123 +456,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
   </div>
 </div>
 
-<!-- RECETTE — Form -->
-<div class="modal-overlay" id="modal-recette">
-  <div class="modal">
-    <div class="modal-title" id="recette-modal-title">Nouvelle recette</div>
-    <input type="hidden" id="rec-id">
-    <div>
-      <div class="modal-label">Nom de la recette</div>
-      <input type="text" id="rec-nom" placeholder="Ex: Spaghetti bolognaise">
-    </div>
-    <div>
-      <div class="modal-label">Notes / Instructions</div>
-      <textarea id="rec-notes" placeholder="Étapes, temps de cuisson, conseils..."></textarea>
-    </div>
-    <div>
-      <div class="modal-label" style="margin-bottom:.5rem">Ingrédients</div>
-      <div class="ing-list" id="ing-list-form"></div>
-      <button class="btn-gold btn-sm" style="margin-top:.5rem" onclick="ajouterIngredient()">+ Ingrédient</button>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="fermerModal('modal-recette')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderRecette()">💾 Sauvegarder</button>
-    </div>
-  </div>
-</div>
-
-<!-- RECETTE — Detail -->
-<div class="modal-overlay" id="modal-recette-detail">
-  <div class="modal">
-    <div class="detail-title" id="detail-title"></div>
-    <div class="detail-notes" id="detail-notes"></div>
-    <div class="modal-label" style="margin-bottom:.5rem">Ingrédients</div>
-    <div class="ing-list-display" id="detail-ings"></div>
-    <div class="modal-actions" style="margin-top:1rem">
-      <button class="btn-gold btn-danger btn-sm" onclick="supprimerRecette()">🗑️</button>
-      <button class="btn-gold btn-sm" onclick="editerRecette()">✏️ Modifier</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-recette-detail')">Fermer</button>
-    </div>
-  </div>
-</div>
-
-<!-- SOUVENIR — Form -->
-<div class="modal-overlay" id="modal-souvenir">
-  <div class="modal">
-    <div class="modal-title">Nouvel album</div>
-    <div>
-      <div class="modal-label">Titre</div>
-      <input type="text" id="souvenir-titre" placeholder="Ex: Vacances été 2025">
-    </div>
-    <div>
-      <div class="modal-label">Date</div>
-      <input type="date" id="souvenir-date">
-    </div>
-    <div>
-      <div class="modal-label">Description</div>
-      <textarea id="souvenir-desc" placeholder="Un beau souvenir..." style="min-height:60px"></textarea>
-    </div>
-    <div>
-      <div class="modal-label" style="margin-bottom:.4rem">Photos <span style="color:var(--muted);font-size:.6rem">(plusieurs permises)</span></div>
-      <label class="btn-gold btn-sm" style="cursor:pointer;display:inline-flex">
-        📷 Ajouter des photos
-        <input type="file" id="souvenir-photos-input" accept="image/jpeg,image/jpg" multiple style="display:none" onchange="previewSouvenirPhotos(this)">
-      </label>
-      <div style="font-size:.6rem;color:var(--muted);margin-top:.3rem;letter-spacing:.08em">Format JPEG seulement (.jpg)</div>
-      <div id="souvenir-photos-preview" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:.6rem;"></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="fermerModal('modal-souvenir')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderSouvenir()">💾 Sauvegarder</button>
-    </div>
-  </div>
-</div>
-
-<!-- SOUVENIR — Detail -->
-<div class="modal-overlay" id="modal-souvenir-detail">
-  <div class="modal">
-    <div class="detail-title" id="souvenir-detail-titre"></div>
-    <div style="font-size:.65rem;color:var(--muted);margin-bottom:.5rem" id="souvenir-detail-date"></div>
-    <div class="detail-notes" id="souvenir-detail-desc" style="margin-bottom:.75rem"></div>
-    <div id="souvenir-detail-photos" style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:.75rem;"></div>
-    <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" onclick="supprimerSouvenir()">🗑️ Supprimer</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-souvenir-detail')">Fermer</button>
-    </div>
-  </div>
-</div>
-
-<!-- SOUVENIR — Photo plein écran -->
-<div class="modal-overlay" id="modal-photo-fullscreen">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;max-width:90vw;">
-    <img id="fullscreen-img" src="" style="max-width:90vw;max-height:75vh;border-radius:8px;object-fit:contain" onclick="fermerModal('modal-photo-fullscreen')">
-    <div style="display:flex;gap:.75rem;">
-      <button class="btn-gold" onclick="telechargerPhoto()">⬇️ Télécharger</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-photo-fullscreen')">Fermer</button>
-    </div>
-  </div>
-</div>
-
-<!-- IDÉE — Form -->
-<div class="modal-overlay" id="modal-idee">
-  <div class="modal">
-    <div class="modal-title" id="idee-modal-title">Nouvelle demande</div>
-    <input type="hidden" id="idee-id">
-    <div>
-      <div class="modal-label">Titre</div>
-      <input type="text" id="idee-titre" placeholder="Ex: Aide pour mon projet, question...">
-    </div>
-    <div>
-      <div class="modal-label">Description</div>
-      <textarea id="idee-desc" placeholder="Décris ta demande..."></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" id="idee-delete-btn" style="display:none" onclick="supprimerIdee()">🗑️</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-idee')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderIdee()">💾 Sauvegarder</button>
-    </div>
-  </div>
-</div>
 
 <!-- TRUC — Form -->
 <div class="modal-overlay" id="modal-truc">
@@ -814,7 +560,6 @@ let currentUser = null;
 let currentDetailId = null;
 let dolloPhotoBase64 = null;
 let dolloEditPhotoBase64 = null;
-let souvenirPhotoBase64 = null;
 let trouvaillePhotoBase64 = null;
 
 // ── TOAST ──
@@ -871,9 +616,6 @@ onAuthStateChanged(auth, async user => {
 // ── INIT ──
 function initApp(uid) {
   listenDollo(uid);
-  listenRecettes(uid);
-  listenSouvenirs(uid);
-  listenIdees(uid);
   listenTrucs(uid);
   listenTrouvailles(uid);
 }
@@ -1024,420 +766,6 @@ window.supprimerDollo = async () => {
 };
 
 // ════════════════════════════════
-// RECETTES
-// ════════════════════════════════
-let recettes = [];
-
-function listenRecettes(uid) {
-  onSnapshot(collection(db,'beccaric_recettes'), snap => {
-    recettes = snap.docs.map(d => ({id:d.id,...d.data()}));
-    renderRecettes();
-  });
-}
-
-function renderRecettes() {
-  const list = document.getElementById('recette-list');
-  if (!recettes.length) { list.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em">Aucune recette encore</div>'; return; }
-  list.innerHTML = recettes.map(r => `
-    <div class="recette-card" onclick="voirRecette('${r.id}')">
-      <div class="recette-card-left">
-        <div class="recette-card-name">${r.nom}</div>
-        <div class="recette-card-info">${(r.ingredients||[]).length} ingrédient(s)</div>
-      </div>
-      <div class="recette-card-actions">
-        <button class="btn-gold btn-sm" onclick="event.stopPropagation();editerRecetteDirect('${r.id}')">✏️</button>
-        <button class="btn-gold btn-danger btn-sm" onclick="event.stopPropagation();supprimerRecetteDirect('${r.id}')">🗑️</button>
-      </div>
-    </div>`).join('');
-}
-
-window.ouvrirFormRecette = () => {
-  document.getElementById('rec-id').value = '';
-  document.getElementById('rec-nom').value = '';
-  document.getElementById('rec-notes').value = '';
-  document.getElementById('ing-list-form').innerHTML = '';
-  document.getElementById('recette-modal-title').textContent = 'Nouvelle recette';
-  ajouterIngredient();
-  ouvrirModal('modal-recette');
-};
-
-window.ajouterIngredient = () => {
-  const div = document.createElement('div');
-  div.className = 'ing-row';
-  div.innerHTML = `
-    <input class="ing-qty-in" type="text" placeholder="Qté">
-    <input class="ing-unit-in" type="text" placeholder="Unité">
-    <input type="text" placeholder="Ingrédient" style="flex:1">
-    <button class="ing-remove" onclick="this.parentElement.remove()">✕</button>`;
-  document.getElementById('ing-list-form').appendChild(div);
-};
-
-window.sauvegarderRecette = async () => {
-  const nom = document.getElementById('rec-nom').value.trim();
-  if (!nom) { toast('⚠️ Entre un nom'); return; }
-  const uid = currentUser.uid;
-  const ingredients = [...document.querySelectorAll('#ing-list-form .ing-row')].map(row => {
-    const inputs = row.querySelectorAll('input');
-    return { qty: inputs[0].value.trim(), unit: inputs[1].value.trim(), nom: inputs[2].value.trim() };
-  }).filter(i => i.nom);
-  const data = { nom, notes: document.getElementById('rec-notes').value.trim(), ingredients };
-  try {
-    const id = document.getElementById('rec-id').value;
-    if (id) await updateDoc(doc(db,'beccaric_recettes',id), data);
-    else await addDoc(collection(db,'beccaric_recettes'), {...data, createdAt: serverTimestamp()});
-    fermerModal('modal-recette');
-    toast('✅ Recette sauvegardée !');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-window.voirRecette = (id) => {
-  const r = recettes.find(x => x.id===id);
-  if (!r) return;
-  currentDetailId = id;
-  document.getElementById('detail-title').textContent = r.nom;
-  document.getElementById('detail-notes').textContent = r.notes || '';
-  document.getElementById('detail-ings').innerHTML = (r.ingredients||[]).map(i =>
-    `<div class="ing-item"><span class="ing-qty">${i.qty||''}</span><span class="ing-unit">${i.unit||''}</span><span class="ing-name">${i.nom}</span></div>`
-  ).join('') || '<div style="color:var(--muted);font-size:.75rem">Aucun ingrédient</div>';
-  ouvrirModal('modal-recette-detail');
-};
-
-window.editerRecette = () => {
-  fermerModal('modal-recette-detail');
-  editerRecetteDirect(currentDetailId);
-};
-window.editerRecetteDirect = (id) => {
-  const r = recettes.find(x => x.id===id);
-  if (!r) return;
-  document.getElementById('rec-id').value = id;
-  document.getElementById('rec-nom').value = r.nom;
-  document.getElementById('rec-notes').value = r.notes||'';
-  document.getElementById('recette-modal-title').textContent = 'Modifier la recette';
-  const ingList = document.getElementById('ing-list-form');
-  ingList.innerHTML = '';
-  (r.ingredients||[]).forEach(i => {
-    const div = document.createElement('div');
-    div.className='ing-row';
-    div.innerHTML=`<input class="ing-qty-in" type="text" value="${i.qty||''}"><input class="ing-unit-in" type="text" value="${i.unit||''}"><input type="text" value="${i.nom||''}" style="flex:1"><button class="ing-remove" onclick="this.parentElement.remove()">✕</button>`;
-    ingList.appendChild(div);
-  });
-  if (!r.ingredients?.length) ajouterIngredient();
-  ouvrirModal('modal-recette');
-};
-
-window.supprimerRecette = async () => { await supprimerRecetteDirect(currentDetailId); fermerModal('modal-recette-detail'); };
-window.supprimerRecetteDirect = async (id) => {
-  if (!confirm('Supprimer cette recette ?')) return;
-  try {
-    await deleteDoc(doc(db,'beccaric_recettes',id));
-    toast('🗑️ Recette supprimée');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-// ── SCAN CLAUDE ──
-window.scanPhotoRecette = async (input) => {
-  if (!input.files[0]) return;
-  const status = document.getElementById('scan-status');
-  status.style.display='block'; status.textContent='📷 Lecture de la photo...';
-  const reader = new FileReader();
-  reader.onload = async e => {
-    const base64 = e.target.result.split(',')[1];
-    status.textContent = '🧠 Claude analyse la recette...';
-    try {
-      const apiKey = localStorage.getItem('bhq_api_key') || document.getElementById('api-key-input')?.value;
-      if (!apiKey) { status.textContent='⚠️ Entre ta clé API Anthropic d\'abord'; return; }
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-        body: JSON.stringify({
-          model:'claude-sonnet-4-5', max_tokens:1500,
-          system:`Tu es un assistant cuisine. Extrais la recette de l'image et réponds UNIQUEMENT en JSON valide, sans markdown, avec exactement ce format:
-{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}
-Règle importante: garde les unités EXACTEMENT comme dans la recette originale. Si c'est en tasses, garde tasses. Si c'est en oz, garde oz. Si c'est en cuillères à soupe, garde cuillères à soupe. Ne convertis JAMAIS en ml ou en grammes.`,
-          messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:input.files[0].type,data:base64}},{type:'text',text:'Extrais la recette de cette image en JSON.'}]}]
-        })
-      });
-      const data = await res.json();
-      if (!data.content || !data.content[0]) { status.textContent='❌ Réponse invalide: '+JSON.stringify(data); return; }
-      const text = data.content[0].text;
-      const rec = JSON.parse(text.replace(/```json|```/g,'').trim());
-      remplirFormRecette(rec);
-      status.textContent='✅ Recette détectée — vérifiez et sauvegardez !';
-    } catch(e) { status.textContent='❌ Erreur: '+e.message; }
-  };
-  reader.readAsDataURL(input.files[0]);
-};
-
-window.scanTexteRecette = async () => {
-  const texte = document.getElementById('scan-recette-text').value.trim();
-  if (!texte) { toast('⚠️ Colle du texte d\'abord'); return; }
-  const status = document.getElementById('scan-status');
-  status.style.display='block'; status.textContent='🧠 Claude analyse...';
-  try {
-    const apiKey = localStorage.getItem('bhq_api_key') || document.getElementById('api-key-input')?.value;
-    if (!apiKey) { toast('⚠️ Entre ta clé API Anthropic d\'abord'); return; }
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-5', max_tokens:1500,
-        system:`Tu es un assistant cuisine. Extrais la recette du texte et réponds UNIQUEMENT en JSON valide, sans markdown:
-{"nom":"...","notes":"...","ingredients":[{"qty":"...","unit":"...","nom":"..."}]}
-Règle importante: garde les unités EXACTEMENT comme dans la recette originale. Si c'est en tasses, garde tasses. Si c'est en oz, garde oz. Si c'est en cuillères à soupe, garde cuillères à soupe. Ne convertis JAMAIS en ml ou en grammes.`,
-        messages:[{role:'user',content:'Extrais la recette:\n\n'+texte}]
-      })
-    });
-    const data = await res.json();
-    if (!data.content || !data.content[0]) { status.textContent='❌ Réponse invalide: '+JSON.stringify(data); return; }
-    const rec = JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
-    remplirFormRecette(rec);
-    status.textContent='✅ Recette détectée — vérifiez et sauvegardez !';
-  } catch(e) { status.textContent='❌ Erreur: '+e.message; }
-};
-
-function remplirFormRecette(rec) {
-  document.getElementById('rec-id').value='';
-  document.getElementById('rec-nom').value = rec.nom||'';
-  document.getElementById('rec-notes').value = rec.notes||'';
-  document.getElementById('recette-modal-title').textContent='Recette importée';
-  const ingList = document.getElementById('ing-list-form');
-  ingList.innerHTML='';
-  (rec.ingredients||[]).forEach(i => {
-    const div=document.createElement('div'); div.className='ing-row';
-    div.innerHTML=`<input class="ing-qty-in" type="text" value="${i.qty||''}"><input class="ing-unit-in" type="text" value="${i.unit||''}"><input type="text" value="${i.nom||''}" style="flex:1"><button class="ing-remove" onclick="this.parentElement.remove()">✕</button>`;
-    ingList.appendChild(div);
-  });
-  if (!rec.ingredients?.length) ajouterIngredient();
-  ouvrirModal('modal-recette');
-}
-
-// ════════════════════════════════
-// SOUVENIRS — ALBUM
-// ════════════════════════════════
-let souvenirs = [];
-let souvenirPhotosBase64 = [];
-
-function listenSouvenirs(uid) {
-  const q = query(collection(db,'beccaric_souvenirs'), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    souvenirs = snap.docs.map(d => ({id:d.id,...d.data()}));
-    renderSouvenirs();
-  });
-}
-
-function renderSouvenirs() {
-  const list = document.getElementById('souvenirs-list');
-  const empty = document.getElementById('souvenirs-empty');
-  if (!souvenirs.length) { list.innerHTML=''; list.appendChild(empty); empty.style.display='block'; return; }
-  empty.style.display='none';
-  list.innerHTML = souvenirs.map(s => {
-    const photos = s.photos||[];
-    const cover = photos[0] || s.photoURL || null;
-    const count = photos.length || (s.photoURL ? 1 : 0);
-    const dateStr = s.date || (s.createdAt?.toDate ? s.createdAt.toDate().toLocaleDateString('fr-CA') : '');
-    return `<div class="souvenir-album" onclick="voirSouvenir('${s.id}')">
-      <div class="souvenir-thumb">
-        ${cover ? `<img src="${cover}" alt="">` : '📸'}
-        ${count > 1 ? `<div class="souvenir-thumb-count">${count} photos</div>` : ''}
-      </div>
-      <div class="souvenir-info">
-        <div class="souvenir-info-title">${s.titre||'Souvenir'}</div>
-        <div class="souvenir-info-date">${dateStr}</div>
-        ${s.desc ? `<div class="souvenir-info-desc">${s.desc}</div>` : ''}
-      </div>
-      <span style="color:var(--muted);font-size:.9rem">›</span>
-    </div>`;
-  }).join('');
-}
-
-window.ouvrirSouvenir = () => {
-  document.getElementById('souvenir-titre').value='';
-  document.getElementById('souvenir-desc').value='';
-  document.getElementById('souvenir-date').value=new Date().toISOString().split('T')[0];
-  document.getElementById('souvenir-photos-preview').innerHTML='';
-  souvenirPhotosBase64=[];
-  ouvrirModal('modal-souvenir');
-};
-
-function compressImage(file, maxSize=800, quality=0.6) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        let w = img.width, h = img.height;
-        if (w > maxSize || h > maxSize) {
-          if (w > h) { h = Math.round(h * maxSize/w); w = maxSize; }
-          else { w = Math.round(w * maxSize/h); h = maxSize; }
-        }
-        const canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
-        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        canvas.toBlob(blob => resolve(blob || file), 'image/jpeg', quality);
-      };
-      img.onerror = () => resolve(file);
-      img.src = e.target.result;
-    };
-    reader.onerror = () => resolve(file);
-    reader.readAsDataURL(file);
-  });
-}
-
-window.previewSouvenirPhotos = (input) => {
-  if (!input.files.length) return;
-  const preview = document.getElementById('souvenir-photos-preview');
-  Array.from(input.files).forEach(file => {
-    souvenirPhotosBase64.push(file);
-    const url = URL.createObjectURL(file);
-    const img = document.createElement('img');
-    img.src = url;
-    img.style.cssText = 'width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--border)';
-    preview.appendChild(img);
-  });
-};
-
-window.sauvegarderSouvenir = async () => {
-  const titre = document.getElementById('souvenir-titre').value.trim();
-  if (!titre) { toast('⚠️ Entre un titre'); return; }
-  const uid = currentUser.uid;
-  // Show persistent progress bar
-  const progressDiv = document.createElement('div');
-  progressDiv.id = 'sou-progress';
-  progressDiv.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#0A1828;border-top:1px solid #1E4060;padding:.75rem 1rem;z-index:9999;font-family:"DM Mono",monospace;font-size:.75rem;color:#7EC8F4;text-align:center;';
-  progressDiv.textContent = '⏳ Préparation...';
-  document.body.appendChild(progressDiv);
-  try {
-    const photoURLs = [];
-    const albumId = Date.now();
-    const total = souvenirPhotosBase64.length;
-    for (let i=0; i<total; i++) {
-      progressDiv.textContent = `⏳ Photo ${i+1} de ${total} en cours...`;
-      const rawFile = souvenirPhotosBase64[i];
-      const compressed = await compressImage(rawFile);
-      const path = `beccaric_souvenirs/${albumId}_${i}.jpg`;
-      const storageRef = sRef(storage, path);
-      const snap = await uploadBytes(storageRef, compressed);
-      const url = await getDownloadURL(snap.ref);
-      photoURLs.push(url);
-      progressDiv.textContent = `✅ Photo ${i+1} de ${total} uploadée !`;
-    }
-    progressDiv.textContent = '💾 Sauvegarde en cours...';
-    await addDoc(collection(db,'beccaric_souvenirs'), {
-      titre,
-      desc: document.getElementById('souvenir-desc').value.trim(),
-      date: document.getElementById('souvenir-date').value,
-      photos: photoURLs,
-      createdAt: serverTimestamp()
-    });
-    progressDiv.textContent = '✅ Album sauvegarde!';
-    setTimeout(() => progressDiv.remove(), 2000);
-    fermerModal('modal-souvenir');
-    souvenirPhotosBase64=[];
-    document.getElementById('souvenir-photos-preview').innerHTML='';
-  } catch(e) {
-    progressDiv.textContent = '❌ Erreur: ' + e.message;
-    setTimeout(() => progressDiv.remove(), 5000);
-  }
-};
-
-window.voirSouvenir = (id) => {
-  const s = souvenirs.find(x=>x.id===id);
-  if (!s) return;
-  currentDetailId = id;
-  document.getElementById('souvenir-detail-titre').textContent = s.titre||'';
-  document.getElementById('souvenir-detail-date').textContent = s.date||'';
-  document.getElementById('souvenir-detail-desc').textContent = s.desc||'';
-  const photos = s.photos||[];
-  document.getElementById('souvenir-detail-photos').innerHTML = photos.map(url =>
-    `<img src="${url}" onclick="voirPhotoPlein('${url}')" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--border)" loading="lazy">`
-  ).join('');
-  ouvrirModal('modal-souvenir-detail');
-};
-
-window.voirPhotoPlein = (url) => {
-  document.getElementById('fullscreen-img').src = url;
-  ouvrirModal('modal-photo-fullscreen');
-};
-
-window.supprimerSouvenir = async () => {
-  if (!confirm('Supprimer cet album ?')) return;
-  const uid = currentUser.uid;
-  try {
-    await deleteDoc(doc(db,'beccaric_souvenirs',currentDetailId));
-    fermerModal('modal-souvenir-detail');
-    toast('🗑️ Album supprimé');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
-// ════════════════════════════════
-// IDÉES
-// ════════════════════════════════
-let idees=[];
-
-function listenIdees(uid) {
-  const q=query(collection(db,'beccaric_idees'), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    idees=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderIdees();
-  });
-}
-
-function renderIdees() {
-  const list=document.getElementById('idees-list');
-  const empty=document.getElementById('idees-empty');
-  if (!idees.length) { list.innerHTML=''; list.appendChild(empty); empty.style.display='block'; return; }
-  empty.style.display='none';
-  list.innerHTML=idees.map(i=>`
-    <div class="idee-card" onclick="ouvrirIdeeEdit('${i.id}')">
-      <div class="idee-card-auteur">${i.auteur||''}</div>
-      <div class="idee-card-titre">${i.titre||''}</div>
-      <div class="idee-card-desc">${i.desc||''}</div>
-      <div class="idee-card-meta">${i.createdAt?.toDate?i.createdAt.toDate().toLocaleDateString('fr-CA'):''}</div>
-    </div>`).join('');
-}
-
-window.ouvrirIdee = () => {
-  document.getElementById('idee-id').value='';
-  document.getElementById('idee-titre').value='';
-  document.getElementById('idee-desc').value='';
-  document.getElementById('idee-modal-title').textContent='Nouvelle demande';
-  document.getElementById('idee-delete-btn').style.display='none';
-  ouvrirModal('modal-idee');
-};
-
-window.ouvrirIdeeEdit = (id) => {
-  const i=idees.find(x=>x.id===id);
-  if (!i) return;
-  document.getElementById('idee-id').value=id;
-  document.getElementById('idee-titre').value=i.titre||'';
-  document.getElementById('idee-desc').value=i.desc||'';
-  document.getElementById('idee-modal-title').textContent='Modifier';
-  document.getElementById('idee-delete-btn').style.display='inline-flex';
-  ouvrirModal('modal-idee');
-};
-
-window.sauvegarderIdee = async () => {
-  const titre=document.getElementById('idee-titre').value.trim();
-  if (!titre) { toast('⚠️ Entre un titre'); return; }
-  const uid=currentUser.uid;
-  const emailToName={'stonecold93@gmail.com':'Eric','rebeccamontambeault20@gmail.com':'Becca'};
-  const auteur=emailToName[currentUser.email]||currentUser.email.split('@')[0];
-  const data={titre,desc:document.getElementById('idee-desc').value.trim(),auteur};
-  try {
-    const id=document.getElementById('idee-id').value;
-    if (id) await updateDoc(doc(db,'beccaric_idees',id),data);
-    else await addDoc(collection(db,'beccaric_idees'),{...data,createdAt:serverTimestamp()});
-    fermerModal('modal-idee'); toast('✅ Sauvegardé !');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
-window.supprimerIdee = async () => {
-  if (!confirm('Supprimer ?')) return;
-  const id=document.getElementById('idee-id').value;
-  try {
-    await deleteDoc(doc(db,'beccaric_idees',id));
-    fermerModal('modal-idee'); toast('🗑️ Supprimé');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
 // ════════════════════════════════
 // TRUCS UTILES
 // ════════════════════════════════
@@ -1684,7 +1012,7 @@ window.telechargerPhoto = () => {
   const img = document.getElementById('fullscreen-img');
   const a = document.createElement('a');
   a.href = img.src;
-  a.download = 'souvenir_beccarichq.jpg';
+  a.download = 'beccarichq_photo.jpg';
   a.target = '_blank';
   a.click();
 };
