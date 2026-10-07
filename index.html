@@ -211,7 +211,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
   width:80px;height:80px;border-radius:50%;
   top:-10px;right:-10px;opacity:.1;pointer-events:none;
 }
-.home-tile-icon{font-size:2rem;line-height:1;margin-bottom:4px;}
 .home-tile-name{
   font-family:'Cormorant Garamond',serif;
   font-size:1.2rem;font-weight:600;letter-spacing:.05em;line-height:1;
@@ -335,12 +334,12 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
   </div>
 
   <div class="tabs">
-    <button class="tab active" data-tab="accueil" onclick="goTab('accueil',this)">🏠 Accueil</button>
-    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">🛒 Dollo</button>
-    <button class="tab" data-tab="quinc" onclick="goTab('quinc',this)">🔧 Quincaillerie</button>
-    <button class="tab" data-tab="walmart" onclick="goTab('walmart',this)">🏪 Walmart</button>
-    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">✨ Trucs Utiles</button>
-    <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">❤️ Trouvailles</button>
+    <button class="tab active" data-tab="accueil" onclick="goTab('accueil',this)">Accueil</button>
+    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">Dollo</button>
+    <button class="tab" data-tab="quinc" onclick="goTab('quinc',this)">Quincaillerie</button>
+    <button class="tab" data-tab="walmart" onclick="goTab('walmart',this)">Walmart</button>
+    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">Trucs Utiles</button>
+    <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">Trouvailles</button>
   </div>
 
   <div class="content">
@@ -350,27 +349,22 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="accueil-welcome" id="accueil-welcome">Bonjour 👋</div>
       <div class="home-grid">
         <div class="home-tile t-dollo" onclick="goTab('dollo',null)">
-          <div class="home-tile-icon">🛒</div>
           <div class="home-tile-name">Dollo</div>
           <div class="home-tile-sub">Liste d'achat</div>
         </div>
         <div class="home-tile t-quinc" onclick="goTab('quinc',null)">
-          <div class="home-tile-icon">🔧</div>
           <div class="home-tile-name">Quincaillerie</div>
           <div class="home-tile-sub">Liste materiel</div>
         </div>
         <div class="home-tile t-walmart" onclick="goTab('walmart',null)">
-          <div class="home-tile-icon">🏪</div>
           <div class="home-tile-name">Walmart</div>
           <div class="home-tile-sub">Liste epicerie</div>
         </div>
         <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
-          <div class="home-tile-icon">✨</div>
           <div class="home-tile-name">Trucs Utiles</div>
           <div class="home-tile-sub">Astuces & conseils</div>
         </div>
         <div class="home-tile t-trouvailles" onclick="goTab('trouvailles',null)">
-          <div class="home-tile-icon">❤️</div>
           <div class="home-tile-name">Trouvailles</div>
           <div class="home-tile-sub">Nos découvertes</div>
         </div>
@@ -379,7 +373,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
     <!-- ══ DOLLO ══ -->
     <div class="section" id="tab-dollo">
-      <div class="section-title">🛒 Dollo</div>
+      <div class="section-title">Dollo</div>
       <div class="liste-toolbar">
         <input class="liste-search" id="dollo-search" placeholder="Rechercher..." oninput="filterDollo()">
         <span class="liste-compteur" id="dollo-compteur"></span>
@@ -387,14 +381,13 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       </div>
       <div class="liste-ul" id="dollo-list">
         <div class="liste-empty" id="dollo-empty">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🛒</div>
-          Aucun item pour l'instant
+                    Aucun item pour l'instant
         </div>
       </div>
     </div>
     <!-- ══ QUINCAILLERIE ══ -->
     <div class="section" id="tab-quinc">
-      <div class="section-title">🔧 Quincaillerie</div>
+      <div class="section-title">Quincaillerie</div>
       <div class="liste-toolbar">
         <input class="liste-search" id="quinc-search" placeholder="Rechercher..." oninput="filterListe('quinc')">
         <span class="liste-compteur" id="quinc-compteur"></span>
@@ -402,14 +395,13 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       </div>
       <div class="liste-ul" id="quinc-list">
         <div class="liste-empty" id="quinc-empty">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🔧</div>
-          Aucun item pour l'instant
+                    Aucun item pour l'instant
         </div>
       </div>
     </div>
     <!-- ══ WALMART ══ -->
     <div class="section" id="tab-walmart">
-      <div class="section-title">🏪 Walmart</div>
+      <div class="section-title">Walmart</div>
       <div class="liste-toolbar">
         <input class="liste-search" id="walmart-search" placeholder="Rechercher..." oninput="filterListe('walmart')">
         <span class="liste-compteur" id="walmart-compteur"></span>
@@ -417,8 +409,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       </div>
       <div class="liste-ul" id="walmart-list">
         <div class="liste-empty" id="walmart-empty">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">🏪</div>
-          Aucun item pour l'instant
+                    Aucun item pour l'instant
         </div>
       </div>
     </div>
@@ -428,8 +419,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <button class="btn-gold primary" onclick="ouvrirTruc()">+ Ajouter un truc</button>
       <div class="trucs-list" id="trucs-list">
         <div class="trucs-empty" id="trucs-empty">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">✨</div>
-          Aucun truc utile encore
+                    Aucun truc utile encore
         </div>
       </div>
     </div>
@@ -443,8 +433,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       </div>
       <div class="trouvailles-grid" id="trouvailles-grid">
         <div class="trouvailles-empty" id="trouvailles-empty" style="grid-column:1/-1">
-          <div style="font-size:2rem;opacity:.2;margin-bottom:.5rem">❤️</div>
-          Aucune trouvaille encore
+                    Aucune trouvaille encore
         </div>
       </div>
     </div>
