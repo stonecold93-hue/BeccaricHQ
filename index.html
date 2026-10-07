@@ -244,6 +244,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .t-walmart .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#0071CE,#004080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .t-walmart .home-tile-sub{color:#0071CE;}
 .t-trouvailles .home-tile-sub{color:#F06060;}
+.t-aprevoir{background:#080010;border-color:#3A006A;}
+.t-aprevoir::before{background:#A855F7;}
+.t-aprevoir .home-tile-name{background:linear-gradient(160deg,#E8C0FF,#A855F7,#6A2ABA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-aprevoir .home-tile-sub{color:#A855F7;}
 
 </style>
 </head>
@@ -338,6 +342,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">Dollo</button>
     <button class="tab" data-tab="quinc" onclick="goTab('quinc',this)">Quincaillerie</button>
     <button class="tab" data-tab="walmart" onclick="goTab('walmart',this)">Walmart</button>
+    <button class="tab" data-tab="aprevoir" onclick="goTab('aprevoir',this)">A prevoir</button>
     <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">Trucs Utiles</button>
     <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">Trouvailles</button>
   </div>
@@ -359,6 +364,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         <div class="home-tile t-walmart" onclick="goTab('walmart',null)">
           <div class="home-tile-name">Walmart</div>
           <div class="home-tile-sub">Liste epicerie</div>
+        </div>
+        <div class="home-tile t-aprevoir" onclick="goTab('aprevoir',null)">
+          <div class="home-tile-name">A prevoir</div>
+          <div class="home-tile-sub">Achats futurs</div>
         </div>
         <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
           <div class="home-tile-name">Trucs Utiles</div>
@@ -411,6 +420,18 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         <div class="liste-empty" id="walmart-empty">
                     Aucun item pour l'instant
         </div>
+      </div>
+    </div>
+    <!-- ══ A PREVOIR ══ -->
+    <div class="section" id="tab-aprevoir">
+      <div class="section-title">A prevoir</div>
+      <div class="liste-toolbar">
+        <input class="liste-search" id="aprevoir-search" placeholder="Rechercher..." oninput="filterListe('aprevoir')">
+        <span class="liste-compteur" id="aprevoir-compteur"></span>
+        <button class="btn-gold primary" onclick="ouvrirListeModal('aprevoir')">+ Ajouter</button>
+      </div>
+      <div class="liste-ul" id="aprevoir-list">
+        <div class="liste-empty" id="aprevoir-empty">Aucun item pour l'instant</div>
       </div>
     </div>
     <!-- ══ TRUCS UTILES ══ -->
@@ -625,6 +646,7 @@ function initApp(uid) {
   listenDollo();
   listenQuinc();
   listenWalmart();
+  listenAprevoir();
   listenTrucs(uid);
   listenTrouvailles(uid);
 }
@@ -634,16 +656,18 @@ function initApp(uid) {
 // ════════════════════════════════
 
 const LISTE_CONFIG = {
-  dollo:   { col: 'beccaric_dollo',        emoji: '🛒' },
-  quinc:   { col: 'beccaric_quincaillerie', emoji: '🔧' },
-  walmart: { col: 'beccaric_walmart',       emoji: '🏪' },
+  dollo:    { col: 'beccaric_dollo',        emoji: '🛒' },
+  quinc:    { col: 'beccaric_quincaillerie', emoji: '🔧' },
+  walmart:  { col: 'beccaric_walmart',       emoji: '🏪' },
+  aprevoir: { col: 'beccaric_aprevoir',      emoji: '📋' },
 };
 
-let listeData = { dollo: [], quinc: [], walmart: [] };
+let listeData = { dollo: [], quinc: [], walmart: [], aprevoir: [] };
 
-function listenDollo()   { listenListe('dollo'); }
-function listenQuinc()   { listenListe('quinc'); }
-function listenWalmart() { listenListe('walmart'); }
+function listenDollo()    { listenListe('dollo'); }
+function listenQuinc()    { listenListe('quinc'); }
+function listenWalmart()  { listenListe('walmart'); }
+function listenAprevoir() { listenListe('aprevoir'); }
 
 function listenListe(section) {
   const col = LISTE_CONFIG[section].col;
@@ -680,7 +704,8 @@ function renderListe(section) {
     </div>`).join('');
 }
 
-window.filterDollo = () => filterListe('dollo');
+window.filterDollo   = () => filterListe('dollo');
+window.filterAprevoir = () => filterListe('aprevoir');
 window.filterListe = (section) => {
   const q = document.getElementById(section + '-search').value.toLowerCase();
   const filtered = q ? listeData[section].filter(i =>
