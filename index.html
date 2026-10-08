@@ -673,7 +673,9 @@ function listenListe(section) {
   const col = LISTE_CONFIG[section].col;
   const q = query(collection(db, col), orderBy('createdAt','desc'));
   onSnapshot(q, snap => {
-    listeData[section] = snap.docs.map(d => ({id:d.id,...d.data()}));
+    listeData[section] = snap.docs
+      .map(d => ({id:d.id,...d.data()}))
+      .filter(d => d.createdAt != null);
     renderListe(section);
   });
 }
@@ -685,12 +687,13 @@ function renderListe(section) {
   const items = listeData[section];
   const reste = items.filter(i => !i.achete).length;
   if (!items.length) {
+    empty.style.display = 'block';
     ul.innerHTML = '';
     ul.appendChild(empty);
-    empty.style.display = 'block';
     if (cpt) cpt.textContent = '';
     return;
   }
+  if (!ul.contains(empty)) ul.appendChild(empty);
   empty.style.display = 'none';
   if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
   ul.innerHTML = items.map(item => `
