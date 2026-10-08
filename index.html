@@ -697,14 +697,29 @@ function renderListe(section) {
   empty.style.display = 'none';
   if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
   ul.innerHTML = items.map(item => `
-    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}">
-      <div class="liste-check" onclick="toggleAchete('${section}','${item.id}',${!item.achete})">${item.achete ? '✓' : ''}</div>
-      <div class="liste-item-body" onclick="ouvrirListeEdit('${section}','${item.id}')">
+    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}" data-id="${item.id}" data-section="${section}" data-achete="${item.achete ? '1' : '0'}">
+      <div class="liste-check liste-check-btn">${item.achete ? '✓' : ''}</div>
+      <div class="liste-item-body liste-item-edit">
         <div class="liste-item-nom">${item.nom || ''}</div>
         ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
       </div>
-      <button class="liste-item-del" onclick="event.stopPropagation();supprimerListeItemDirect('${section}','${item.id}')">✕</button>
+      <button class="liste-item-del liste-item-del-btn">✕</button>
     </div>`).join('');
+  // event listeners directs — plus fiables que onclick inline
+  ul.querySelectorAll('.liste-item').forEach(el => {
+    const id  = el.dataset.id;
+    const sec = el.dataset.section;
+    el.querySelector('.liste-check-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      const achete = el.dataset.achete === '1';
+      toggleAchete(sec, id, !achete);
+    });
+    el.querySelector('.liste-item-edit').addEventListener('click', () => ouvrirListeEdit(sec, id));
+    el.querySelector('.liste-item-del-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      supprimerListeItemDirect(sec, id);
+    });
+  });
 }
 
 window.filterDollo   = () => filterListe('dollo');
@@ -727,14 +742,28 @@ window.filterListe = (section) => {
   const reste = filtered.filter(i => !i.achete).length;
   if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
   ul.innerHTML = filtered.map(item => `
-    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}">
-      <div class="liste-check" onclick="toggleAchete('${section}','${item.id}',${!item.achete})">${item.achete ? '✓' : ''}</div>
-      <div class="liste-item-body" onclick="ouvrirListeEdit('${section}','${item.id}')">
+    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}" data-id="${item.id}" data-section="${section}" data-achete="${item.achete ? '1' : '0'}">
+      <div class="liste-check liste-check-btn">${item.achete ? '✓' : ''}</div>
+      <div class="liste-item-body liste-item-edit">
         <div class="liste-item-nom">${item.nom || ''}</div>
         ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
       </div>
-      <button class="liste-item-del" onclick="event.stopPropagation();supprimerListeItemDirect('${section}','${item.id}')">✕</button>
+      <button class="liste-item-del liste-item-del-btn">✕</button>
     </div>`).join('');
+  ul.querySelectorAll('.liste-item').forEach(el => {
+    const id  = el.dataset.id;
+    const sec = el.dataset.section;
+    el.querySelector('.liste-check-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      const achete = el.dataset.achete === '1';
+      toggleAchete(sec, id, !achete);
+    });
+    el.querySelector('.liste-item-edit').addEventListener('click', () => ouvrirListeEdit(sec, id));
+    el.querySelector('.liste-item-del-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      supprimerListeItemDirect(sec, id);
+    });
+  });
 };
 
 window.toggleAchete = async (section, id, achete) => {
