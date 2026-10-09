@@ -342,6 +342,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">Dollo</button>
     <button class="tab" data-tab="quinc" onclick="goTab('quinc',this)">Quincaillerie</button>
     <button class="tab" data-tab="walmart" onclick="goTab('walmart',this)">Walmart</button>
+    <button class="tab" data-tab="pharmacie" onclick="goTab('pharmacie',this)">Pharmacie</button>
     <button class="tab" data-tab="aprevoir" onclick="goTab('aprevoir',this)">A prevoir</button>
     <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">Trucs Utiles</button>
     <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">Trouvailles</button>
@@ -364,6 +365,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         <div class="home-tile t-walmart" onclick="goTab('walmart',null)">
           <div class="home-tile-name">Walmart</div>
           <div class="home-tile-sub">Liste epicerie</div>
+        </div>
+        <div class="home-tile t-pharmacie" onclick="goTab('pharmacie',null)">
+          <div class="home-tile-name">Pharmacie</div>
+          <div class="home-tile-sub">Sante & medicaments</div>
         </div>
         <div class="home-tile t-aprevoir" onclick="goTab('aprevoir',null)">
           <div class="home-tile-name">A prevoir</div>
@@ -397,15 +402,13 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     <!-- ══ QUINCAILLERIE ══ -->
     <div class="section" id="tab-quinc">
       <div class="section-title">Quincaillerie</div>
-      <div class="liste-toolbar">
-        <input class="liste-search" id="quinc-search" placeholder="Rechercher..." oninput="filterListe('quinc')">
-        <span class="liste-compteur" id="quinc-compteur"></span>
-        <button class="btn-gold primary" onclick="ouvrirListeModal('quinc')">+ Ajouter</button>
+      <div class="mgl-toolbar">
+        <input class="mgl-input" id="quinc-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('quinc')">
+        <button class="mgl-btn-add" onclick="ajouterMgl('quinc')">+ Ajouter</button>
       </div>
-      <div class="liste-ul" id="quinc-list">
-        <div class="liste-empty" id="quinc-empty">
-                    Aucun item pour l'instant
-        </div>
+      <button class="mgl-btn-clear" onclick="effacerCochesMgl('quinc')" style="margin-bottom:.75rem">Effacer les coches</button>
+      <div class="mgl-ul" id="quinc-list">
+        <div class="mgl-empty" id="quinc-empty">Aucun item pour l'instant</div>
       </div>
     </div>
     <!-- ══ WALMART ══ -->
@@ -422,16 +425,28 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         </div>
       </div>
     </div>
+    <!-- ══ PHARMACIE ══ -->
+    <div class="section" id="tab-pharmacie">
+      <div class="section-title">Pharmacie</div>
+      <div class="mgl-toolbar">
+        <input class="mgl-input" id="pharmacie-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('pharmacie')">
+        <button class="mgl-btn-add" onclick="ajouterMgl('pharmacie')">+ Ajouter</button>
+      </div>
+      <button class="mgl-btn-clear" onclick="effacerCochesMgl('pharmacie')" style="margin-bottom:.75rem">Effacer les coches</button>
+      <div class="mgl-ul" id="pharmacie-list">
+        <div class="mgl-empty" id="pharmacie-empty">Aucun item pour l'instant</div>
+      </div>
+    </div>
     <!-- ══ A PREVOIR ══ -->
     <div class="section" id="tab-aprevoir">
       <div class="section-title">A prevoir</div>
-      <div class="liste-toolbar">
-        <input class="liste-search" id="aprevoir-search" placeholder="Rechercher..." oninput="filterListe('aprevoir')">
-        <span class="liste-compteur" id="aprevoir-compteur"></span>
-        <button class="btn-gold primary" onclick="ouvrirListeModal('aprevoir')">+ Ajouter</button>
+      <div class="mgl-toolbar">
+        <input class="mgl-input" id="aprevoir-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('aprevoir')">
+        <button class="mgl-btn-add" onclick="ajouterMgl('aprevoir')">+ Ajouter</button>
       </div>
-      <div class="liste-ul" id="aprevoir-list">
-        <div class="liste-empty" id="aprevoir-empty">Aucun item pour l'instant</div>
+      <button class="mgl-btn-clear" onclick="effacerCochesMgl('aprevoir')" style="margin-bottom:.75rem">Effacer les coches</button>
+      <div class="mgl-ul" id="aprevoir-list">
+        <div class="mgl-empty" id="aprevoir-empty">Aucun item pour l'instant</div>
       </div>
     </div>
     <!-- ══ TRUCS UTILES ══ -->
@@ -644,9 +659,10 @@ onAuthStateChanged(auth, async user => {
 // ── INIT ──
 function initApp(uid) {
   listenDollo();
-  listenQuinc();
   listenWalmart();
-  listenAprevoir();
+  listenMgl('quinc');
+  listenMgl('pharmacie');
+  listenMgl('aprevoir');
   listenTrucs(uid);
   listenTrouvailles(uid);
 }
@@ -656,18 +672,14 @@ function initApp(uid) {
 // ════════════════════════════════
 
 const LISTE_CONFIG = {
-  dollo:    { col: 'beccaric_dollo',        emoji: '🛒' },
-  quinc:    { col: 'beccaric_quincaillerie', emoji: '🔧' },
-  walmart:  { col: 'beccaric_walmart',       emoji: '🏪' },
-  aprevoir: { col: 'beccaric_aprevoir',      emoji: '📋' },
+  dollo:   { col: 'beccaric_dollo',   emoji: '🛒' },
+  walmart: { col: 'beccaric_walmart', emoji: '🏪' },
 };
 
-let listeData = { dollo: [], quinc: [], walmart: [], aprevoir: [] };
+let listeData = { dollo: [], walmart: [] };
 
-function listenDollo()    { listenListe('dollo'); }
-function listenQuinc()    { listenListe('quinc'); }
-function listenWalmart()  { listenListe('walmart'); }
-function listenAprevoir() { listenListe('aprevoir'); }
+function listenDollo()   { listenListe('dollo'); }
+function listenWalmart() { listenListe('walmart'); }
 
 function listenListe(section) {
   const col = LISTE_CONFIG[section].col;
@@ -722,8 +734,7 @@ function renderListe(section) {
   });
 }
 
-window.filterDollo   = () => filterListe('dollo');
-window.filterAprevoir = () => filterListe('aprevoir');
+window.filterDollo = () => filterListe('dollo');
 window.filterListe = (section) => {
   const q = document.getElementById(section + '-search').value.toLowerCase();
   const filtered = q ? listeData[section].filter(i =>
@@ -1114,6 +1125,117 @@ window.addEventListener('beforeunload', (e) => {
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => { if(e.target===overlay) overlay.classList.remove('open'); });
 });
+
+// ════════════════════════════════
+// MAGASIN LISTE — Quincaillerie / Pharmacie / A prevoir
+// ════════════════════════════════
+
+const MGL_CONFIG = {
+  quinc:     { col: 'beccaric_quincaillerie', magasins: ['Rona','Home Depot','Canac','BMR','Home Hardware','Autre'] },
+  pharmacie: { col: 'beccaric_pharmacie',     magasins: ['Pharmaprix','Jean Coutu','Uniprix','Brunet','Walmart Pharmacie','Familiprix','Proxim','Autre'] },
+  aprevoir:  { col: 'beccaric_aprevoir',      magasins: null },
+};
+let mglData = { quinc: [], pharmacie: [], aprevoir: [] };
+let mglUnsubs = {};
+
+function listenMgl(section) {
+  if (mglUnsubs[section]) mglUnsubs[section]();
+  const col = MGL_CONFIG[section].col;
+  const q = query(collection(db, col), orderBy('createdAt','desc'));
+  mglUnsubs[section] = onSnapshot(q, snap => {
+    mglData[section] = snap.docs
+      .map(d => ({id:d.id,...d.data()}))
+      .filter(d => d.createdAt != null);
+    renderMgl(section);
+  });
+}
+
+function renderMgl(section) {
+  const ul    = document.getElementById(section + '-list');
+  const empty = document.getElementById(section + '-empty');
+  const items = mglData[section];
+  if (!items.length) {
+    ul.innerHTML = '';
+    ul.appendChild(empty);
+    empty.style.display = 'block';
+    return;
+  }
+  if (!ul.contains(empty)) ul.appendChild(empty);
+  empty.style.display = 'none';
+  const magasins = MGL_CONFIG[section].magasins;
+  ul.innerHTML = items.map(item => {
+    const magSelect = magasins
+      ? `<select class="mgl-select mgl-mag-sel" data-id="${item.id}">
+          ${magasins.map(m => `<option${item.magasin===m?' selected':''}>${m}</option>`).join('')}
+         </select>`
+      : item.lieu
+        ? `<span class="mgl-mag">${item.lieu}</span>`
+        : '';
+    const prixDisplay = item.prix ? `<span class="mgl-prix">${item.prix}</span>` : '';
+    return `<div class="mgl-item${item.achete?' achete':''}" data-id="${item.id}" data-achete="${item.achete?'1':'0'}">
+      <div class="mgl-check mgl-chk">${item.achete?'✓':''}</div>
+      <span class="mgl-nom">${item.nom||''}</span>
+      ${magSelect}
+      ${prixDisplay}
+      <button class="mgl-del mgl-del-btn">✕</button>
+    </div>`;
+  }).join('');
+  // event listeners
+  ul.querySelectorAll('.mgl-item').forEach(el => {
+    const id = el.dataset.id;
+    el.querySelector('.mgl-chk').addEventListener('click', e => {
+      e.stopPropagation();
+      const achete = el.dataset.achete === '1';
+      toggleMgl(section, id, !achete);
+    });
+    el.querySelector('.mgl-del-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      supprimerMgl(section, id);
+    });
+    const sel = el.querySelector('.mgl-mag-sel');
+    if (sel) sel.addEventListener('change', e => {
+      e.stopPropagation();
+      updateDoc(doc(db, MGL_CONFIG[section].col, id), { magasin: sel.value }).catch(e => toast('❌ ' + e.message));
+    });
+  });
+}
+
+window.ajouterMgl = async (section) => {
+  const input = document.getElementById(section + '-input');
+  const nom = input.value.trim();
+  if (!nom) { toast('Entre un nom'); return; }
+  const cfg = MGL_CONFIG[section];
+  const data = { nom, achete: false, createdAt: serverTimestamp() };
+  if (cfg.magasins) data.magasin = cfg.magasins[0];
+  else data.lieu = '';
+  try {
+    await addDoc(collection(db, cfg.col), data);
+    input.value = '';
+    input.focus();
+  } catch(e) { toast('❌ ' + e.message); }
+};
+
+window.toggleMgl = async (section, id, achete) => {
+  const col = MGL_CONFIG[section].col;
+  try { await updateDoc(doc(db, col, id), { achete }); }
+  catch(e) { toast('❌ ' + e.message); }
+};
+
+window.supprimerMgl = async (section, id) => {
+  const col = MGL_CONFIG[section].col;
+  try { await deleteDoc(doc(db, col, id)); }
+  catch(e) { toast('❌ ' + e.message); }
+};
+
+window.effacerCochesMgl = async (section) => {
+  const col = MGL_CONFIG[section].col;
+  const coches = mglData[section].filter(i => i.achete);
+  if (!coches.length) { toast('Aucun item coche'); return; }
+  try {
+    await Promise.all(coches.map(i => deleteDoc(doc(db, col, i.id))));
+    toast('Items coches supprimes');
+  } catch(e) { toast('❌ ' + e.message); }
+};
 </script>
 <!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="modal-settings">
