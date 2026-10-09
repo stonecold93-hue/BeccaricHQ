@@ -1186,6 +1186,8 @@ function listenMgl(section) {
 function renderMgl(section) {
   const ul    = document.getElementById(section + '-list');
   const empty = document.getElementById(section + '-empty');
+  // Ne pas re-render si un champ prix est actif (evite le "etes-vous sur")
+  if (ul.contains(document.activeElement) && document.activeElement.classList.contains('mgl-prix-inp')) return;
   const items = mglData[section];
   if (!items.length) {
     ul.innerHTML = '';
@@ -1208,7 +1210,7 @@ function renderMgl(section) {
       <div class="mgl-check mgl-chk">${item.achete?'✓':''}</div>
       <span class="mgl-nom">${item.nom||''}</span>
       ${magSelect}
-      <input class="mgl-prix-field mgl-prix-inp" value="${item.prix||''}" placeholder="prix" data-id="${item.id}">
+      <input class="mgl-prix-field mgl-prix-inp" value="${item.prix||''}" placeholder="prix" data-id="${item.id}" autocomplete="off" form="none">
       <button class="mgl-del mgl-del-btn">✕</button>
     </div>`;
   }).join('');
@@ -1277,6 +1279,8 @@ window.effacerCochesMgl = async (section) => {
     toast('Items coches supprimes');
   } catch(e) { toast('❌ ' + e.message); }
 };
+
+window.addEventListener('beforeunload', e => { e.stopImmediatePropagation(); });
 </script>
 <!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="modal-settings">
