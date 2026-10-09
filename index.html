@@ -249,6 +249,33 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .t-aprevoir .home-tile-name{background:linear-gradient(160deg,#E8C0FF,#A855F7,#6A2ABA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .t-aprevoir .home-tile-sub{color:#A855F7;}
 
+/* ══════════════════════════════
+   MGL — LISTES INLINE (Quinc / Pharmacie / A prevoir)
+══════════════════════════════ */
+.mgl-toolbar{display:flex;gap:.5rem;margin-bottom:.6rem;flex-wrap:wrap;}
+.mgl-input{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.5rem .85rem;font-family:'DM Mono',monospace;font-size:.75rem;color:#C8D8E8;outline:none;transition:border .15s;}
+.mgl-input:focus{border-color:var(--gold2);}
+.mgl-btn-add{background:linear-gradient(135deg,#081828,#040C14);border:1px solid var(--gold2);color:var(--gold1);border-radius:6px;padding:.5rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.mgl-btn-add:hover{border-color:var(--gold1);box-shadow:0 0 12px rgba(90,180,240,0.2);}
+.mgl-btn-clear{background:transparent;border:1px solid #4A1010;color:#C06060;border-radius:6px;padding:.4rem .9rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;cursor:pointer;transition:all .2s;display:block;margin-bottom:.6rem;}
+.mgl-btn-clear:hover{border-color:#F06060;color:#F06060;}
+.mgl-ul{display:flex;flex-direction:column;gap:.45rem;}
+.mgl-item{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.65rem .9rem;display:flex;align-items:center;gap:.6rem;transition:all .2s;}
+.mgl-item:hover{border-color:var(--gold4);}
+.mgl-item.achete{opacity:.4;border-color:var(--border);}
+.mgl-item.achete .mgl-nom{text-decoration:line-through;color:var(--muted);}
+.mgl-check{width:18px;height:18px;border-radius:4px;border:1.5px solid #3A6A9A;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;cursor:pointer;transition:all .2s;}
+.mgl-item.achete .mgl-check{background:#3A6A9A;border-color:#3A6A9A;}
+.mgl-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;flex:1;min-width:0;line-height:1.3;}
+.mgl-mag{font-size:.58rem;letter-spacing:.1em;color:#7AAABB;background:#0A1E30;border:1px solid #1E3A55;border-radius:4px;padding:2px 7px;white-space:nowrap;font-family:'DM Mono',monospace;}
+.mgl-prix{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:1px solid #3A2A00;border-radius:4px;padding:2px 7px;white-space:nowrap;letter-spacing:.05em;}
+.mgl-del{background:none;border:none;color:var(--muted);font-size:.68rem;cursor:pointer;padding:2px 5px;flex-shrink:0;opacity:0;transition:opacity .15s;}
+.mgl-item:hover .mgl-del{opacity:.5;}
+.mgl-del:hover{opacity:1 !important;color:#F06060;}
+.mgl-select{background:var(--panel);border:1px solid #1E3A55;border-radius:4px;color:#7AAABB;font-family:'DM Mono',monospace;font-size:.65rem;padding:.25rem .4rem;cursor:pointer;outline:none;transition:border .15s;}
+.mgl-select:focus{border-color:var(--gold2);}
+.mgl-empty{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.72rem;letter-spacing:.12em;}
+
 </style>
 </head>
 <body>
