@@ -272,9 +272,9 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .mgl-item.achete .mgl-check{background:#3A6A9A;border-color:#3A6A9A;}
 .mgl-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;flex:1;min-width:0;line-height:1.3;}
 .mgl-mag{font-size:.58rem;letter-spacing:.1em;color:#7AAABB;background:#0A1E30;border:1px solid #1E3A55;border-radius:4px;padding:2px 7px;white-space:nowrap;font-family:'DM Mono',monospace;}
-.mgl-prix-field{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:1px solid #3A2A00;border-radius:4px;padding:3px 7px;width:72px;outline:none;transition:border .15s;letter-spacing:.05em;}
-.mgl-prix-field:focus{border-color:#C8A060;}
-.mgl-prix-field::placeholder{color:#4A3A20;}
+.mgl-prix-field{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:1px solid #3A2A00;border-radius:4px;padding:3px 7px;min-width:40px;cursor:pointer;letter-spacing:.05em;white-space:nowrap;}
+.mgl-prix-field:hover{border-color:#6A4A10;}
+.mgl-prix-edit{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:none;outline:none;width:60px;padding:0;letter-spacing:.05em;}
 .mgl-del{background:none;border:none;color:var(--muted);font-size:.68rem;cursor:pointer;padding:2px 5px;flex-shrink:0;opacity:0;transition:opacity .15s;}
 .mgl-item:hover .mgl-del{opacity:.5;}
 .mgl-del:hover{opacity:1 !important;color:#F06060;}
@@ -332,7 +332,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
     <div class="auth-wm">
       <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
-      <span class="auth-top">aide-moi</span>
+      <span class="auth-top"></span>
       <span class="auth-main">Beccaric</span>
       <span class="auth-hq">H Q</span>
       <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
@@ -1187,7 +1187,7 @@ function renderMgl(section) {
   const ul    = document.getElementById(section + '-list');
   const empty = document.getElementById(section + '-empty');
   // Ne pas re-render si un champ prix est actif (evite le "etes-vous sur")
-  if (ul.contains(document.activeElement) && document.activeElement.classList.contains('mgl-prix-inp')) return;
+  if (ul.contains(document.activeElement) && document.activeElement.classList.contains('mgl-prix-edit')) return;
   const items = mglData[section];
   if (!items.length) {
     ul.innerHTML = '';
@@ -1210,7 +1210,7 @@ function renderMgl(section) {
       <div class="mgl-check mgl-chk">${item.achete?'✓':''}</div>
       <span class="mgl-nom">${item.nom||''}</span>
       ${magSelect}
-      <input class="mgl-prix-field mgl-prix-inp" value="${item.prix||''}" placeholder="prix" data-id="${item.id}" autocomplete="off" form="none">
+      <span class="mgl-prix-field mgl-prix-badge" data-prix="${item.prix||''}">${item.prix||'<span style="opacity:.3">prix</span>'}</span>
       <button class="mgl-del mgl-del-btn">✕</button>
     </div>`;
   }).join('');
@@ -1231,14 +1231,30 @@ function renderMgl(section) {
       e.stopPropagation();
       updateDoc(doc(db, MGL_CONFIG[section].col, id), { magasin: sel.value }).catch(e => toast('❌ ' + e.message));
     });
-    const prixInp = el.querySelector('.mgl-prix-inp');
-    if (prixInp) {
-      const savePrix = () => {
-        updateDoc(doc(db, MGL_CONFIG[section].col, id), { prix: prixInp.value.trim() }).catch(e => toast('❌ ' + e.message));
-      };
-      prixInp.addEventListener('blur', e => { e.stopPropagation(); savePrix(); });
-      prixInp.addEventListener('keydown', e => { if(e.key==='Enter'){ e.stopPropagation(); prixInp.blur(); } });
-      prixInp.addEventListener('click', e => e.stopPropagation());
+    const prixBadge = el.querySelector('.mgl-prix-badge');
+    if (prixBadge) {
+      prixBadge.addEventListener('click', e => {
+        e.stopPropagation();
+        if (prixBadge.querySelector('input')) return;
+        const cur = prixBadge.dataset.prix || '';
+        const inp = document.createElement('input');
+        inp.value = cur;
+        inp.placeholder = 'prix';
+        inp.className = 'mgl-prix-edit';
+        inp.autocomplete = 'off';
+        prixBadge.innerHTML = '';
+        prixBadge.appendChild(inp);
+        inp.focus();
+        inp.select();
+        const save = () => {
+          const val = inp.value.trim();
+          updateDoc(doc(db, MGL_CONFIG[section].col, id), { prix: val }).catch(e => toast('❌ ' + e.message));
+          prixBadge.dataset.prix = val;
+          prixBadge.innerHTML = val || '<span style="opacity:.3">prix</span>';
+        };
+        inp.addEventListener('blur', save);
+        inp.addEventListener('keydown', e2 => { e2.stopPropagation(); if(e2.key==='Enter') inp.blur(); });
+      });
     }
   });
 }
@@ -1280,7 +1296,7 @@ window.effacerCochesMgl = async (section) => {
   } catch(e) { toast('❌ ' + e.message); }
 };
 
-window.addEventListener('beforeunload', e => { e.stopImmediatePropagation(); });
+window.addEventListener('beforeunload', () => {});
 </script>
 <!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="modal-settings">
