@@ -248,6 +248,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .t-aprevoir::before{background:#A855F7;}
 .t-aprevoir .home-tile-name{background:linear-gradient(160deg,#E8C0FF,#A855F7,#6A2ABA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .t-aprevoir .home-tile-sub{color:#A855F7;}
+.t-pharmacie{background:#000A06;border-color:#065C2A;}
+.t-pharmacie::before{background:#10B981;}
+.t-pharmacie .home-tile-name{background:linear-gradient(160deg,#A8F0D8,#10B981,#065C2A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.t-pharmacie .home-tile-sub{color:#10B981;}
 
 /* ══════════════════════════════
    MGL — LISTES INLINE (Quinc / Pharmacie / A prevoir)
@@ -326,11 +330,11 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 
     <div class="auth-wm">
       <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
-      <span class="auth-top">notre coin</span>
+      <span class="auth-top">aide-moi</span>
       <span class="auth-main">Beccaric</span>
       <span class="auth-hq">H Q</span>
       <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
-      <span class="auth-tagline">Our world, our place</span>
+      <span class="auth-tagline">life made easier</span>
     </div>
 
     <div class="auth-divider">
@@ -431,6 +435,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="section-title">Quincaillerie</div>
       <div class="mgl-toolbar">
         <input class="mgl-input" id="quinc-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('quinc')">
+        <input class="mgl-input mgl-prix-input" id="quinc-prix" placeholder="Prix" style="max-width:90px" onkeydown="if(event.key==='Enter')ajouterMgl('quinc')">
         <button class="mgl-btn-add" onclick="ajouterMgl('quinc')">+ Ajouter</button>
       </div>
       <button class="mgl-btn-clear" onclick="effacerCochesMgl('quinc')" style="margin-bottom:.75rem">Effacer les coches</button>
@@ -457,6 +462,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="section-title">Pharmacie</div>
       <div class="mgl-toolbar">
         <input class="mgl-input" id="pharmacie-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('pharmacie')">
+        <input class="mgl-input mgl-prix-input" id="pharmacie-prix" placeholder="Prix" style="max-width:90px" onkeydown="if(event.key==='Enter')ajouterMgl('pharmacie')">
         <button class="mgl-btn-add" onclick="ajouterMgl('pharmacie')">+ Ajouter</button>
       </div>
       <button class="mgl-btn-clear" onclick="effacerCochesMgl('pharmacie')" style="margin-bottom:.75rem">Effacer les coches</button>
@@ -469,6 +475,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="section-title">A prevoir</div>
       <div class="mgl-toolbar">
         <input class="mgl-input" id="aprevoir-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('aprevoir')">
+        <input class="mgl-input mgl-prix-input" id="aprevoir-prix" placeholder="Prix" style="max-width:90px" onkeydown="if(event.key==='Enter')ajouterMgl('aprevoir')">
         <button class="mgl-btn-add" onclick="ajouterMgl('aprevoir')">+ Ajouter</button>
       </div>
       <button class="mgl-btn-clear" onclick="effacerCochesMgl('aprevoir')" style="margin-bottom:.75rem">Effacer les coches</button>
@@ -1229,15 +1236,18 @@ function renderMgl(section) {
 
 window.ajouterMgl = async (section) => {
   const input = document.getElementById(section + '-input');
+  const prixInput = document.getElementById(section + '-prix');
   const nom = input.value.trim();
   if (!nom) { toast('Entre un nom'); return; }
   const cfg = MGL_CONFIG[section];
   const data = { nom, achete: false, createdAt: serverTimestamp() };
   if (cfg.magasins) data.magasin = cfg.magasins[0];
   else data.lieu = '';
+  if (prixInput) { const p = prixInput.value.trim(); if (p) data.prix = p; }
   try {
     await addDoc(collection(db, cfg.col), data);
     input.value = '';
+    if (prixInput) prixInput.value = '';
     input.focus();
   } catch(e) { toast('❌ ' + e.message); }
 };
