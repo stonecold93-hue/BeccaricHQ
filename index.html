@@ -103,6 +103,8 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
    LISTES D ACHAT (Dollo / Quincaillerie / Walmart)
 ══════════════════════════════ */
 .liste-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:.5rem;flex-wrap:wrap;}
+.liste-item-share{background:none;border:none;font-size:.85rem;cursor:pointer;padding:2px 5px;flex-shrink:0;opacity:0;transition:opacity .15s;}
+.liste-item:hover .liste-item-share{opacity:1;}
 .dollo-subtabs{display:flex;gap:.5rem;margin-bottom:1rem;}
 .dollo-subtab{background:transparent;border:1px solid #1A3A55;color:#5A7A9A;border-radius:20px;padding:.35rem .9rem;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;cursor:pointer;transition:all .2s;}
 .dollo-subtab.active{background:#0A2A45;border-color:#5AB4F0;color:#BAE0FF;}
@@ -713,6 +715,8 @@ function initApp(uid) {
 // LISTES D ACHAT — generique (Dollo / Quincaillerie / Walmart)
 // ════════════════════════════════
 
+let listeData = { dollo: [], walmart: [] };
+
 const LISTE_CONFIG = {
   dollo:   { col: 'beccaric_dollo',   emoji: '🛒' },
   walmart: { col: 'beccaric_walmart', emoji: '🏪' },
@@ -749,8 +753,6 @@ function listenDolloVue() {
 // Override col pour add/toggle/delete selon vue active
 function getDolloCol() { return DOLLO_COLS[dolloVue]; }
 
-let listeData = { dollo: [], walmart: [] };
-
 function listenDollo()   { listenDolloVue(); }
 function listenWalmart() { listenListe('walmart'); }
 
@@ -781,6 +783,7 @@ function renderListe(section) {
   if (!ul.contains(empty)) ul.appendChild(empty);
   empty.style.display = 'none';
   if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
+  const showShare = section === 'dollo' && dolloVue !== 'partage';
   ul.innerHTML = items.map(item => `
     <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}" data-id="${item.id}" data-section="${section}" data-achete="${item.achete ? '1' : '0'}">
       <div class="liste-check liste-check-btn">${item.achete ? '✓' : ''}</div>
@@ -788,6 +791,7 @@ function renderListe(section) {
         <div class="liste-item-nom">${item.nom || ''}</div>
         ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
       </div>
+      ${showShare ? `<button class="liste-item-share liste-item-share-btn" title="Partager">🤝</button>` : ''}
       <button class="liste-item-del liste-item-del-btn">✕</button>
     </div>`).join('');
   // event listeners directs — plus fiables que onclick inline
@@ -803,6 +807,11 @@ function renderListe(section) {
     el.querySelector('.liste-item-del-btn').addEventListener('click', e => {
       e.stopPropagation();
       supprimerListeItemDirect(sec, id);
+    });
+    const shareBtn = el.querySelector('.liste-item-share-btn');
+    if (shareBtn) shareBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      partagerItemDollo(id);
     });
   });
 }
@@ -825,6 +834,7 @@ window.filterListe = (section) => {
   empty.style.display = 'none';
   const reste = filtered.filter(i => !i.achete).length;
   if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
+  const showShareF = section === 'dollo' && dolloVue !== 'partage';
   ul.innerHTML = filtered.map(item => `
     <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}" data-id="${item.id}" data-section="${section}" data-achete="${item.achete ? '1' : '0'}">
       <div class="liste-check liste-check-btn">${item.achete ? '✓' : ''}</div>
@@ -832,6 +842,7 @@ window.filterListe = (section) => {
         <div class="liste-item-nom">${item.nom || ''}</div>
         ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
       </div>
+      ${showShareF ? `<button class="liste-item-share liste-item-share-btn" title="Partager">🤝</button>` : ''}
       <button class="liste-item-del liste-item-del-btn">✕</button>
     </div>`).join('');
   ul.querySelectorAll('.liste-item').forEach(el => {
@@ -847,7 +858,27 @@ window.filterListe = (section) => {
       e.stopPropagation();
       supprimerListeItemDirect(sec, id);
     });
+    const shareBtn = el.querySelector('.liste-item-share-btn');
+    if (shareBtn) shareBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      partagerItemDollo(id);
+    });
   });
+};
+
+window.partagerItemDollo = async (id) => {
+  const item = listeData['dollo'].find(i => i.id === id);
+  if (!item) return;
+  try {
+    await addDoc(collection(db, 'beccaric_dollo'), {
+      nom: item.nom,
+      desc: item.desc || '',
+      achete: false,
+      createdAt: serverTimestamp(),
+      partageePar: dolloVue
+    });
+    toast('🤝 Partage !');
+  } catch(e) { toast('❌ ' + e.message); }
 };
 
 window.toggleAchete = async (section, id, achete) => {
