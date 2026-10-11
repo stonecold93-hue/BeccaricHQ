@@ -621,7 +621,7 @@ function logout() {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection,
+import { getFirestore, doc, setDoc, getDoc, getDocs, onSnapshot, collection,
          addDoc, deleteDoc, updateDoc, orderBy, query, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref as sRef, uploadString, uploadBytes, getDownloadURL, deleteObject }
@@ -750,7 +750,6 @@ function listenDolloVue() {
   const q = query(collection(db, col), orderBy('createdAt','desc'));
   dolloUnsub = onSnapshot(q, snap => {
     if (dolloVue !== vueAuMomentDuLancement) return;
-    if (snap.metadata.fromCache && snap.empty) return;
     listeData['dollo'] = snap.docs
       .map(d => ({id:d.id,...d.data()}))
       .filter(d => d.createdAt != null);
@@ -1173,6 +1172,26 @@ function resetPhotoWrap(wrapId, inputId, changeBtnId) {
 }
 
 // ── API KEY ──
+window.migrerDolloVersEric = async () => {
+  const status = document.getElementById('migration-status');
+  status.style.display = 'block';
+  status.textContent = 'Migration en cours...';
+  try {
+    const snap = await getDocs(query(collection(db, 'beccaric_dollo'), orderBy('createdAt','desc')));
+    if (snap.empty) { status.textContent = 'Partage est deja vide.'; return; }
+    let count = 0;
+    for (const d of snap.docs) {
+      await addDoc(collection(db, 'beccaric_dollo_eric'), d.data());
+      await deleteDoc(doc(db, 'beccaric_dollo', d.id));
+      count++;
+    }
+    status.textContent = count + ' items migres vers Eric.';
+    toast('Migration complete !');
+  } catch(e) {
+    status.textContent = 'Erreur : ' + e.message;
+  }
+};
+
 window.saveApiKey = () => {
   const input = document.getElementById('api-key-input');
   const key = input?.value.trim();
@@ -1390,6 +1409,12 @@ window.addEventListener('beforeunload', () => {});
         <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;">👁️</button>
       </div>
       <div id="api-key-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
+    </div>
+    <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);">
+      <div class="modal-label">Migration Dollo</div>
+      <div style="font-size:.65rem;color:var(--muted);margin:.3rem 0 .6rem;">Deplace les items de Partage vers Eric (a faire une seule fois)</div>
+      <button class="btn-gold" onclick="migrerDolloVersEric()" style="width:100%;padding:.5rem;">🔄 Migrer Partage → Eric</button>
+      <div id="migration-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
     </div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="fermerModal('modal-settings')">Fermer</button>
