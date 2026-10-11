@@ -8,15 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --g0: #E0F4FF; --g1: #7EC8F4; --g2: #2389D4; --g3: #0E5CA4; --g4: #0A3A6E; --g5: #061828;
-  --gold0: #F0F8FF; --gold1: #7EC8F4; --gold2: #3A9AD4; --gold3: #1A6AAA; --gold4: #0E3A6A;
-  --bg: #060404; --panel: #0A1520; --panel2: #0E1E2E; --text: #C8D8E8;
-  --muted: #5A7A9A; --border: #1A3A55; --red: #D42020;
+  --g0:#E0F4FF;--g1:#7EC8F4;--g2:#2389D4;--g3:#0E5CA4;--g4:#0A3A6E;--g5:#061828;
+  --gold0:#F0F8FF;--gold1:#7EC8F4;--gold2:#3A9AD4;--gold3:#1A6AAA;--gold4:#0E3A6A;
+  --bg:#060404;--panel:#0A1520;--panel2:#0E1E2E;--text:#C8D8E8;
+  --muted:#5A7A9A;--border:#1A3A55;--red:#D42020;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-height:100vh;}
 
-/* TOAST */
 #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1000;border:1px solid var(--gold2);color:var(--gold1);padding:.6rem 1.4rem;border-radius:6px;font-size:.72rem;letter-spacing:.1em;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
 #toast.show{opacity:1;}
 
@@ -98,21 +97,42 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 /* ACCUEIL */
 .accueil-welcome{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;font-weight:300;color:var(--gold2);margin-bottom:1.25rem;letter-spacing:.08em;}
 .home-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.home-tile{border-radius:10px;padding:1.25rem 1rem;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;cursor:pointer;transition:all .2s;border:1px solid transparent;}
-.home-tile:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
-.home-tile::before{content:"";position:absolute;width:80px;height:80px;border-radius:50%;top:-10px;right:-10px;opacity:.1;pointer-events:none;}
+.home-tile{border-radius:10px;padding:1.25rem 1rem;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:all .2s;border:1px solid transparent;}
+.home-tile:hover{transform:translateY(-2px);}
 .home-tile-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;letter-spacing:.05em;line-height:1;}
 .home-tile-sub{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:.5;line-height:1.4;}
 .home-tile-priv{background:#020810;border-color:#0A3A6A;}
-.home-tile-priv::before{background:#5AB4F0;}
 .home-tile-priv .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .home-tile-priv .home-tile-sub{color:#5AB4F0;}
 .home-tile-shared{background:#020A04;border-color:#1A5A1A;}
-.home-tile-shared::before{background:#34C472;}
 .home-tile-shared .home-tile-name{background:linear-gradient(160deg,#A8F0C4,#34C472,#065C2A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .home-tile-shared .home-tile-sub{color:#34C472;}
 
-/* MGL */
+/* LISTE simple (Dollo / Walmart) */
+.liste-toolbar{display:flex;gap:.5rem;margin-bottom:.6rem;flex-wrap:wrap;}
+.liste-search{flex:1;min-width:140px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.5rem .85rem;font-family:'DM Mono',monospace;font-size:.75rem;color:#C8D8E8;outline:none;transition:border .15s;}
+.liste-search:focus{border-color:var(--gold2);}
+.liste-btn-add{background:linear-gradient(135deg,#081828,#040C14);border:1px solid var(--gold2);color:var(--gold1);border-radius:6px;padding:.5rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.liste-btn-add:hover{border-color:var(--gold1);box-shadow:0 0 12px rgba(90,180,240,0.2);}
+.liste-compteur{font-size:.62rem;letter-spacing:.12em;color:var(--muted);margin-bottom:.5rem;min-height:1rem;}
+.liste-btn-clear{background:transparent;border:1px solid #4A1010;color:#C06060;border-radius:6px;padding:.4rem .9rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;cursor:pointer;transition:all .2s;display:block;margin-bottom:.6rem;}
+.liste-btn-clear:hover{border-color:#F06060;color:#F06060;}
+.liste-ul{display:flex;flex-direction:column;gap:.45rem;}
+.liste-item{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.65rem .9rem;display:flex;align-items:center;gap:.6rem;transition:all .2s;}
+.liste-item:hover{border-color:var(--gold4);}
+.liste-item.achete{opacity:.4;border-color:var(--border);}
+.liste-item.achete .liste-item-nom{text-decoration:line-through;color:var(--muted);}
+.liste-check{width:18px;height:18px;border-radius:4px;border:1.5px solid #3A6A9A;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;cursor:pointer;transition:all .2s;}
+.liste-item.achete .liste-check{background:#3A6A9A;border-color:#3A6A9A;}
+.liste-item-body{flex:1;min-width:0;cursor:pointer;}
+.liste-item-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;line-height:1.3;}
+.liste-item-desc{font-size:.65rem;color:var(--muted);margin-top:2px;line-height:1.4;}
+.liste-item-del{background:none;border:none;color:var(--muted);font-size:.68rem;cursor:pointer;padding:2px 5px;flex-shrink:0;opacity:0;transition:opacity .15s;}
+.liste-item:hover .liste-item-del{opacity:.5;}
+.liste-item-del:hover{opacity:1 !important;color:#F06060;}
+.liste-empty{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.72rem;letter-spacing:.12em;}
+
+/* MGL (Quincaillerie / Pharmacie / A prevoir + nouvelles sections) */
 .mgl-toolbar{display:flex;gap:.5rem;margin-bottom:.6rem;flex-wrap:wrap;}
 .mgl-input{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.5rem .85rem;font-family:'DM Mono',monospace;font-size:.75rem;color:#C8D8E8;outline:none;transition:border .15s;}
 .mgl-input:focus{border-color:var(--gold2);}
@@ -127,9 +147,8 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .mgl-item.achete .mgl-nom{text-decoration:line-through;color:var(--muted);}
 .mgl-check{width:18px;height:18px;border-radius:4px;border:1.5px solid #3A6A9A;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;cursor:pointer;transition:all .2s;}
 .mgl-item.achete .mgl-check{background:#3A6A9A;border-color:#3A6A9A;}
-.mgl-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;flex:1;min-width:0;line-height:1.3;cursor:pointer;}
-.mgl-nom:hover{color:var(--gold0);}
-.mgl-mag{font-size:.58rem;letter-spacing:.1em;color:#7AAABB;background:#0A1E30;border:1px solid #1E3A55;border-radius:4px;padding:2px 7px;white-space:nowrap;font-family:'DM Mono',monospace;}
+.mgl-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;flex:1;min-width:0;line-height:1.3;}
+.mgl-select{background:#0A1E30;border:1px solid #1E3A55;border-radius:4px;padding:3px 6px;font-family:'DM Mono',monospace;font-size:.62rem;color:#7AAABB;outline:none;cursor:pointer;max-width:130px;}
 .mgl-prix-field{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:1px solid #3A2A00;border-radius:4px;padding:3px 7px;min-width:40px;cursor:pointer;letter-spacing:.05em;white-space:nowrap;}
 .mgl-prix-field:hover{border-color:#6A4A10;}
 .mgl-prix-edit{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:none;outline:none;width:60px;padding:0;letter-spacing:.05em;}
@@ -138,19 +157,9 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .mgl-del:hover{opacity:1 !important;color:#F06060;}
 .mgl-empty{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.72rem;letter-spacing:.12em;}
 
-/* PILLS MAGASIN */
-.mag-pills-wrap{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.35rem;}
-.mag-pill{background:var(--panel);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:.3rem .75rem;font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.06em;cursor:pointer;transition:all .15s;}
-.mag-pill:hover{border-color:var(--gold3);color:var(--gold1);}
-.mag-pill.selected{background:#081828;border-color:var(--gold1);color:var(--gold0);}
-.mag-pill.autre-pill{border-style:dashed;}
-.mag-autre-input{width:100%;background:var(--bg);border:1px solid var(--gold3);border-radius:4px;padding:.4rem .7rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#C8C8C8;outline:none;margin-top:.5rem;display:none;}
-.mag-autre-input:focus{border-color:var(--gold1);}
-.modal-prix-row input{max-width:140px;}
-
-/* TRUCS UTILES */
+/* TRUCS */
 .trucs-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.75rem;}
-.truc-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;transition:all .15s;cursor:pointer;}
+.truc-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;cursor:pointer;transition:all .15s;}
 .truc-card:hover{border-color:var(--gold2);background:var(--panel2);}
 .truc-card-left{flex:1;min-width:0;}
 .truc-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:#A0D8F0;}
@@ -162,17 +171,16 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .trouvailles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
 .trouvaille-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;}
 .trouvaille-card:hover{border-color:var(--gold3);box-shadow:0 0 20px rgba(244,166,35,0.08);}
-.trouvaille-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--border);}
+.trouvaille-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;}
 .trouvaille-img img{width:100%;height:100%;object-fit:cover;}
 .trouvaille-body{padding:.65rem .75rem;}
 .trouvaille-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .trouvaille-desc{font-size:.62rem;color:var(--muted);line-height:1.5;margin-top:2px;}
 .trouvailles-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
 
-/* photo upload */
+/* PHOTO */
 .photo-upload-wrap{position:relative;width:100%;aspect-ratio:4/3;background:#1A1000;border:1px dashed var(--gold4);border-radius:6px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;transition:border .2s;}
 .photo-upload-wrap:hover{border-color:var(--gold2);}
-.photo-upload-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .photo-upload-label{font-size:.65rem;letter-spacing:.15em;color:var(--gold3);text-transform:uppercase;text-align:center;}
 .photo-upload-icon{font-size:1.8rem;opacity:.4;}
 .photo-upload-input{display:none;}
@@ -259,46 +267,37 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     </div>
     <div class="topnav-right">
       <button class="btn-settings" onclick="ouvrirSettings()" title="Parametres">&#9881;&#65039;</button>
-      <img class="user-avatar" id="user-avatar" src="" alt="" title="Connecte">
+      <img class="user-avatar" id="user-avatar" src="" alt="">
       <button class="btn-logout-icon" onclick="logout()" title="Quitter">&#10005;</button>
     </div>
   </div>
-
-  <!-- onglets rendus dynamiquement -->
   <div class="tabs" id="tabs-bar"></div>
-
-  <!-- sections rendues dynamiquement -->
   <div class="content" id="app-content"></div>
 </div>
 
-<!-- MODAL MGL -->
-<div class="modal-overlay" id="modal-mgl">
+<!-- MODAL LISTE (Dollo / Walmart / Vetements / Maquillage / Epicerie / Autres) -->
+<div class="modal-overlay" id="modal-liste">
   <div class="modal">
-    <div class="modal-title" id="mgl-modal-title">Nouvel item</div>
-    <input type="hidden" id="mgl-section">
-    <input type="hidden" id="mgl-edit-id">
+    <div class="modal-title" id="liste-modal-title">Nouvel item</div>
+    <input type="hidden" id="liste-section">
+    <input type="hidden" id="liste-edit-id">
     <div>
       <div class="modal-label">Nom</div>
-      <input type="text" id="mgl-nom" placeholder="Ex: Ampoules LED" autocomplete="off">
+      <input type="text" id="liste-nom" placeholder="Ex: Shampoing" autocomplete="off">
     </div>
     <div>
-      <div class="modal-label">Magasin</div>
-      <div class="mag-pills-wrap" id="mag-pills-container"></div>
-      <input type="text" id="mag-autre-text" class="mag-autre-input" placeholder="Nom du magasin...">
-    </div>
-    <div>
-      <div class="modal-label">Prix <span style="color:var(--muted);font-size:.6rem">(optionnel)</span></div>
-      <input type="text" id="mgl-prix" placeholder="Ex: 12.99" autocomplete="off" inputmode="decimal" style="max-width:140px;">
+      <div class="modal-label">Note <span style="color:var(--muted);font-size:.6rem">(optionnel)</span></div>
+      <input type="text" id="liste-desc" placeholder="Ex: format 500ml" autocomplete="off">
     </div>
     <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" id="mgl-delete-btn" style="display:none" onclick="supprimerMglItem()">&#128465;</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-mgl')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderMglItem()">&#128190; Sauvegarder</button>
+      <button class="btn-gold btn-danger btn-sm" id="liste-delete-btn" style="display:none" onclick="supprimerListeItem()">&#128465;</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-liste')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderListeItem()">&#128190; Sauvegarder</button>
     </div>
   </div>
 </div>
 
-<!-- MODAL TRUC -->
+<!-- MODAL TRUCS -->
 <div class="modal-overlay" id="modal-truc">
   <div class="modal">
     <div class="modal-title" id="truc-modal-title">Nouveau truc utile</div>
@@ -379,695 +378,617 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
   </div>
 </div>
 
-<!-- FIREBASE + JS -->
 <script>
-function signInWithGoogle() { window._signInWithGoogle && window._signInWithGoogle(); }
-function logout() { window._logout && window._logout(); }
+function signInWithGoogle(){window._signInWithGoogle&&window._signInWithGoogle();}
+function logout(){window._logout&&window._logout();}
 </script>
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, onSnapshot, collection,
-         addDoc, deleteDoc, updateDoc, orderBy, query, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref as sRef, uploadString, getDownloadURL }
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}
+  from"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import{getFirestore,doc,onSnapshot,collection,addDoc,deleteDoc,updateDoc,
+  orderBy,query,serverTimestamp}
+  from"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import{getStorage,ref as sRef,uploadString,getDownloadURL}
+  from"https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAq-iBu8NyXPc_yvcV_Is3Rw70jkalz_z8",
-  authDomain: "beccarichq.firebaseapp.com",
-  projectId: "beccarichq",
-  storageBucket: "beccarichq.firebasestorage.app",
-  messagingSenderId: "315636256645",
-  appId: "1:315636256645:web:6c9ed0b00e2fcbe901beec"
+const firebaseConfig={
+  apiKey:"AIzaSyAq-iBu8NyXPc_yvcV_Is3Rw70jkalz_z8",
+  authDomain:"beccarichq.firebaseapp.com",
+  projectId:"beccarichq",
+  storageBucket:"beccarichq.firebasestorage.app",
+  messagingSenderId:"315636256645",
+  appId:"1:315636256645:web:6c9ed0b00e2fcbe901beec"
 };
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const storage=getStorage(app);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const ALLOWED=['stonecold93@gmail.com','rebeccamontambeault20@gmail.com'];
 
-const ALLOWED_EMAILS = ['stonecold93@gmail.com', 'rebeccamontambeault20@gmail.com'];
-
-const USER_CONFIG = {
-  'stonecold93@gmail.com': {
-    nom: 'Eric',
-    onglets: [
-      { id: 'accueil',     label: 'Accueil',       shared: false },
-      { id: 'dollo',       label: 'Dollo',         shared: false },
-      { id: 'walmart',     label: 'Walmart',       shared: false },
-      { id: 'quinc',       label: 'Quincaillerie', shared: false },
-      { id: 'pharmacie',   label: 'Pharmacie',     shared: false },
-      { id: 'autres',      label: 'Autres',        shared: false },
-      { id: 'aprevoir',    label: 'A prevoir',     shared: true  },
-      { id: 'trucs',       label: 'Trucs Utiles',  shared: true  },
-      { id: 'trouvailles', label: 'Trouvailles',   shared: true  },
+// Chaque onglet: id, label, type (liste|mgl|trucs|trouvailles|accueil), col Firestore, shared, magasins (pour mgl)
+const USER_CONFIG={
+  'stonecold93@gmail.com':{
+    nom:'Eric',
+    onglets:[
+      {id:'accueil',   label:'Accueil',       type:'accueil'},
+      {id:'dollo',     label:'Dollo',         type:'liste',  col:'beccaric_dollo',          shared:false},
+      {id:'walmart',   label:'Walmart',       type:'liste',  col:'beccaric_walmart',        shared:false},
+      {id:'quinc',     label:'Quincaillerie', type:'mgl',    col:'beccaric_quincaillerie',  shared:false, magasins:['Rona','Home Depot','Canac','BMR','Home Hardware','Autre']},
+      {id:'pharmacie', label:'Pharmacie',     type:'mgl',    col:'beccaric_pharmacie',      shared:false, magasins:['Pharmaprix','Jean Coutu','Uniprix','Brunet','Walmart Pharmacie','Familiprix','Proxim','Autre']},
+      {id:'autres',    label:'Autres',        type:'liste',  col:'beccaric_eric_autres',    shared:false},
+      {id:'aprevoir',  label:'A prevoir',     type:'mgl',    col:'beccaric_aprevoir',       shared:true,  magasins:null},
+      {id:'trucs',     label:'Trucs Utiles',  type:'trucs',                                 shared:true},
+      {id:'trouvailles',label:'Trouvailles',  type:'trouvailles',                           shared:true},
     ]
   },
-  'rebeccamontambeault20@gmail.com': {
-    nom: 'Becca',
-    onglets: [
-      { id: 'accueil',     label: 'Accueil',     shared: false },
-      { id: 'dollo',       label: 'Dollo',       shared: false },
-      { id: 'pharmacie',   label: 'Pharmacie',   shared: false },
-      { id: 'vetements',   label: 'Vetements',   shared: false },
-      { id: 'maquillage',  label: 'Maquillage',  shared: false },
-      { id: 'epicerie',    label: 'Epicerie',    shared: false },
-      { id: 'autres',      label: 'Autres',      shared: false },
-      { id: 'aprevoir',    label: 'A prevoir',   shared: true  },
-      { id: 'trucs',       label: 'Trucs Utiles',shared: true  },
-      { id: 'trouvailles', label: 'Trouvailles', shared: true  },
+  'rebeccamontambeault20@gmail.com':{
+    nom:'Becca',
+    onglets:[
+      {id:'accueil',    label:'Accueil',     type:'accueil'},
+      {id:'dollo',      label:'Dollo',       type:'liste',  col:'beccaric_dollo',          shared:false},
+      {id:'pharmacie',  label:'Pharmacie',   type:'mgl',    col:'beccaric_pharmacie',      shared:false, magasins:['Pharmaprix','Jean Coutu','Uniprix','Brunet','Walmart Pharmacie','Familiprix','Proxim','Autre']},
+      {id:'vetements',  label:'Vetements',   type:'liste',  col:'beccaric_becca_vetements',shared:false},
+      {id:'maquillage', label:'Maquillage',  type:'liste',  col:'beccaric_becca_maquillage',shared:false},
+      {id:'epicerie',   label:'Epicerie',    type:'liste',  col:'beccaric_becca_epicerie', shared:false},
+      {id:'autres',     label:'Autres',      type:'liste',  col:'beccaric_becca_autres',   shared:false},
+      {id:'aprevoir',   label:'A prevoir',   type:'mgl',    col:'beccaric_aprevoir',       shared:true,  magasins:null},
+      {id:'trucs',      label:'Trucs Utiles',type:'trucs',                                  shared:true},
+      {id:'trouvailles',label:'Trouvailles', type:'trouvailles',                             shared:true},
     ]
   }
 };
 
-const MAGASINS = [
-  'Dollarama','Walmart','IGA','Maxi','Canadian Tire',
-  'Home Depot','RONA','Pharmaprix','Jean Coutu','Autre...'
-];
-
-let currentUser = null;
-let userCfg = null;
-let mglData = {};
-let mglUnsubs = {};
-let trucs = [];
-let trouvailles = [];
-let trouvaillePhotoBase64 = null;
-let selectedMagasin = '';
+let currentUser=null,userCfg=null;
+let listeData={},listeUnsubs={};
+let mglData={},mglUnsubs={};
+let trucs=[],trouvailles=[],trouvaillePhotoBase64=null;
 
 // TOAST
-function toast(msg, dur=2800) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), dur);
+function toast(msg,dur=2800){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),dur);
 }
-window.showToast = toast;
 
 // TABS
-window.goTab = (id, btn) => {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  const sec = document.getElementById('tab-' + id);
-  if (sec) sec.classList.add('active');
-  if (btn) btn.classList.add('active');
-  else document.querySelector('[data-tab="' + id + '"]')?.classList.add('active');
+window.goTab=(id,btn)=>{
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const sec=document.getElementById('tab-'+id);
+  if(sec)sec.classList.add('active');
+  if(btn)btn.classList.add('active');
+  else document.querySelector('[data-tab="'+id+'"]')?.classList.add('active');
 };
 
 // MODAL
-window.fermerModal = (id) => document.getElementById(id).classList.remove('open');
-function ouvrirModal(id) { document.getElementById(id).classList.add('open'); }
+window.fermerModal=(id)=>document.getElementById(id).classList.remove('open');
+function ouvrirModal(id){document.getElementById(id).classList.add('open');}
 
 // AUTH
-const provider = new GoogleAuthProvider();
-window._signInWithGoogle = async () => {
-  try { await signInWithPopup(auth, provider); }
-  catch(e) { toast('Erreur connexion: ' + e.message); }
+const provider=new GoogleAuthProvider();
+window._signInWithGoogle=async()=>{
+  try{await signInWithPopup(auth,provider);}
+  catch(e){toast('Erreur: '+e.message);}
 };
-window._logout = () => signOut(auth);
+window._logout=()=>signOut(auth);
 
-onAuthStateChanged(auth, async user => {
-  if (user) {
-    if (!ALLOWED_EMAILS.includes(user.email)) {
-      toast('Acces refuse');
-      await signOut(auth); return;
-    }
-    currentUser = user;
-    userCfg = USER_CONFIG[user.email];
-    document.getElementById('auth-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    const av = document.getElementById('user-avatar');
-    if (user.photoURL) av.src = user.photoURL;
-    initApp(user.uid);
-  } else {
-    currentUser = null; userCfg = null;
-    document.getElementById('auth-screen').style.display = 'flex';
-    document.getElementById('app').style.display = 'none';
+onAuthStateChanged(auth,async user=>{
+  if(user){
+    if(!ALLOWED.includes(user.email)){toast('Acces refuse');await signOut(auth);return;}
+    currentUser=user;
+    userCfg=USER_CONFIG[user.email];
+    document.getElementById('auth-screen').style.display='none';
+    document.getElementById('app').style.display='block';
+    const av=document.getElementById('user-avatar');
+    if(user.photoURL)av.src=user.photoURL;
+    initApp();
+  }else{
+    currentUser=null;userCfg=null;
+    document.getElementById('auth-screen').style.display='flex';
+    document.getElementById('app').style.display='none';
   }
 });
 
-// INIT
-function initApp(uid) {
-  Object.values(mglUnsubs).forEach(u => u && u());
-  mglUnsubs = {}; mglData = {}; trucs = []; trouvailles = [];
-  buildUI(uid);
-  goTab('accueil', null);
+function initApp(){
+  Object.values(listeUnsubs).forEach(u=>u&&u());
+  Object.values(mglUnsubs).forEach(u=>u&&u());
+  listeUnsubs={};mglUnsubs={};listeData={};mglData={};trucs=[];trouvailles=[];
+  buildUI();
+  goTab('accueil',null);
 }
 
-// BUILD UI DYNAMIQUE
-function buildUI(uid) {
-  const onglets = userCfg.onglets;
-  const tabsBar = document.getElementById('tabs-bar');
-  const content = document.getElementById('app-content');
-
-  tabsBar.innerHTML = onglets.map(o =>
-    '<button class="tab' + (o.shared ? ' shared' : '') + '" data-tab="' + o.id + '" onclick="goTab(\'' + o.id + '\',this)">' + o.label + '</button>'
+// BUILD UI
+function buildUI(){
+  const onglets=userCfg.onglets;
+  const tabsBar=document.getElementById('tabs-bar');
+  const content=document.getElementById('app-content');
+  tabsBar.innerHTML=onglets.map(o=>
+    '<button class="tab'+(o.shared?' shared':'')+'" data-tab="'+o.id+'" onclick="goTab(\''+o.id+'\',this)">'+o.label+'</button>'
   ).join('');
-
-  content.innerHTML = '';
-  onglets.forEach(o => {
-    const div = document.createElement('div');
-    div.className = 'section';
-    div.id = 'tab-' + o.id;
+  content.innerHTML='';
+  onglets.forEach(o=>{
+    const div=document.createElement('div');
+    div.className='section';div.id='tab-'+o.id;
     content.appendChild(div);
-    if (o.id === 'accueil') buildAccueil(div);
-    else if (o.id === 'trucs') buildSectionTrucs(div, o.shared);
-    else if (o.id === 'trouvailles') buildSectionTrouvailles(div, o.shared);
-    else buildSectionMgl(div, o);
+    if(o.type==='accueil') buildAccueil(div);
+    else if(o.type==='liste') buildSectionListe(div,o);
+    else if(o.type==='mgl') buildSectionMgl(div,o);
+    else if(o.type==='trucs') buildSectionTrucs(div,o.shared);
+    else if(o.type==='trouvailles') buildSectionTrouvailles(div,o.shared);
   });
-
-  onglets.forEach(o => {
-    if (o.id === 'accueil') return;
-    if (o.id === 'trucs') { listenTrucs(); return; }
-    if (o.id === 'trouvailles') { listenTrouvailles(); return; }
-    listenMgl(o.id, uid, o.shared);
+  // listeners
+  onglets.forEach(o=>{
+    if(o.type==='liste') listenListe(o);
+    else if(o.type==='mgl') listenMgl(o);
+    else if(o.type==='trucs') listenTrucs();
+    else if(o.type==='trouvailles') listenTrouvailles();
   });
 }
 
 // ACCUEIL
-function buildAccueil(div) {
-  const onglets = userCfg.onglets.filter(o => o.id !== 'accueil');
-  div.innerHTML = '<div class="accueil-welcome">Bonjour, ' + userCfg.nom + ' &#128075;</div>'
-    + '<div class="home-grid">'
-    + onglets.map(o =>
-        '<div class="home-tile ' + (o.shared ? 'home-tile-shared' : 'home-tile-priv') + '" onclick="goTab(\'' + o.id + '\',null)">'
-        + '<div class="home-tile-name">' + o.label + '</div>'
-        + '<div class="home-tile-sub">' + (o.shared ? 'Partage' : 'Prive') + '</div>'
-        + '</div>'
-      ).join('')
-    + '</div>';
+function buildAccueil(div){
+  const onglets=userCfg.onglets.filter(o=>o.id!=='accueil');
+  div.innerHTML='<div class="accueil-welcome">Bonjour, '+userCfg.nom+' &#128075;</div>'
+    +'<div class="home-grid">'
+    +onglets.map(o=>
+      '<div class="home-tile '+(o.shared?'home-tile-shared':'home-tile-priv')+'" onclick="goTab(\''+o.id+'\',null)">'
+      +'<div class="home-tile-name">'+o.label+'</div>'
+      +'<div class="home-tile-sub">'+(o.shared?'Partage':'Prive')+'</div></div>'
+    ).join('')
+    +'</div>';
+}
+
+// SECTION LISTE SIMPLE
+function buildSectionListe(div,o){
+  div.innerHTML='<div class="section-title">'+o.label+'</div>'
+    +(o.shared?'<div class="section-shared-badge">&#9733; Partage</div>':'')
+    +'<div class="liste-toolbar">'
+    +'<input class="liste-search" id="'+o.id+'-search" placeholder="Rechercher..." oninput="filterListe(\''+o.id+'\')">'
+    +'<button class="liste-btn-add" onclick="ouvrirListeModal(\''+o.id+'\')">+ Ajouter</button>'
+    +'</div>'
+    +'<div class="liste-compteur" id="'+o.id+'-compteur"></div>'
+    +'<button class="liste-btn-clear" onclick="effacerCochesListe(\''+o.id+'\')">Effacer les coches</button>'
+    +'<div class="liste-ul" id="'+o.id+'-list"><div class="liste-empty" id="'+o.id+'-empty">Aucun item pour l instant</div></div>';
 }
 
 // SECTION MGL
-function buildSectionMgl(div, onglet) {
-  const s = onglet.id;
-  div.innerHTML = '<div class="section-title">' + onglet.label + '</div>'
-    + (onglet.shared ? '<div class="section-shared-badge">&#9733; Partage</div>' : '')
-    + '<div class="mgl-toolbar">'
-    + '<input class="mgl-input" id="' + s + '-input" placeholder="Ajouter un item..." onkeydown="if(event.key===\'Enter\')ajouterRapide(\'' + s + '\')">'
-    + '<button class="mgl-btn-add" onclick="ouvrirMglModal(\'' + s + '\')">+ Ajouter</button>'
-    + '</div>'
-    + '<button class="mgl-btn-clear" onclick="effacerCoches(\'' + s + '\')">Effacer les coches</button>'
-    + '<div class="mgl-ul" id="' + s + '-list"><div class="mgl-empty" id="' + s + '-empty">Aucun item pour l instant</div></div>';
+function buildSectionMgl(div,o){
+  div.innerHTML='<div class="section-title">'+o.label+'</div>'
+    +(o.shared?'<div class="section-shared-badge">&#9733; Partage</div>':'')
+    +'<div class="mgl-toolbar">'
+    +'<input class="mgl-input" id="'+o.id+'-input" placeholder="Ajouter un item..." onkeydown="if(event.key===\'Enter\')ajouterMgl(\''+o.id+'\')">'
+    +'<button class="mgl-btn-add" onclick="ajouterMgl(\''+o.id+'\')">+ Ajouter</button>'
+    +'</div>'
+    +'<button class="mgl-btn-clear" onclick="effacerCochesMgl(\''+o.id+'\')">Effacer les coches</button>'
+    +'<div class="mgl-ul" id="'+o.id+'-list"><div class="mgl-empty" id="'+o.id+'-empty">Aucun item pour l instant</div></div>';
 }
 
 // SECTION TRUCS
-function buildSectionTrucs(div, shared) {
-  div.innerHTML = '<div class="section-title">Trucs Utiles</div>'
-    + (shared ? '<div class="section-shared-badge">&#9733; Partage</div>' : '')
-    + '<button class="btn-gold primary" onclick="ouvrirTruc()">+ Ajouter un truc</button>'
-    + '<div class="trucs-list" id="trucs-list"><div class="trucs-empty" id="trucs-empty">Aucun truc utile encore</div></div>';
+function buildSectionTrucs(div,shared){
+  div.innerHTML='<div class="section-title">Trucs Utiles</div>'
+    +(shared?'<div class="section-shared-badge">&#9733; Partage</div>':'')
+    +'<button class="btn-gold primary" onclick="ouvrirTruc()">+ Ajouter un truc</button>'
+    +'<div class="trucs-list" id="trucs-list"><div class="trucs-empty" id="trucs-empty">Aucun truc utile encore</div></div>';
 }
 
 // SECTION TROUVAILLES
-function buildSectionTrouvailles(div, shared) {
-  div.innerHTML = '<div class="section-title">Trouvailles</div>'
-    + (shared ? '<div class="section-shared-badge">&#9733; Partage</div>' : '')
-    + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">'
-    + '<span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos decouvertes et coups de coeur</span>'
-    + '<button class="btn-gold primary" onclick="ouvrirTrouvaille()">+ Ajouter</button></div>'
-    + '<div class="trouvailles-grid" id="trouvailles-grid">'
-    + '<div class="trouvailles-empty" id="trouvailles-empty" style="grid-column:1/-1">Aucune trouvaille encore</div></div>';
+function buildSectionTrouvailles(div,shared){
+  div.innerHTML='<div class="section-title">Trouvailles</div>'
+    +(shared?'<div class="section-shared-badge">&#9733; Partage</div>':'')
+    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">'
+    +'<span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos decouvertes et coups de coeur</span>'
+    +'<button class="btn-gold primary" onclick="ouvrirTrouvaille()">+ Ajouter</button></div>'
+    +'<div class="trouvailles-grid" id="trouvailles-grid">'
+    +'<div class="trouvailles-empty" id="trouvailles-empty" style="grid-column:1/-1">Aucune trouvaille encore</div></div>';
 }
 
-// COLLECTION PATH
-function getCol(section, uid, shared) {
-  if (shared) return 'beccaric_' + section;
-  return 'users/' + uid + '/' + section;
+// LISTEN LISTE
+function listenListe(o){
+  if(listeUnsubs[o.id])listeUnsubs[o.id]();
+  listeData[o.id]=[];
+  const q=query(collection(db,o.col),orderBy('createdAt','desc'));
+  listeUnsubs[o.id]=onSnapshot(q,snap=>{
+    listeData[o.id]=snap.docs.map(d=>({id:d.id,...d.data()})).filter(d=>d.createdAt!=null);
+    renderListe(o);
+  });
 }
+
+function renderListe(o,filtreQ){
+  const ul=document.getElementById(o.id+'-list');
+  const empty=document.getElementById(o.id+'-empty');
+  const cpt=document.getElementById(o.id+'-compteur');
+  if(!ul)return;
+  let items=listeData[o.id]||[];
+  if(filtreQ){items=items.filter(i=>(i.nom||'').toLowerCase().includes(filtreQ)||(i.desc||'').toLowerCase().includes(filtreQ));}
+  if(!items.length){
+    ul.innerHTML='';ul.appendChild(empty);empty.style.display='block';
+    if(cpt)cpt.textContent='';return;
+  }
+  if(!ul.contains(empty))ul.appendChild(empty);
+  empty.style.display='none';
+  const reste=items.filter(i=>!i.achete).length;
+  if(cpt)cpt.textContent=reste+' restant'+(reste>1?'s':'');
+  ul.innerHTML=items.map(item=>
+    '<div class="liste-item'+(item.achete?' achete':'')+'" data-id="'+item.id+'" data-section="'+o.id+'" data-achete="'+(item.achete?'1':'0')+'">'
+    +'<div class="liste-check liste-check-btn">'+(item.achete?'&#10003;':'')+'</div>'
+    +'<div class="liste-item-body liste-item-edit">'
+    +'<div class="liste-item-nom">'+(item.nom||'')+'</div>'
+    +(item.desc?'<div class="liste-item-desc">'+(item.desc||'')+'</div>':'')
+    +'</div>'
+    +'<button class="liste-item-del liste-item-del-btn">&#10005;</button>'
+    +'</div>'
+  ).join('');
+  ul.querySelectorAll('.liste-item').forEach(el=>{
+    const id=el.dataset.id;
+    el.querySelector('.liste-check-btn').addEventListener('click',e=>{
+      e.stopPropagation();
+      const achete=el.dataset.achete==='1';
+      updateDoc(doc(db,o.col,id),{achete:!achete}).catch(err=>toast('Erreur: '+err.message));
+    });
+    el.querySelector('.liste-item-edit').addEventListener('click',()=>ouvrirListeEdit(o.id,id));
+    el.querySelector('.liste-item-del-btn').addEventListener('click',e=>{
+      e.stopPropagation();
+      deleteDoc(doc(db,o.col,id)).catch(err=>toast('Erreur: '+err.message));
+    });
+  });
+}
+
+window.filterListe=(sid)=>{
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  if(!o)return;
+  const q=document.getElementById(sid+'-search')?.value.toLowerCase()||'';
+  renderListe(o,q||null);
+};
 
 // LISTEN MGL
-function listenMgl(section, uid, shared) {
-  if (mglUnsubs[section]) mglUnsubs[section]();
-  mglData[section] = [];
-  const colPath = getCol(section, uid, shared);
-  const q = query(collection(db, colPath), orderBy('createdAt','desc'));
-  mglUnsubs[section] = onSnapshot(q, snap => {
-    mglData[section] = snap.docs.map(d => ({id:d.id,...d.data()})).filter(d => d.createdAt != null);
-    renderMgl(section, uid, shared);
+function listenMgl(o){
+  if(mglUnsubs[o.id])mglUnsubs[o.id]();
+  mglData[o.id]=[];
+  const q=query(collection(db,o.col),orderBy('createdAt','desc'));
+  mglUnsubs[o.id]=onSnapshot(q,snap=>{
+    mglData[o.id]=snap.docs.map(d=>({id:d.id,...d.data()})).filter(d=>d.createdAt!=null);
+    renderMgl(o);
   });
 }
 
-// RENDER MGL
-function renderMgl(section, uid, shared) {
-  const ul    = document.getElementById(section + '-list');
-  const empty = document.getElementById(section + '-empty');
-  if (!ul) return;
-  if (ul.contains(document.activeElement) && document.activeElement.classList.contains('mgl-prix-edit')) return;
-  const items = mglData[section] || [];
-  if (!items.length) {
-    ul.innerHTML = ''; ul.appendChild(empty); empty.style.display = 'block'; return;
-  }
-  if (!ul.contains(empty)) ul.appendChild(empty);
-  empty.style.display = 'none';
-  const colPath = getCol(section, uid, shared);
-
-  ul.innerHTML = items.map(item => {
-    const magBadge = item.magasin ? '<span class="mgl-mag">' + item.magasin + '</span>' : '';
-    const prixVal = item.prix || '';
-    return '<div class="mgl-item' + (item.achete ? ' achete' : '') + '" data-id="' + item.id + '" data-achete="' + (item.achete ? '1' : '0') + '">'
-      + '<div class="mgl-check mgl-chk">' + (item.achete ? '&#10003;' : '') + '</div>'
-      + '<span class="mgl-nom">' + (item.nom || '') + '</span>'
-      + magBadge
-      + '<span class="mgl-prix-field mgl-prix-badge" data-prix="' + prixVal + '">' + (prixVal || '<span style="opacity:.3">prix</span>') + '</span>'
-      + '<button class="mgl-del mgl-del-btn">&#10005;</button>'
-      + '</div>';
+function renderMgl(o){
+  const ul=document.getElementById(o.id+'-list');
+  const empty=document.getElementById(o.id+'-empty');
+  if(!ul)return;
+  if(ul.contains(document.activeElement)&&document.activeElement.classList.contains('mgl-prix-edit'))return;
+  const items=mglData[o.id]||[];
+  if(!items.length){ul.innerHTML='';ul.appendChild(empty);empty.style.display='block';return;}
+  if(!ul.contains(empty))ul.appendChild(empty);
+  empty.style.display='none';
+  ul.innerHTML=items.map(item=>{
+    const magSelect=o.magasins
+      ?'<select class="mgl-select mgl-mag-sel" data-id="'+item.id+'">'
+        +o.magasins.map(m=>'<option'+(item.magasin===m?' selected':'')+'>'+m+'</option>').join('')
+        +'</select>'
+      :(item.lieu?'<span class="mgl-mag">'+item.lieu+'</span>':'');
+    return '<div class="mgl-item'+(item.achete?' achete':'')+'" data-id="'+item.id+'" data-achete="'+(item.achete?'1':'0')+'">'
+      +'<div class="mgl-check mgl-chk">'+(item.achete?'&#10003;':'')+'</div>'
+      +'<span class="mgl-nom">'+(item.nom||'')+'</span>'
+      +magSelect
+      +'<span class="mgl-prix-field mgl-prix-badge" data-prix="'+(item.prix||'')+'">'+(item.prix||'<span style="opacity:.3">prix</span>')+'</span>'
+      +'<button class="mgl-del mgl-del-btn">&#10005;</button>'
+      +'</div>';
   }).join('');
-
-  ul.querySelectorAll('.mgl-item').forEach(el => {
-    const id = el.dataset.id;
-    const item = (mglData[section] || []).find(i => i.id === id);
-
-    el.querySelector('.mgl-chk').addEventListener('click', e => {
+  ul.querySelectorAll('.mgl-item').forEach(el=>{
+    const id=el.dataset.id;
+    el.querySelector('.mgl-chk').addEventListener('click',e=>{
       e.stopPropagation();
-      const achete = el.dataset.achete === '1';
-      updateDoc(doc(db, colPath, id), { achete: !achete }).catch(err => toast('Erreur: ' + err.message));
+      const achete=el.dataset.achete==='1';
+      updateDoc(doc(db,o.col,id),{achete:!achete}).catch(err=>toast('Erreur: '+err.message));
     });
-
-    el.querySelector('.mgl-nom').addEventListener('click', () => {
-      if (!item) return;
-      ouvrirMglEdit(section, id, item, uid, shared);
-    });
-
-    el.querySelector('.mgl-del-btn').addEventListener('click', e => {
+    el.querySelector('.mgl-del-btn').addEventListener('click',e=>{
       e.stopPropagation();
-      deleteDoc(doc(db, colPath, id)).catch(err => toast('Erreur: ' + err.message));
+      deleteDoc(doc(db,o.col,id)).catch(err=>toast('Erreur: '+err.message));
     });
-
-    const prixBadge = el.querySelector('.mgl-prix-badge');
-    if (prixBadge) {
-      prixBadge.addEventListener('click', e => {
-        e.stopPropagation();
-        if (prixBadge.querySelector('input')) return;
-        const cur = prixBadge.dataset.prix || '';
-        const inp = document.createElement('input');
-        inp.value = cur; inp.placeholder = 'prix';
-        inp.className = 'mgl-prix-edit';
-        inp.autocomplete = 'off'; inp.inputMode = 'decimal';
-        prixBadge.innerHTML = ''; prixBadge.appendChild(inp);
-        inp.focus(); inp.select();
-        const save = () => {
-          const val = inp.value.trim();
-          updateDoc(doc(db, colPath, id), { prix: val }).catch(err => toast('Erreur: ' + err.message));
-          prixBadge.dataset.prix = val;
-          prixBadge.innerHTML = val || '<span style="opacity:.3">prix</span>';
-        };
-        inp.addEventListener('blur', save);
-        inp.addEventListener('keydown', e2 => { e2.stopPropagation(); if(e2.key==='Enter') inp.blur(); });
-      });
-    }
+    const sel=el.querySelector('.mgl-mag-sel');
+    if(sel)sel.addEventListener('change',e=>{
+      e.stopPropagation();
+      updateDoc(doc(db,o.col,id),{magasin:sel.value}).catch(err=>toast('Erreur: '+err.message));
+    });
+    const prixBadge=el.querySelector('.mgl-prix-badge');
+    if(prixBadge)prixBadge.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(prixBadge.querySelector('input'))return;
+      const cur=prixBadge.dataset.prix||'';
+      const inp=document.createElement('input');
+      inp.value=cur;inp.placeholder='prix';inp.className='mgl-prix-edit';
+      inp.autocomplete='off';inp.inputMode='decimal';
+      prixBadge.innerHTML='';prixBadge.appendChild(inp);
+      inp.focus();inp.select();
+      const save=()=>{
+        const val=inp.value.trim();
+        updateDoc(doc(db,o.col,id),{prix:val}).catch(err=>toast('Erreur: '+err.message));
+        prixBadge.dataset.prix=val;
+        prixBadge.innerHTML=val||'<span style="opacity:.3">prix</span>';
+      };
+      inp.addEventListener('blur',save);
+      inp.addEventListener('keydown',e2=>{e2.stopPropagation();if(e2.key==='Enter')inp.blur();});
+    });
   });
 }
 
-// OUVRIR MODAL MGL AJOUT
-window.ouvrirMglModal = (section) => {
-  const onglet = userCfg.onglets.find(o => o.id === section);
-  document.getElementById('mgl-section').value = section;
-  document.getElementById('mgl-edit-id').value = '';
-  document.getElementById('mgl-nom').value = '';
-  document.getElementById('mgl-prix').value = '';
-  document.getElementById('mgl-modal-title').textContent = 'Nouvel item - ' + (onglet ? onglet.label : '');
-  document.getElementById('mgl-delete-btn').style.display = 'none';
-  selectedMagasin = '';
-  buildMagPills('');
-  ouvrirModal('modal-mgl');
-  setTimeout(() => document.getElementById('mgl-nom').focus(), 150);
+window.ajouterMgl=async(sid)=>{
+  const input=document.getElementById(sid+'-input');
+  if(!input)return;
+  const nom=input.value.trim();
+  if(!nom){toast('Entre un nom');return;}
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  if(!o)return;
+  const data={nom,achete:false,createdAt:serverTimestamp()};
+  if(o.magasins)data.magasin=o.magasins[0];
+  else data.lieu='';
+  try{await addDoc(collection(db,o.col),data);input.value='';input.focus();}
+  catch(e){toast('Erreur: '+e.message);}
 };
 
-// OUVRIR MODAL MGL EDIT
-function ouvrirMglEdit(section, id, item, uid, shared) {
-  const onglet = userCfg.onglets.find(o => o.id === section);
-  document.getElementById('mgl-section').value = section;
-  document.getElementById('mgl-edit-id').value = id;
-  document.getElementById('mgl-nom').value = item.nom || '';
-  document.getElementById('mgl-prix').value = item.prix || '';
-  document.getElementById('mgl-modal-title').textContent = 'Modifier - ' + (onglet ? onglet.label : '');
-  document.getElementById('mgl-delete-btn').style.display = 'inline-flex';
-  selectedMagasin = item.magasin || '';
-  buildMagPills(selectedMagasin);
-  ouvrirModal('modal-mgl');
+window.effacerCochesMgl=async(sid)=>{
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  if(!o)return;
+  const coches=(mglData[sid]||[]).filter(i=>i.achete);
+  if(!coches.length){toast('Aucun item coche');return;}
+  try{await Promise.all(coches.map(i=>deleteDoc(doc(db,o.col,i.id))));toast('Items coches supprimes');}
+  catch(e){toast('Erreur: '+e.message);}
+};
+
+// LISTE MODAL
+window.ouvrirListeModal=(sid)=>{
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  document.getElementById('liste-section').value=sid;
+  document.getElementById('liste-edit-id').value='';
+  document.getElementById('liste-nom').value='';
+  document.getElementById('liste-desc').value='';
+  document.getElementById('liste-modal-title').textContent='Nouvel item - '+(o?o.label:'');
+  document.getElementById('liste-delete-btn').style.display='none';
+  ouvrirModal('modal-liste');
+  setTimeout(()=>document.getElementById('liste-nom').focus(),150);
+};
+
+window.ouvrirListeEdit=(sid,id)=>{
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  const item=(listeData[sid]||[]).find(i=>i.id===id);
+  if(!item)return;
+  document.getElementById('liste-section').value=sid;
+  document.getElementById('liste-edit-id').value=id;
+  document.getElementById('liste-nom').value=item.nom||'';
+  document.getElementById('liste-desc').value=item.desc||'';
+  document.getElementById('liste-modal-title').textContent='Modifier';
+  document.getElementById('liste-delete-btn').style.display='inline-flex';
+  ouvrirModal('modal-liste');
+};
+
+window.sauvegarderListeItem=async()=>{
+  const sid=document.getElementById('liste-section').value;
+  const id=document.getElementById('liste-edit-id').value;
+  const nom=document.getElementById('liste-nom').value.trim();
+  if(!nom){toast('Entre un nom');return;}
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  if(!o)return;
+  const desc=document.getElementById('liste-desc').value.trim();
+  try{
+    if(id)await updateDoc(doc(db,o.col,id),{nom,desc});
+    else await addDoc(collection(db,o.col),{nom,desc,achete:false,createdAt:serverTimestamp()});
+    fermerModal('modal-liste');toast('Sauvegarde');
+  }catch(e){toast('Erreur: '+e.message);}
+};
+
+window.supprimerListeItem=async()=>{
+  const sid=document.getElementById('liste-section').value;
+  const id=document.getElementById('liste-edit-id').value;
+  if(!id)return;
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  if(!o)return;
+  try{await deleteDoc(doc(db,o.col,id));fermerModal('modal-liste');toast('Supprime');}
+  catch(e){toast('Erreur: '+e.message);}
+};
+
+window.effacerCochesListe=async(sid)=>{
+  const o=userCfg.onglets.find(x=>x.id===sid);
+  if(!o)return;
+  const coches=(listeData[sid]||[]).filter(i=>i.achete);
+  if(!coches.length){toast('Aucun item coche');return;}
+  try{await Promise.all(coches.map(i=>deleteDoc(doc(db,o.col,i.id))));toast('Items coches supprimes');}
+  catch(e){toast('Erreur: '+e.message);}
+};
+
+// TRUCS
+const CAT_LABELS={maison:'Maison',cuisine:'Cuisine',sante:'Sante',techno:'Techno',autre:'Autre'};
+function listenTrucs(){
+  const q=query(collection(db,'beccaric_trucs'),orderBy('createdAt','desc'));
+  onSnapshot(q,snap=>{trucs=snap.docs.map(d=>({id:d.id,...d.data()}));renderTrucs();});
 }
-
-// BUILD PILLS MAGASIN
-function buildMagPills(selected) {
-  selectedMagasin = selected;
-  const container = document.getElementById('mag-pills-container');
-  const autreInput = document.getElementById('mag-autre-text');
-  const listeDefaut = MAGASINS.slice(0, -1);
-  const isAutre = selected && !listeDefaut.includes(selected);
-
-  container.innerHTML = MAGASINS.map(m => {
-    const isSel = m === 'Autre...' ? isAutre : m === selected;
-    return '<button type="button" class="mag-pill' + (m === 'Autre...' ? ' autre-pill' : '') + (isSel ? ' selected' : '')
-      + '" onclick="selectMagPill(this,\'' + m + '\')">' + m + '</button>';
-  }).join('');
-
-  if (isAutre) {
-    autreInput.style.display = 'block';
-    autreInput.value = selected;
-    autreInput.oninput = () => { selectedMagasin = autreInput.value.trim(); };
-  } else {
-    autreInput.style.display = 'none';
-    autreInput.value = '';
-  }
-}
-
-window.selectMagPill = (el, val) => {
-  document.querySelectorAll('.mag-pill').forEach(p => p.classList.remove('selected'));
-  el.classList.add('selected');
-  const autreInput = document.getElementById('mag-autre-text');
-  if (val === 'Autre...') {
-    autreInput.style.display = 'block';
-    autreInput.focus();
-    selectedMagasin = autreInput.value.trim() || '';
-    autreInput.oninput = () => { selectedMagasin = autreInput.value.trim(); };
-  } else {
-    autreInput.style.display = 'none';
-    autreInput.value = '';
-    selectedMagasin = val;
-  }
-};
-
-// AJOUT RAPIDE ENTER
-window.ajouterRapide = async (section) => {
-  const input = document.getElementById(section + '-input');
-  if (!input) return;
-  const nom = input.value.trim();
-  if (!nom) return;
-  const uid = currentUser.uid;
-  const onglet = userCfg.onglets.find(o => o.id === section);
-  const shared = onglet ? onglet.shared : false;
-  const colPath = getCol(section, uid, shared);
-  try {
-    await addDoc(collection(db, colPath), { nom, achete: false, createdAt: serverTimestamp() });
-    input.value = ''; input.focus();
-  } catch(e) { toast('Erreur: ' + e.message); }
-};
-
-// SAUVEGARDER MGL
-window.sauvegarderMglItem = async () => {
-  const section = document.getElementById('mgl-section').value;
-  const id      = document.getElementById('mgl-edit-id').value;
-  const nom     = document.getElementById('mgl-nom').value.trim();
-  if (!nom) { toast('Entre un nom'); return; }
-  const prix = document.getElementById('mgl-prix').value.trim();
-  const autreInput = document.getElementById('mag-autre-text');
-  let magasin = selectedMagasin;
-  if (autreInput.style.display !== 'none' && autreInput.value.trim()) {
-    magasin = autreInput.value.trim();
-  }
-  const uid = currentUser.uid;
-  const onglet = userCfg.onglets.find(o => o.id === section);
-  const shared = onglet ? onglet.shared : false;
-  const colPath = getCol(section, uid, shared);
-  try {
-    if (id) {
-      await updateDoc(doc(db, colPath, id), { nom, magasin: magasin || '', prix: prix || '' });
-      toast('Mis a jour');
-    } else {
-      await addDoc(collection(db, colPath), { nom, magasin: magasin || '', prix: prix || '', achete: false, createdAt: serverTimestamp() });
-      toast('Ajoute');
-    }
-    fermerModal('modal-mgl');
-  } catch(e) { toast('Erreur: ' + e.message); }
-};
-
-// SUPPRIMER MGL
-window.supprimerMglItem = async () => {
-  const section = document.getElementById('mgl-section').value;
-  const id      = document.getElementById('mgl-edit-id').value;
-  if (!id) return;
-  const uid = currentUser.uid;
-  const onglet = userCfg.onglets.find(o => o.id === section);
-  const shared = onglet ? onglet.shared : false;
-  const colPath = getCol(section, uid, shared);
-  try {
-    await deleteDoc(doc(db, colPath, id));
-    fermerModal('modal-mgl'); toast('Supprime');
-  } catch(e) { toast('Erreur: ' + e.message); }
-};
-
-// EFFACER COCHES
-window.effacerCoches = async (section) => {
-  const uid = currentUser.uid;
-  const onglet = userCfg.onglets.find(o => o.id === section);
-  const shared = onglet ? onglet.shared : false;
-  const colPath = getCol(section, uid, shared);
-  const coches = (mglData[section] || []).filter(i => i.achete);
-  if (!coches.length) { toast('Aucun item coche'); return; }
-  try {
-    await Promise.all(coches.map(i => deleteDoc(doc(db, colPath, i.id))));
-    toast('Items coches supprimes');
-  } catch(e) { toast('Erreur: ' + e.message); }
-};
-
-// TRUCS UTILES
-const CAT_LABELS = { maison:'Maison', cuisine:'Cuisine', sante:'Sante', techno:'Techno', autre:'Autre' };
-
-function listenTrucs() {
-  const q = query(collection(db, 'beccaric_trucs'), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    trucs = snap.docs.map(d => ({id:d.id,...d.data()}));
-    renderTrucs();
-  });
-}
-
-function renderTrucs() {
-  const list  = document.getElementById('trucs-list');
-  const empty = document.getElementById('trucs-empty');
-  if (!list) return;
-  if (!trucs.length) { list.innerHTML = ''; list.appendChild(empty); empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  list.innerHTML = trucs.map(t =>
-    '<div class="truc-card" onclick="ouvrirTrucEdit(\'' + t.id + '\')">'
-    + '<div class="truc-card-left">'
-    + '<div class="truc-card-name">' + t.titre + '</div>'
-    + '<div class="truc-card-desc">' + (t.desc || '') + '</div>'
-    + '<div class="truc-card-cat">' + (CAT_LABELS[t.cat] || t.cat || '') + '</div>'
-    + '</div><span style="color:var(--muted);font-size:.8rem">&#8250;</span></div>'
+function renderTrucs(){
+  const list=document.getElementById('trucs-list');
+  const empty=document.getElementById('trucs-empty');
+  if(!list)return;
+  if(!trucs.length){list.innerHTML='';list.appendChild(empty);empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=trucs.map(t=>
+    '<div class="truc-card" onclick="ouvrirTrucEdit(\''+t.id+'\')">'
+    +'<div class="truc-card-left">'
+    +'<div class="truc-card-name">'+(t.titre||'')+'</div>'
+    +'<div class="truc-card-desc">'+(t.desc||'')+'</div>'
+    +'<div class="truc-card-cat">'+(CAT_LABELS[t.cat]||t.cat||'')+'</div>'
+    +'</div><span style="color:var(--muted);font-size:.8rem">&#8250;</span></div>'
   ).join('');
 }
-
-window.ouvrirTruc = () => {
-  document.getElementById('truc-id').value = '';
-  document.getElementById('truc-titre').value = '';
-  document.getElementById('truc-desc').value = '';
-  document.getElementById('truc-cat').value = 'maison';
-  document.getElementById('truc-modal-title').textContent = 'Nouveau truc utile';
-  document.getElementById('truc-delete-btn').style.display = 'none';
+window.ouvrirTruc=()=>{
+  document.getElementById('truc-id').value='';
+  document.getElementById('truc-titre').value='';
+  document.getElementById('truc-desc').value='';
+  document.getElementById('truc-cat').value='maison';
+  document.getElementById('truc-modal-title').textContent='Nouveau truc utile';
+  document.getElementById('truc-delete-btn').style.display='none';
   ouvrirModal('modal-truc');
 };
-
-window.ouvrirTrucEdit = (id) => {
-  const t = trucs.find(x => x.id === id);
-  if (!t) return;
-  document.getElementById('truc-id').value = id;
-  document.getElementById('truc-titre').value = t.titre || '';
-  document.getElementById('truc-desc').value = t.desc || '';
-  document.getElementById('truc-cat').value = t.cat || 'autre';
-  document.getElementById('truc-modal-title').textContent = 'Modifier';
-  document.getElementById('truc-delete-btn').style.display = 'inline-flex';
+window.ouvrirTrucEdit=(id)=>{
+  const t=trucs.find(x=>x.id===id);if(!t)return;
+  document.getElementById('truc-id').value=id;
+  document.getElementById('truc-titre').value=t.titre||'';
+  document.getElementById('truc-desc').value=t.desc||'';
+  document.getElementById('truc-cat').value=t.cat||'autre';
+  document.getElementById('truc-modal-title').textContent='Modifier';
+  document.getElementById('truc-delete-btn').style.display='inline-flex';
   ouvrirModal('modal-truc');
 };
-
-window.sauvegarderTruc = async () => {
-  const titre = document.getElementById('truc-titre').value.trim();
-  if (!titre) { toast('Entre un titre'); return; }
-  const data = { titre, desc: document.getElementById('truc-desc').value.trim(), cat: document.getElementById('truc-cat').value };
-  try {
-    const id = document.getElementById('truc-id').value;
-    if (id) await updateDoc(doc(db, 'beccaric_trucs', id), data);
-    else await addDoc(collection(db, 'beccaric_trucs'), {...data, createdAt: serverTimestamp()});
-    fermerModal('modal-truc'); toast('Sauvegarde');
-  } catch(e) { toast('Erreur: ' + e.message); }
+window.sauvegarderTruc=async()=>{
+  const titre=document.getElementById('truc-titre').value.trim();
+  if(!titre){toast('Entre un titre');return;}
+  const data={titre,desc:document.getElementById('truc-desc').value.trim(),cat:document.getElementById('truc-cat').value};
+  try{
+    const id=document.getElementById('truc-id').value;
+    if(id)await updateDoc(doc(db,'beccaric_trucs',id),data);
+    else await addDoc(collection(db,'beccaric_trucs'),{...data,createdAt:serverTimestamp()});
+    fermerModal('modal-truc');toast('Sauvegarde');
+  }catch(e){toast('Erreur: '+e.message);}
 };
-
-window.supprimerTruc = async () => {
-  if (!confirm('Supprimer ?')) return;
-  const id = document.getElementById('truc-id').value;
-  try {
-    await deleteDoc(doc(db, 'beccaric_trucs', id));
-    fermerModal('modal-truc'); toast('Supprime');
-  } catch(e) { toast('Erreur: ' + e.message); }
+window.supprimerTruc=async()=>{
+  if(!confirm('Supprimer ?'))return;
+  const id=document.getElementById('truc-id').value;
+  try{await deleteDoc(doc(db,'beccaric_trucs',id));fermerModal('modal-truc');toast('Supprime');}
+  catch(e){toast('Erreur: '+e.message);}
 };
 
 // TROUVAILLES
-function listenTrouvailles() {
-  const q = query(collection(db, 'beccaric_trouvailles'), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    trouvailles = snap.docs.map(d => ({id:d.id,...d.data()}));
-    renderTrouvailles();
-  });
+function listenTrouvailles(){
+  const q=query(collection(db,'beccaric_trouvailles'),orderBy('createdAt','desc'));
+  onSnapshot(q,snap=>{trouvailles=snap.docs.map(d=>({id:d.id,...d.data()}));renderTrouvailles();});
 }
-
-function renderTrouvailles() {
-  const grid  = document.getElementById('trouvailles-grid');
-  const empty = document.getElementById('trouvailles-empty');
-  if (!grid) return;
-  if (!trouvailles.length) { grid.innerHTML = ''; grid.appendChild(empty); empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  grid.innerHTML = trouvailles.map(t =>
-    '<div class="trouvaille-card" onclick="ouvrirTrouvailleEdit(\'' + t.id + '\')">'
-    + '<div class="trouvaille-img">'
-    + (t.photoURL ? '<img src="' + t.photoURL + '" alt="' + (t.nom || '') + '" loading="lazy">' : '&#10084;&#65039;')
-    + '</div><div class="trouvaille-body">'
-    + '<div class="trouvaille-name">' + (t.nom || 'Trouvaille') + '</div>'
-    + '<div class="trouvaille-desc">' + (t.desc || '') + '</div>'
-    + '</div></div>'
+function renderTrouvailles(){
+  const grid=document.getElementById('trouvailles-grid');
+  const empty=document.getElementById('trouvailles-empty');
+  if(!grid)return;
+  if(!trouvailles.length){grid.innerHTML='';grid.appendChild(empty);empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=trouvailles.map(t=>
+    '<div class="trouvaille-card" onclick="ouvrirTrouvailleEdit(\''+t.id+'\')">'
+    +'<div class="trouvaille-img">'+(t.photoURL?'<img src="'+t.photoURL+'" alt="'+(t.nom||'')+'" loading="lazy">':'&#10084;&#65039;')+'</div>'
+    +'<div class="trouvaille-body">'
+    +'<div class="trouvaille-name">'+(t.nom||'Trouvaille')+'</div>'
+    +'<div class="trouvaille-desc">'+(t.desc||'')+'</div>'
+    +'</div></div>'
   ).join('');
 }
-
-window.ouvrirTrouvaille = () => {
-  document.getElementById('trouvaille-id').value = '';
-  document.getElementById('trouvaille-nom').value = '';
-  document.getElementById('trouvaille-desc').value = '';
-  trouvaillePhotoBase64 = null;
-  resetPhotoWrap();
-  document.getElementById('trouvaille-modal-title').textContent = 'Nouvelle trouvaille';
-  document.getElementById('trouvaille-delete-btn').style.display = 'none';
+window.ouvrirTrouvaille=()=>{
+  document.getElementById('trouvaille-id').value='';
+  document.getElementById('trouvaille-nom').value='';
+  document.getElementById('trouvaille-desc').value='';
+  trouvaillePhotoBase64=null;resetPhotoWrap();
+  document.getElementById('trouvaille-modal-title').textContent='Nouvelle trouvaille';
+  document.getElementById('trouvaille-delete-btn').style.display='none';
   ouvrirModal('modal-trouvaille');
 };
-
-window.ouvrirTrouvailleEdit = (id) => {
-  const t = trouvailles.find(x => x.id === id);
-  if (!t) return;
-  document.getElementById('trouvaille-id').value = id;
-  document.getElementById('trouvaille-nom').value = t.nom || '';
-  document.getElementById('trouvaille-desc').value = t.desc || '';
-  trouvaillePhotoBase64 = null;
-  const wrap = document.getElementById('trouvaille-photo-wrap');
-  wrap.innerHTML = '';
-  if (t.photoURL) {
-    const img = document.createElement('img');
-    img.src = t.photoURL;
-    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+window.ouvrirTrouvailleEdit=(id)=>{
+  const t=trouvailles.find(x=>x.id===id);if(!t)return;
+  document.getElementById('trouvaille-id').value=id;
+  document.getElementById('trouvaille-nom').value=t.nom||'';
+  document.getElementById('trouvaille-desc').value=t.desc||'';
+  trouvaillePhotoBase64=null;
+  const wrap=document.getElementById('trouvaille-photo-wrap');
+  wrap.innerHTML='';
+  if(t.photoURL){
+    const img=document.createElement('img');
+    img.src=t.photoURL;img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
     wrap.appendChild(img);
-  } else {
-    wrap.innerHTML = '<div class="photo-upload-icon">&#128247;</div><div class="photo-upload-label">Appuyer pour ajouter</div>';
+  }else{
+    wrap.innerHTML='<div class="photo-upload-icon">&#128247;</div><div class="photo-upload-label">Appuyer pour ajouter</div>';
   }
-  const inp = document.createElement('input');
-  inp.type = 'file'; inp.accept = 'image/*'; inp.className = 'photo-upload-input';
-  inp.onchange = e => previewTrouvaillePhoto(e.target);
-  wrap.appendChild(inp);
-  wrap.onclick = () => inp.click();
-  const chgBtn = document.createElement('button');
-  chgBtn.className = 'photo-change-btn'; chgBtn.textContent = 'Changer';
-  chgBtn.onclick = e => { e.stopPropagation(); inp.click(); };
-  wrap.appendChild(chgBtn);
-  document.getElementById('trouvaille-modal-title').textContent = 'Modifier';
-  document.getElementById('trouvaille-delete-btn').style.display = 'inline-flex';
+  const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.className='photo-upload-input';
+  inp.onchange=e=>previewTrouvaillePhoto(e.target);wrap.appendChild(inp);wrap.onclick=()=>inp.click();
+  const chgBtn=document.createElement('button');chgBtn.className='photo-change-btn';chgBtn.textContent='Changer';
+  chgBtn.onclick=e=>{e.stopPropagation();inp.click();};wrap.appendChild(chgBtn);
+  document.getElementById('trouvaille-modal-title').textContent='Modifier';
+  document.getElementById('trouvaille-delete-btn').style.display='inline-flex';
   ouvrirModal('modal-trouvaille');
 };
-
-window.previewTrouvaillePhoto = (input) => {
-  if (!input.files[0]) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    trouvaillePhotoBase64 = e.target.result;
-    const wrap = document.getElementById('trouvaille-photo-wrap');
-    let img = wrap.querySelector('img.preview');
-    if (!img) {
-      wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(el => el.style.display = 'none');
-      img = document.createElement('img'); img.className = 'preview';
-      img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-      wrap.insertBefore(img, wrap.firstChild);
-    }
-    img.src = e.target.result;
-    const btn = document.getElementById('trouvaille-change-btn');
-    if (btn) btn.style.display = 'block';
+window.previewTrouvaillePhoto=(input)=>{
+  if(!input.files[0])return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    trouvaillePhotoBase64=e.target.result;
+    const wrap=document.getElementById('trouvaille-photo-wrap');
+    wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(el=>el.style.display='none');
+    let img=wrap.querySelector('img.preview');
+    if(!img){img=document.createElement('img');img.className='preview';img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';wrap.insertBefore(img,wrap.firstChild);}
+    img.src=e.target.result;
+    const btn=document.getElementById('trouvaille-change-btn');if(btn)btn.style.display='block';
   };
   reader.readAsDataURL(input.files[0]);
 };
-
-window.sauvegarderTrouvaille = async () => {
-  const nom = document.getElementById('trouvaille-nom').value.trim();
-  if (!nom) { toast('Entre un nom'); return; }
-  const data = { nom, desc: document.getElementById('trouvaille-desc').value.trim() };
-  try {
-    let photoURL = null;
-    if (trouvaillePhotoBase64) {
-      const path = 'beccaric_trouvailles/' + Date.now() + '.jpg';
-      const storageRef = sRef(storage, path);
-      await uploadString(storageRef, trouvaillePhotoBase64, 'data_url');
-      photoURL = await getDownloadURL(storageRef);
+window.sauvegarderTrouvaille=async()=>{
+  const nom=document.getElementById('trouvaille-nom').value.trim();
+  if(!nom){toast('Entre un nom');return;}
+  const data={nom,desc:document.getElementById('trouvaille-desc').value.trim()};
+  try{
+    let photoURL=null;
+    if(trouvaillePhotoBase64){
+      const path='beccaric_trouvailles/'+Date.now()+'.jpg';
+      const storageRef=sRef(storage,path);
+      await uploadString(storageRef,trouvaillePhotoBase64,'data_url');
+      photoURL=await getDownloadURL(storageRef);
     }
-    const id = document.getElementById('trouvaille-id').value;
-    if (id) {
-      const updates = {...data};
-      if (trouvaillePhotoBase64) updates.photoURL = photoURL;
-      await updateDoc(doc(db, 'beccaric_trouvailles', id), updates);
-    } else {
-      await addDoc(collection(db, 'beccaric_trouvailles'), {...data, photoURL, createdAt: serverTimestamp()});
-    }
-    fermerModal('modal-trouvaille'); toast('Sauvegarde');
-  } catch(e) { toast('Erreur: ' + e.message); }
+    const id=document.getElementById('trouvaille-id').value;
+    if(id){const updates={...data};if(trouvaillePhotoBase64)updates.photoURL=photoURL;await updateDoc(doc(db,'beccaric_trouvailles',id),updates);}
+    else await addDoc(collection(db,'beccaric_trouvailles'),{...data,photoURL,createdAt:serverTimestamp()});
+    fermerModal('modal-trouvaille');toast('Sauvegarde');
+  }catch(e){toast('Erreur: '+e.message);}
 };
-
-window.supprimerTrouvaille = async () => {
-  if (!confirm('Supprimer ?')) return;
-  const id = document.getElementById('trouvaille-id').value;
-  try {
-    await deleteDoc(doc(db, 'beccaric_trouvailles', id));
-    fermerModal('modal-trouvaille'); toast('Supprime');
-  } catch(e) { toast('Erreur: ' + e.message); }
+window.supprimerTrouvaille=async()=>{
+  if(!confirm('Supprimer ?'))return;
+  const id=document.getElementById('trouvaille-id').value;
+  try{await deleteDoc(doc(db,'beccaric_trouvailles',id));fermerModal('modal-trouvaille');toast('Supprime');}
+  catch(e){toast('Erreur: '+e.message);}
 };
-
-function resetPhotoWrap() {
-  const wrap = document.getElementById('trouvaille-photo-wrap');
-  wrap.querySelectorAll('img.preview').forEach(e => e.remove());
-  wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e => e.style.display = '');
-  const btn = document.getElementById('trouvaille-change-btn');
-  if (btn) btn.style.display = 'none';
-  const inp = document.getElementById('trouvaille-photo-input');
-  if (inp) inp.value = '';
+function resetPhotoWrap(){
+  const wrap=document.getElementById('trouvaille-photo-wrap');
+  wrap.querySelectorAll('img.preview').forEach(e=>e.remove());
+  wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e=>e.style.display='');
+  const btn=document.getElementById('trouvaille-change-btn');if(btn)btn.style.display='none';
+  const inp=document.getElementById('trouvaille-photo-input');if(inp)inp.value='';
 }
 
-// API KEY
-window.saveApiKey = () => {
-  const input = document.getElementById('api-key-input');
-  const key = input?.value.trim();
-  const status = document.getElementById('api-key-status');
-  if (key && key.startsWith('sk-ant-')) {
-    localStorage.setItem('bhq_api_key', key);
-    if (status) { status.style.display = 'block'; status.textContent = 'Cle active'; status.style.color = '#34C472'; }
-  } else {
-    if (status) { status.style.display = 'block'; status.textContent = 'Cle invalide'; status.style.color = '#F06060'; }
+// API KEY / SETTINGS
+window.saveApiKey=()=>{
+  const input=document.getElementById('api-key-input');
+  const key=input?.value.trim();
+  const status=document.getElementById('api-key-status');
+  if(key&&key.startsWith('sk-ant-')){
+    localStorage.setItem('bhq_api_key',key);
+    if(status){status.style.display='block';status.textContent='Cle active';status.style.color='#34C472';}
+  }else{
+    if(status){status.style.display='block';status.textContent='Cle invalide';status.style.color='#F06060';}
   }
 };
-window.toggleApiKey = () => {
-  const input = document.getElementById('api-key-input');
-  if (input) input.type = input.type === 'password' ? 'text' : 'password';
+window.toggleApiKey=()=>{
+  const input=document.getElementById('api-key-input');
+  if(input)input.type=input.type==='password'?'text':'password';
 };
-
-// SETTINGS
-window.ouvrirSettings = () => {
-  const pwd = prompt('Mot de passe parametres :');
-  if (pwd === 'Leia2022') {
-    const saved = localStorage.getItem('bhq_api_key');
-    if (saved) {
-      const input = document.getElementById('api-key-input');
-      if (input) input.value = saved;
-      const status = document.getElementById('api-key-status');
-      if (status) { status.style.display = 'block'; status.textContent = 'Cle active'; status.style.color = '#34C472'; }
+window.ouvrirSettings=()=>{
+  const pwd=prompt('Mot de passe parametres :');
+  if(pwd==='Leia2022'){
+    const saved=localStorage.getItem('bhq_api_key');
+    if(saved){
+      const input=document.getElementById('api-key-input');if(input)input.value=saved;
+      const status=document.getElementById('api-key-status');
+      if(status){status.style.display='block';status.textContent='Cle active';status.style.color='#34C472';}
     }
     ouvrirModal('modal-settings');
-  } else if (pwd !== null) {
-    toast('Mot de passe incorrect');
-  }
+  }else if(pwd!==null){toast('Mot de passe incorrect');}
 };
 
-// PREVENT BACK BUTTON
-history.pushState(null, '', window.location.href);
-window.addEventListener('popstate', () => {
-  history.pushState(null, '', window.location.href);
-  goTab('accueil', null);
+// CLOSE MODAL ON OVERLAY
+document.querySelectorAll('.modal-overlay').forEach(overlay=>{
+  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.classList.remove('open');});
 });
 
-// CLOSE MODAL ON OVERLAY CLICK
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
-});
-
+history.pushState(null,'',window.location.href);
+window.addEventListener('popstate',()=>{history.pushState(null,'',window.location.href);goTab('accueil',null);});
 </script>
 </body>
 </html>
