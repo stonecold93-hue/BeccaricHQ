@@ -773,6 +773,7 @@ function renderListe(section) {
   const ul    = document.getElementById(section + '-list');
   const empty = document.getElementById(section + '-empty');
   const cpt   = document.getElementById(section + '-compteur');
+  if (!ul || !empty) return;
   const items = listeData[section];
   const reste = items.filter(i => !i.achete).length;
   if (!items.length) {
