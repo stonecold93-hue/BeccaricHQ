@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BeccaricHQ</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='body' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23C47D0E'/%3E%3Cstop offset='100%25' stop-color='%236A3E00'/%3E%3C/linearGradient%3E%3ClinearGradient id='lid' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FFE99A'/%3E%3Cstop offset='60%25' stop-color='%23D4921A'/%3E%3Cstop offset='100%25' stop-color='%238A5600'/%3E%3C/linearGradient%3E%3ClinearGradient id='band' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23F4C040'/%3E%3Cstop offset='100%25' stop-color='%238A5600'/%3E%3C/linearGradient%3E%3ClinearGradient id='metal' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FFE99A'/%3E%3Cstop offset='100%25' stop-color='%23C47D0E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='61' rx='20' ry='3' fill='%23000' opacity='.3'/%3E%3Crect x='6' y='34' width='52' height='24' rx='3' fill='url(%23body)'/%3E%3Cline x1='6' y1='42' x2='58' y2='42' stroke='%237A4800' stroke-width='.8' opacity='.5'/%3E%3Cline x1='6' y1='50' x2='58' y2='50' stroke='%237A4800' stroke-width='.8' opacity='.5'/%3E%3Crect x='6' y='34' width='52' height='5' fill='url(%23band)'/%3E%3Crect x='6' y='53' width='52' height='5' fill='url(%23band)'/%3E%3Crect x='4' y='12' width='56' height='24' rx='3' fill='url(%23lid)'/%3E%3Cline x1='4' y1='20' x2='60' y2='20' stroke='%238A5600' stroke-width='.8' opacity='.4'/%3E%3Cline x1='4' y1='28' x2='60' y2='28' stroke='%238A5600' stroke-width='.8' opacity='.4'/%3E%3Crect x='4' y='12' width='56' height='4' fill='rgba(255%2C245%2C180%2C0.25)'/%3E%3Crect x='4' y='32' width='56' height='5' fill='url(%23band)'/%3E%3Crect x='4' y='12' width='56' height='4' fill='url(%23band)'/%3E%3Ccircle cx='10' cy='37' r='3' fill='url(%23metal)'/%3E%3Ccircle cx='54' cy='37' r='3' fill='url(%23metal)'/%3E%3Ccircle cx='10' cy='55' r='3' fill='url(%23metal)'/%3E%3Ccircle cx='54' cy='55' r='3' fill='url(%23metal)'/%3E%3Ccircle cx='10' cy='15' r='3' fill='url(%23metal)'/%3E%3Ccircle cx='54' cy='15' r='3' fill='url(%23metal)'/%3E%3Crect x='22' y='10' width='20' height='4' rx='2' fill='url(%23metal)'/%3E%3Crect x='24' y='31' width='16' height='10' rx='2' fill='url(%23band)'/%3E%3Cpath d='M28 34 Q28 28 32 28 Q36 28 36 34' stroke='url(%23metal)' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Crect x='26' y='33' width='12' height='7' rx='1.5' fill='url(%23metal)'/%3E%3Ccircle cx='32' cy='36' r='1.8' fill='%233A1A00'/%3E%3Crect x='31.2' y='37' width='1.6' height='2.5' rx='.6' fill='%233A1A00'/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -16,19 +16,15 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-height:100vh;}
 
-/* ── TOAST ── */
+/* TOAST */
 #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1000;border:1px solid var(--gold2);color:var(--gold1);padding:.6rem 1.4rem;border-radius:6px;font-size:.72rem;letter-spacing:.1em;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
 #toast.show{opacity:1;}
 
-/* ── AUTH ── */
+/* AUTH */
 #auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:radial-gradient(ellipse at center,#081020 0%,#020408 70%);position:relative;overflow:hidden;}
 #auth-screen::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(ellipse,rgba(90,180,240,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
 .auth-card{display:flex;flex-direction:column;align-items:center;gap:2rem;background:#040C14;border:1px solid var(--gold2);border-radius:12px;padding:3rem 2.5rem;max-width:400px;width:100%;box-shadow:0 0 80px rgba(90,180,240,0.1);z-index:1;}
-
-/* chest on login */
 .auth-chest{margin-bottom:.5rem;}
-
-/* auth wordmark */
 .auth-wm{display:flex;flex-direction:column;align-items:center;gap:10px;}
 .auth-orn{display:flex;align-items:center;gap:10px;}
 .auth-orn-line{width:40px;height:.5px;background:var(--gold2);}
@@ -37,27 +33,23 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .auth-main{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;letter-spacing:.08em;background:linear-gradient(170deg,#FFFFFF,#7EC8F4,#2389D4,#0A3A6E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:.95;}
 .auth-hq{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;font-weight:300;letter-spacing:.5em;color:var(--g3);display:block;margin-top:4px;}
 .auth-tagline{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.35em;color:var(--red);text-transform:uppercase;margin-top:2px;}
-
 .auth-divider{display:flex;align-items:center;gap:1rem;width:100%;}
 .auth-divider-line{flex:1;height:1px;background:var(--border);}
 .auth-divider-text{font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
-
 .btn-google{display:flex;align-items:center;gap:.75rem;background:#040C14;color:var(--gold0);border:1px solid var(--gold2);border-radius:6px;padding:.85rem 2rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;width:100%;justify-content:center;}
 .btn-google:hover{background:#081828;border-color:var(--gold0);box-shadow:0 0 30px rgba(90,180,240,0.2);color:#fff;}
 .btn-google svg{width:18px;height:18px;flex-shrink:0;}
-
 .auth-note{font-size:.65rem;letter-spacing:.2em;color:var(--gold4);text-align:center;line-height:1.8;text-transform:uppercase;opacity:.6;}
 
-/* ── APP ── */
+/* APP */
 #app{display:none;}
 
-/* ── TOPNAV ── */
+/* TOPNAV */
 .topnav{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1.25rem;background:#040810;border-bottom:1px solid var(--gold4);position:sticky;top:0;z-index:100;}
 .topnav-logo{display:flex;align-items:center;gap:0;flex:1;}
 .tnav-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:15px;letter-spacing:.2em;background:linear-gradient(170deg,#E0F4FF,#7EC8F4,#2389D4,#0E5CA4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .tnav-sep{width:.5px;height:18px;background:rgba(35,137,212,0.35);margin:0 8px;align-self:center;}
 .tnav-hq{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;letter-spacing:.15em;background:linear-gradient(170deg,#E0F4FF,#7EC8F4,#2389D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.tnav-tagline{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;font-weight:300;background:linear-gradient(170deg,#FFFBF0,#F9E07F,#F4A623,#C47D0E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em;margin-left:1rem;opacity:.8;}
 .topnav-right{display:flex;align-items:center;gap:.5rem;margin-left:auto;}
 .user-avatar{width:28px;height:28px;border-radius:50%;border:1px solid var(--gold2);cursor:pointer;}
 .btn-settings{background:transparent;border:none;font-size:1rem;cursor:pointer;padding:0 4px;opacity:.5;transition:opacity .15s;}
@@ -65,20 +57,24 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .btn-logout-icon{background:transparent;border:1px solid var(--gold4);color:var(--gold3);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.75rem;cursor:pointer;transition:all .15s;padding:0;}
 .btn-logout-icon:hover{border-color:var(--gold1);color:var(--gold0);}
 
-/* ── TABS ── */
+/* TABS */
 .tabs{display:flex;gap:.35rem;padding:.6rem 1.25rem;overflow-x:auto;background:#040810;border-bottom:1px solid var(--gold4);scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
 .tab{display:flex;align-items:center;gap:.35rem;padding:.35rem .8rem;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.05em;cursor:pointer;white-space:nowrap;transition:all .15s;}
 .tab.active{background:#081828;border-color:var(--gold1);color:var(--gold0);box-shadow:0 0 10px rgba(90,180,240,0.15);}
 .tab:hover:not(.active){border-color:var(--gold3);color:var(--gold1);}
+.tab.shared{border-color:#1A5A1A;}
+.tab.shared.active{border-color:#34C472;color:#A8F0C4;background:#041408;box-shadow:0 0 10px rgba(52,196,114,0.15);}
+.tab.shared:hover:not(.active){border-color:#34C472;color:#34C472;}
 
-/* ── CONTENT ── */
+/* CONTENT */
 .content{max-width:720px;margin:0 auto;padding:1.25rem;}
 .section{display:none;}
 .section.active{display:block;}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;background:linear-gradient(170deg,#FFFFFF,#A0DCFF,#5AB4F0,#2389D4,#0A3A6E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.section-shared-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.58rem;letter-spacing:.15em;color:#34C472;text-transform:uppercase;background:#041408;border:1px solid #1A5A1A;border-radius:3px;padding:2px 6px;margin-bottom:.75rem;}
 
-/* ── BUTTONS ── */
+/* BUTTONS */
 .btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:#040C14;border:1px solid var(--gold2);color:var(--gold1);border-radius:5px;padding:.55rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .btn-gold:hover{background:#081828;border-color:var(--gold0);box-shadow:0 0 16px rgba(90,180,240,0.2);}
 .btn-gold.primary{background:linear-gradient(135deg,#081828,#040C14);border-color:var(--gold1);}
@@ -86,7 +82,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .btn-danger{border-color:#5A1010;color:#F06060;}
 .btn-danger:hover{background:#1A0505;border-color:#F06060;}
 
-/* ── MODAL ── */
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem;}
 .modal-overlay.open{display:flex;}
 .modal{background:#040C14;border:1px solid var(--gold2);border-radius:10px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
@@ -99,169 +95,24 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .btn-cancel{padding:.5rem 1rem;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:.7rem;cursor:pointer;}
 .btn-cancel:hover{border-color:var(--gold4);color:var(--gold2);}
 
-/* ══════════════════════════════
-   LISTES D ACHAT (Dollo / Quincaillerie / Walmart)
-══════════════════════════════ */
-.liste-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:.5rem;flex-wrap:wrap;}
-.liste-item-share{background:none;border:none;font-size:.85rem;cursor:pointer;padding:2px 5px;flex-shrink:0;opacity:0;transition:opacity .15s;}
-.liste-item:hover .liste-item-share{opacity:1;}
-.dollo-subtabs{display:flex;gap:.5rem;margin-bottom:1rem;}
-.dollo-subtab{background:transparent;border:1px solid #1A3A55;color:#5A7A9A;border-radius:20px;padding:.35rem .9rem;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;cursor:pointer;transition:all .2s;}
-.dollo-subtab.active{background:#0A2A45;border-color:#5AB4F0;color:#BAE0FF;}
-.dollo-subtab:hover:not(.active){border-color:#3A6A9A;color:#8ABCD0;}
-.liste-search{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.45rem .8rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#C8C8C8;outline:none;transition:border .15s;}
-.liste-search:focus{border-color:var(--gold2);}
-.liste-compteur{font-size:.6rem;color:var(--muted);letter-spacing:.1em;}
-.liste-ul{display:flex;flex-direction:column;gap:.45rem;margin-top:.25rem;}
-.liste-item{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.75rem 1rem;display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;transition:all .2s;position:relative;}
-.liste-item:hover{border-color:var(--gold4);}
-.liste-item.achete{opacity:.45;border-color:var(--border);}
-.liste-item.achete .liste-item-nom{text-decoration:line-through;color:var(--muted);}
-.liste-check{width:20px;height:20px;border-radius:50%;border:1.5px solid #3A6A9A;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;}
-.liste-item.achete .liste-check{background:#3A6A9A;border-color:#3A6A9A;}
-.liste-item-body{flex:1;min-width:0;}
-.liste-item-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;line-height:1.3;}
-.liste-item-desc{font-size:.62rem;color:#7A9AAA;margin-top:2px;line-height:1.5;}
-.liste-item-del{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;padding:2px 5px;opacity:0;transition:opacity .15s;}
-.liste-item:hover .liste-item-del{opacity:.6;}
-.liste-item-del:hover{opacity:1 !important;color:#F06060;}
-.liste-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
-
-/* photo upload preview */
-.photo-upload-wrap{position:relative;width:100%;aspect-ratio:4/3;background:#1A1000;border:1px dashed var(--gold4);border-radius:6px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;transition:border .2s;}
-.photo-upload-wrap:hover{border-color:var(--gold2);}
-.photo-upload-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.photo-upload-label{font-size:.65rem;letter-spacing:.15em;color:var(--gold3);text-transform:uppercase;text-align:center;}
-.photo-upload-icon{font-size:1.8rem;opacity:.4;}
-.photo-upload-input{display:none;}
-.photo-change-btn{position:absolute;bottom:8px;right:8px;background:rgba(6,4,4,.8);border:1px solid var(--gold3);color:var(--gold1);border-radius:4px;padding:.2rem .5rem;font-size:.6rem;font-family:'DM Mono',monospace;cursor:pointer;letter-spacing:.1em;}
-
-/* ══════════════════════════════
-   CHAT
-══════════════════════════════ */
-.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 180px);min-height:400px;}
-.chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.75rem;padding:.5rem 0;margin-bottom:.75rem;}
-.chat-msg{display:flex;flex-direction:column;max-width:78%;}
-.chat-msg.mine{align-self:flex-end;align-items:flex-end;}
-.chat-msg.theirs{align-self:flex-start;align-items:flex-start;}
-.chat-bubble{padding:.6rem .9rem;border-radius:12px;font-size:.8rem;line-height:1.6;}
-.chat-msg.mine .chat-bubble{background:linear-gradient(135deg,#081828,#0A2A40);border:1px solid var(--gold2);color:var(--gold0);border-bottom-right-radius:3px;}
-.chat-msg.theirs .chat-bubble{background:var(--panel);border:1px solid var(--border);color:#C8D8E8;border-bottom-left-radius:3px;}
-.chat-meta{font-size:.58rem;color:var(--muted);margin-top:3px;letter-spacing:.08em;}
-.chat-input-row{display:flex;gap:.5rem;align-items:flex-end;}
-.chat-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.65rem .9rem;font-family:'DM Mono',monospace;font-size:.78rem;color:#C8C8C8;outline:none;resize:none;min-height:42px;max-height:120px;line-height:1.5;transition:border .15s;}
-.chat-input:focus{border-color:var(--gold2);}
-.chat-send{background:linear-gradient(135deg,#081828,#040C14);border:1px solid var(--gold1);color:var(--gold0);border-radius:8px;padding:.65rem .9rem;cursor:pointer;font-size:1rem;transition:all .2s;flex-shrink:0;}
-.chat-send:hover{border-color:var(--gold0);box-shadow:0 0 12px rgba(90,180,240,0.25);}
-.chat-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
-
-/* ══════════════════════════════
-   TRUCS UTILES
-══════════════════════════════ */
-.trucs-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.75rem;}
-.truc-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;transition:all .15s;cursor:pointer;}
-.truc-card:hover{border-color:var(--gold2);background:var(--panel2);}
-.truc-card-left{flex:1;min-width:0;}
-.truc-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:#A0D8F0;}
-.truc-card-desc{font-size:.68rem;color:#8AAABB;margin-top:3px;line-height:1.5;}
-.truc-card-cat{font-size:.58rem;letter-spacing:.15em;color:#5A9ABB;text-transform:uppercase;margin-top:.3rem;}
-.trucs-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
-
-/* ══════════════════════════════
-   TROUVAILLES
-══════════════════════════════ */
-.trouvailles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
-.trouvaille-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;}
-.trouvaille-card:hover{border-color:var(--gold3);box-shadow:0 0 20px rgba(244,166,35,0.08);}
-.trouvaille-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--border);}
-.trouvaille-img img{width:100%;height:100%;object-fit:cover;}
-.trouvaille-body{padding:.65rem .75rem;}
-.trouvaille-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.trouvaille-desc{font-size:.62rem;color:var(--muted);line-height:1.5;margin-top:2px;}
-.trouvailles-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
-
-/* ── COMING SOON ── */
-.coming-soon{text-align:center;padding:4rem 1rem;display:flex;flex-direction:column;align-items:center;gap:1rem;}
-.coming-soon-icon{font-size:3rem;opacity:.3;}
-.coming-soon-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--gold3);}
-.coming-soon-sub{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
-
-@media(max-width:480px){
-
-  .trouvailles-grid{grid-template-columns:repeat(2,1fr);}
-  .auth-main{font-size:40px;}
-  .modal{padding:1.1rem;}
-}
-
-/* ══ ACCUEIL ══ */
-.accueil-welcome{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;font-style:italic;font-weight:300;
-  color:var(--gold2);margin-bottom:1.25rem;
-  letter-spacing:.08em;
-}
-.home-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.home-tile{
-  border-radius:10px;padding:1.25rem 1rem;
-  display:flex;flex-direction:column;gap:6px;
-  position:relative;overflow:hidden;
-  cursor:pointer;transition:all .2s;
-  border:1px solid transparent;
-}
+/* ACCUEIL */
+.accueil-welcome{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;font-weight:300;color:var(--gold2);margin-bottom:1.25rem;letter-spacing:.08em;}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.home-tile{border-radius:10px;padding:1.25rem 1rem;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;cursor:pointer;transition:all .2s;border:1px solid transparent;}
 .home-tile:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
-.home-tile::before{
-  content:"";position:absolute;
-  width:80px;height:80px;border-radius:50%;
-  top:-10px;right:-10px;opacity:.1;pointer-events:none;
-}
-.home-tile-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.2rem;font-weight:600;letter-spacing:.05em;line-height:1;
-}
-.home-tile-sub{
-  font-family:'DM Mono',monospace;
-  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:.5;line-height:1.4;
-}
-/* tile colors */
-.t-dollo{background:#020810;border-color:#0A3A6A;}
-.t-dollo::before{background:#5AB4F0;}
-.t-dollo .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-dollo .home-tile-sub{color:#5AB4F0;}
-.t-chat{background:#0E0900;border-color:#6B4400;}
-.t-chat::before{background:#F4A623;}
-.t-chat .home-tile-name{background:linear-gradient(160deg,#FFFBF0,#F4A623,#C47D0E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-chat .home-tile-sub{color:#C47D0E;}
-.t-trucs{background:#020810;border-color:#0A3A6A;}
-.t-trucs::before{background:#5AB4F0;}
-.t-trucs .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-trucs .home-tile-sub{color:#5AB4F0;}
-.t-trouvailles{background:#020810;border-color:#0A3A6A;}
-.t-trouvailles::before{background:#5AB4F0;}
-.t-trouvailles .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-quinc{background:#020810;border-color:#0A3A6A;}
-.t-quinc::before{background:#5AB4F0;}
-.t-quinc .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-quinc .home-tile-sub{color:#5AB4F0;}
-.t-walmart{background:#020810;border-color:#0A3A6A;}
-.t-walmart::before{background:#5AB4F0;}
-.t-walmart .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-walmart .home-tile-sub{color:#5AB4F0;}
-.t-trouvailles .home-tile-sub{color:#5AB4F0;}
-.t-aprevoir{background:#020810;border-color:#0A3A6A;}
-.t-aprevoir::before{background:#5AB4F0;}
-.t-aprevoir .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-aprevoir .home-tile-sub{color:#5AB4F0;}
-.t-pharmacie{background:#020810;border-color:#0A3A6A;}
-.t-pharmacie::before{background:#5AB4F0;}
-.t-pharmacie .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.t-pharmacie .home-tile-sub{color:#5AB4F0;}
+.home-tile::before{content:"";position:absolute;width:80px;height:80px;border-radius:50%;top:-10px;right:-10px;opacity:.1;pointer-events:none;}
+.home-tile-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;letter-spacing:.05em;line-height:1;}
+.home-tile-sub{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:.5;line-height:1.4;}
+.home-tile-priv{background:#020810;border-color:#0A3A6A;}
+.home-tile-priv::before{background:#5AB4F0;}
+.home-tile-priv .home-tile-name{background:linear-gradient(160deg,#BAE0FF,#5AB4F0,#1A7EC4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.home-tile-priv .home-tile-sub{color:#5AB4F0;}
+.home-tile-shared{background:#020A04;border-color:#1A5A1A;}
+.home-tile-shared::before{background:#34C472;}
+.home-tile-shared .home-tile-name{background:linear-gradient(160deg,#A8F0C4,#34C472,#065C2A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.home-tile-shared .home-tile-sub{color:#34C472;}
 
-/* ══════════════════════════════
-   MGL — LISTES INLINE (Quinc / Pharmacie / A prevoir)
-══════════════════════════════ */
+/* MGL */
 .mgl-toolbar{display:flex;gap:.5rem;margin-bottom:.6rem;flex-wrap:wrap;}
 .mgl-input{flex:1;min-width:160px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.5rem .85rem;font-family:'DM Mono',monospace;font-size:.75rem;color:#C8D8E8;outline:none;transition:border .15s;}
 .mgl-input:focus{border-color:var(--gold2);}
@@ -276,7 +127,8 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .mgl-item.achete .mgl-nom{text-decoration:line-through;color:var(--muted);}
 .mgl-check{width:18px;height:18px;border-radius:4px;border:1.5px solid #3A6A9A;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;cursor:pointer;transition:all .2s;}
 .mgl-item.achete .mgl-check{background:#3A6A9A;border-color:#3A6A9A;}
-.mgl-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;flex:1;min-width:0;line-height:1.3;}
+.mgl-nom{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#A0D8F0;flex:1;min-width:0;line-height:1.3;cursor:pointer;}
+.mgl-nom:hover{color:var(--gold0);}
 .mgl-mag{font-size:.58rem;letter-spacing:.1em;color:#7AAABB;background:#0A1E30;border:1px solid #1E3A55;border-radius:4px;padding:2px 7px;white-space:nowrap;font-family:'DM Mono',monospace;}
 .mgl-prix-field{font-family:'DM Mono',monospace;font-size:.65rem;color:#C8A060;background:#1A1000;border:1px solid #3A2A00;border-radius:4px;padding:3px 7px;min-width:40px;cursor:pointer;letter-spacing:.05em;white-space:nowrap;}
 .mgl-prix-field:hover{border-color:#6A4A10;}
@@ -284,28 +136,69 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
 .mgl-del{background:none;border:none;color:var(--muted);font-size:.68rem;cursor:pointer;padding:2px 5px;flex-shrink:0;opacity:0;transition:opacity .15s;}
 .mgl-item:hover .mgl-del{opacity:.5;}
 .mgl-del:hover{opacity:1 !important;color:#F06060;}
-.mgl-select{background:var(--panel);border:1px solid #1E3A55;border-radius:4px;color:#7AAABB;font-family:'DM Mono',monospace;font-size:.65rem;padding:.25rem .4rem;cursor:pointer;outline:none;transition:border .15s;}
-.mgl-select:focus{border-color:var(--gold2);}
 .mgl-empty{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.72rem;letter-spacing:.12em;}
 
+/* PILLS MAGASIN */
+.mag-pills-wrap{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.35rem;}
+.mag-pill{background:var(--panel);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:.3rem .75rem;font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.06em;cursor:pointer;transition:all .15s;}
+.mag-pill:hover{border-color:var(--gold3);color:var(--gold1);}
+.mag-pill.selected{background:#081828;border-color:var(--gold1);color:var(--gold0);}
+.mag-pill.autre-pill{border-style:dashed;}
+.mag-autre-input{width:100%;background:var(--bg);border:1px solid var(--gold3);border-radius:4px;padding:.4rem .7rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#C8C8C8;outline:none;margin-top:.5rem;display:none;}
+.mag-autre-input:focus{border-color:var(--gold1);}
+.modal-prix-row input{max-width:140px;}
+
+/* TRUCS UTILES */
+.trucs-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.75rem;}
+.truc-card{background:var(--panel);border:1px solid #1E4060;border-radius:8px;padding:.85rem 1.1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;transition:all .15s;cursor:pointer;}
+.truc-card:hover{border-color:var(--gold2);background:var(--panel2);}
+.truc-card-left{flex:1;min-width:0;}
+.truc-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:#A0D8F0;}
+.truc-card-desc{font-size:.68rem;color:#8AAABB;margin-top:3px;line-height:1.5;}
+.truc-card-cat{font-size:.58rem;letter-spacing:.15em;color:#5A9ABB;text-transform:uppercase;margin-top:.3rem;}
+.trucs-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* TROUVAILLES */
+.trouvailles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;}
+.trouvaille-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .2s;}
+.trouvaille-card:hover{border-color:var(--gold3);box-shadow:0 0 20px rgba(244,166,35,0.08);}
+.trouvaille-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#1A1000;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--border);}
+.trouvaille-img img{width:100%;height:100%;object-fit:cover;}
+.trouvaille-body{padding:.65rem .75rem;}
+.trouvaille-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.trouvaille-desc{font-size:.62rem;color:var(--muted);line-height:1.5;margin-top:2px;}
+.trouvailles-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;}
+
+/* photo upload */
+.photo-upload-wrap{position:relative;width:100%;aspect-ratio:4/3;background:#1A1000;border:1px dashed var(--gold4);border-radius:6px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;transition:border .2s;}
+.photo-upload-wrap:hover{border-color:var(--gold2);}
+.photo-upload-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.photo-upload-label{font-size:.65rem;letter-spacing:.15em;color:var(--gold3);text-transform:uppercase;text-align:center;}
+.photo-upload-icon{font-size:1.8rem;opacity:.4;}
+.photo-upload-input{display:none;}
+.photo-change-btn{position:absolute;bottom:8px;right:8px;background:rgba(6,4,4,.8);border:1px solid var(--gold3);color:var(--gold1);border-radius:4px;padding:.2rem .5rem;font-size:.6rem;font-family:'DM Mono',monospace;cursor:pointer;letter-spacing:.1em;}
+
+@media(max-width:480px){
+  .trouvailles-grid{grid-template-columns:repeat(2,1fr);}
+  .auth-main{font-size:40px;}
+  .modal{padding:1.1rem;}
+}
 </style>
 </head>
 <body>
 
 <div id="toast"></div>
 
-<!-- ═══════════ AUTH ═══════════ -->
+<!-- AUTH -->
 <div id="auth-screen">
   <div class="auth-card">
-
-    <!-- coffre SVG -->
     <div class="auth-chest">
       <svg width="100" height="78" viewBox="0 0 140 110" fill="none">
         <defs>
           <linearGradient id="ab" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C47D0E"/><stop offset="100%" stop-color="#6A3E00"/></linearGradient>
           <linearGradient id="al" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFE99A"/><stop offset="60%" stop-color="#D4921A"/><stop offset="100%" stop-color="#8A5600"/></linearGradient>
           <linearGradient id="abd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F4C040"/><stop offset="100%" stop-color="#8A5600"/></linearGradient>
-          <linearGradient id="ak" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE99A"/><stop offset="100%" stop-color="#C47D0E"/></linearGradient>
+          <linearGradient id="ak" x1="0" y1="1" x2="1" y2="1"><stop offset="0%" stop-color="#FFE99A"/><stop offset="100%" stop-color="#C47D0E"/></linearGradient>
         </defs>
         <ellipse cx="70" cy="107" rx="46" ry="4" fill="#000" opacity=".35"/>
         <rect x="14" y="60" width="112" height="44" rx="3" fill="url(#ab)"/>
@@ -335,7 +228,6 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
         <text x="70" y="93" font-family="Cormorant Garamond,serif" font-size="7" font-style="italic" letter-spacing="3" fill="#1A0A00" text-anchor="middle" opacity=".75">HQ</text>
       </svg>
     </div>
-
     <div class="auth-wm">
       <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
       <span class="auth-top"></span>
@@ -344,25 +236,21 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <div class="auth-orn"><div class="auth-orn-line"></div><div class="auth-orn-gem"></div><div class="auth-orn-line"></div></div>
       <span class="auth-tagline">life made easier</span>
     </div>
-
     <div class="auth-divider">
       <div class="auth-divider-line"></div>
-      <span class="auth-divider-text">Connexion sécurisée</span>
+      <span class="auth-divider-text">Connexion securisee</span>
       <div class="auth-divider-line"></div>
     </div>
-
     <button class="btn-google" onclick="signInWithGoogle()">
       <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
       Continuer avec Google
     </button>
-
-    <div class="auth-note">Accès privé · 2 personnes autorisées<br>Sécurisé par Firebase Auth</div>
+    <div class="auth-note">Acces prive - 2 personnes autorisees<br>Securise par Firebase Auth</div>
   </div>
 </div>
 
-<!-- ═══════════ APP ═══════════ -->
+<!-- APP -->
 <div id="app">
-
   <div class="topnav">
     <div class="topnav-logo">
       <span class="tnav-name">Beccaric</span>
@@ -370,183 +258,47 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <span class="tnav-hq">HQ</span>
     </div>
     <div class="topnav-right">
-      <button class="btn-settings" onclick="ouvrirSettings()" title="Paramètres">⚙️</button>
-      <img class="user-avatar" id="user-avatar" src="" alt="" title="Connecté">
-      <button class="btn-logout-icon" onclick="logout()" title="Quitter">✕</button>
+      <button class="btn-settings" onclick="ouvrirSettings()" title="Parametres">&#9881;&#65039;</button>
+      <img class="user-avatar" id="user-avatar" src="" alt="" title="Connecte">
+      <button class="btn-logout-icon" onclick="logout()" title="Quitter">&#10005;</button>
     </div>
   </div>
 
-  <div class="tabs">
-    <button class="tab active" data-tab="accueil" onclick="goTab('accueil',this)">Accueil</button>
-    <button class="tab" data-tab="dollo" onclick="goTab('dollo',this)">Dollo</button>
-    <button class="tab" data-tab="quinc" onclick="goTab('quinc',this)">Quincaillerie</button>
-    <button class="tab" data-tab="walmart" onclick="goTab('walmart',this)">Walmart</button>
-    <button class="tab" data-tab="pharmacie" onclick="goTab('pharmacie',this)">Pharmacie</button>
-    <button class="tab" data-tab="aprevoir" onclick="goTab('aprevoir',this)">A prevoir</button>
-    <button class="tab" data-tab="trucs" onclick="goTab('trucs',this)">Trucs Utiles</button>
-    <button class="tab" data-tab="trouvailles" onclick="goTab('trouvailles',this)">Trouvailles</button>
-  </div>
+  <!-- onglets rendus dynamiquement -->
+  <div class="tabs" id="tabs-bar"></div>
 
-  <div class="content">
+  <!-- sections rendues dynamiquement -->
+  <div class="content" id="app-content"></div>
+</div>
 
-    <!-- ══ ACCUEIL ══ -->
-    <div class="section active" id="tab-accueil">
-      <div class="accueil-welcome" id="accueil-welcome">Bonjour 👋</div>
-      <div class="home-grid">
-        <div class="home-tile t-dollo" onclick="goTab('dollo',null)">
-          <div class="home-tile-name">Dollo</div>
-          <div class="home-tile-sub">Liste d'achat</div>
-        </div>
-        <div class="home-tile t-quinc" onclick="goTab('quinc',null)">
-          <div class="home-tile-name">Quincaillerie</div>
-          <div class="home-tile-sub">Liste materiel</div>
-        </div>
-        <div class="home-tile t-walmart" onclick="goTab('walmart',null)">
-          <div class="home-tile-name">Walmart</div>
-          <div class="home-tile-sub">Liste epicerie</div>
-        </div>
-        <div class="home-tile t-pharmacie" onclick="goTab('pharmacie',null)">
-          <div class="home-tile-name">Pharmacie</div>
-          <div class="home-tile-sub">Sante & medicaments</div>
-        </div>
-        <div class="home-tile t-aprevoir" onclick="goTab('aprevoir',null)">
-          <div class="home-tile-name">A prevoir</div>
-          <div class="home-tile-sub">Achats futurs</div>
-        </div>
-        <div class="home-tile t-trucs" onclick="goTab('trucs',null)">
-          <div class="home-tile-name">Trucs Utiles</div>
-          <div class="home-tile-sub">Astuces & conseils</div>
-        </div>
-        <div class="home-tile t-trouvailles" onclick="goTab('trouvailles',null)">
-          <div class="home-tile-name">Trouvailles</div>
-          <div class="home-tile-sub">Nos découvertes</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ DOLLO ══ -->
-    <div class="section" id="tab-dollo">
-      <div class="section-title">Dollo</div>
-      <div class="dollo-subtabs">
-        <button class="dollo-subtab active" onclick="setDolloVue('partage',this)">🤝 Partagé</button>
-        <button class="dollo-subtab" onclick="setDolloVue('eric',this)">👤 Eric</button>
-        <button class="dollo-subtab" onclick="setDolloVue('becca',this)">👤 Becca</button>
-      </div>
-      <div class="liste-toolbar">
-        <input class="liste-search" id="dollo-search" placeholder="Rechercher..." oninput="filterDollo()">
-        <span class="liste-compteur" id="dollo-compteur"></span>
-        <button class="btn-gold primary" onclick="ouvrirListeModal('dollo')">+ Ajouter</button>
-      </div>
-      <div class="liste-ul" id="dollo-list">
-        <div class="liste-empty" id="dollo-empty">
-                    Aucun item pour l'instant
-        </div>
-      </div>
-    </div>
-    <!-- ══ QUINCAILLERIE ══ -->
-    <div class="section" id="tab-quinc">
-      <div class="section-title">Quincaillerie</div>
-      <div class="mgl-toolbar">
-        <input class="mgl-input" id="quinc-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('quinc')">
-        <button class="mgl-btn-add" onclick="ajouterMgl('quinc')">+ Ajouter</button>
-      </div>
-      <button class="mgl-btn-clear" onclick="effacerCochesMgl('quinc')" style="margin-bottom:.75rem">Effacer les coches</button>
-      <div class="mgl-ul" id="quinc-list">
-        <div class="mgl-empty" id="quinc-empty">Aucun item pour l'instant</div>
-      </div>
-    </div>
-    <!-- ══ WALMART ══ -->
-    <div class="section" id="tab-walmart">
-      <div class="section-title">Walmart</div>
-      <div class="liste-toolbar">
-        <input class="liste-search" id="walmart-search" placeholder="Rechercher..." oninput="filterListe('walmart')">
-        <span class="liste-compteur" id="walmart-compteur"></span>
-        <button class="btn-gold primary" onclick="ouvrirListeModal('walmart')">+ Ajouter</button>
-      </div>
-      <div class="liste-ul" id="walmart-list">
-        <div class="liste-empty" id="walmart-empty">
-                    Aucun item pour l'instant
-        </div>
-      </div>
-    </div>
-    <!-- ══ PHARMACIE ══ -->
-    <div class="section" id="tab-pharmacie">
-      <div class="section-title">Pharmacie</div>
-      <div class="mgl-toolbar">
-        <input class="mgl-input" id="pharmacie-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('pharmacie')">
-        <button class="mgl-btn-add" onclick="ajouterMgl('pharmacie')">+ Ajouter</button>
-      </div>
-      <button class="mgl-btn-clear" onclick="effacerCochesMgl('pharmacie')" style="margin-bottom:.75rem">Effacer les coches</button>
-      <div class="mgl-ul" id="pharmacie-list">
-        <div class="mgl-empty" id="pharmacie-empty">Aucun item pour l'instant</div>
-      </div>
-    </div>
-    <!-- ══ A PREVOIR ══ -->
-    <div class="section" id="tab-aprevoir">
-      <div class="section-title">A prevoir</div>
-      <div class="mgl-toolbar">
-        <input class="mgl-input" id="aprevoir-input" placeholder="Ajouter un item..." onkeydown="if(event.key==='Enter')ajouterMgl('aprevoir')">
-        <button class="mgl-btn-add" onclick="ajouterMgl('aprevoir')">+ Ajouter</button>
-      </div>
-      <button class="mgl-btn-clear" onclick="effacerCochesMgl('aprevoir')" style="margin-bottom:.75rem">Effacer les coches</button>
-      <div class="mgl-ul" id="aprevoir-list">
-        <div class="mgl-empty" id="aprevoir-empty">Aucun item pour l'instant</div>
-      </div>
-    </div>
-    <!-- ══ TRUCS UTILES ══ -->
-    <div class="section" id="tab-trucs">
-      <div class="section-title">Trucs Utiles</div>
-      <button class="btn-gold primary" onclick="ouvrirTruc()">+ Ajouter un truc</button>
-      <div class="trucs-list" id="trucs-list">
-        <div class="trucs-empty" id="trucs-empty">
-                    Aucun truc utile encore
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ TROUVAILLES ══ -->
-    <div class="section" id="tab-trouvailles">
-      <div class="section-title">Trouvailles</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
-        <span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos découvertes & coups de cœur</span>
-        <button class="btn-gold primary" onclick="ouvrirTrouvaille()">+ Ajouter</button>
-      </div>
-      <div class="trouvailles-grid" id="trouvailles-grid">
-        <div class="trouvailles-empty" id="trouvailles-empty" style="grid-column:1/-1">
-                    Aucune trouvaille encore
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /content -->
-</div><!-- /app -->
-
-<!-- ═══════════ MODALS ═══════════ -->
-
-<!-- LISTE — Modal ajout/edit generique (Dollo, Quincaillerie, Walmart) -->
-<div class="modal-overlay" id="modal-liste">
+<!-- MODAL MGL -->
+<div class="modal-overlay" id="modal-mgl">
   <div class="modal">
-    <div class="modal-title" id="liste-modal-title">Nouvel item</div>
-    <input type="hidden" id="liste-section">
-    <input type="hidden" id="liste-edit-id">
+    <div class="modal-title" id="mgl-modal-title">Nouvel item</div>
+    <input type="hidden" id="mgl-section">
+    <input type="hidden" id="mgl-edit-id">
     <div>
       <div class="modal-label">Nom</div>
-      <input type="text" id="liste-nom" placeholder="Ex: Ampoules LED">
+      <input type="text" id="mgl-nom" placeholder="Ex: Ampoules LED" autocomplete="off">
     </div>
     <div>
-      <div class="modal-label">Description <span style="color:var(--muted);font-size:.6rem">(optionnel)</span></div>
-      <textarea id="liste-desc" placeholder="Quantite, format, details..."></textarea>
+      <div class="modal-label">Magasin</div>
+      <div class="mag-pills-wrap" id="mag-pills-container"></div>
+      <input type="text" id="mag-autre-text" class="mag-autre-input" placeholder="Nom du magasin...">
+    </div>
+    <div>
+      <div class="modal-label">Prix <span style="color:var(--muted);font-size:.6rem">(optionnel)</span></div>
+      <input type="text" id="mgl-prix" placeholder="Ex: 12.99" autocomplete="off" inputmode="decimal" style="max-width:140px;">
     </div>
     <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" id="liste-delete-btn" style="display:none" onclick="supprimerListeItem()">🗑️</button>
-      <button class="btn-cancel" onclick="fermerModal('modal-liste')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderListeItem()">💾 Sauvegarder</button>
+      <button class="btn-gold btn-danger btn-sm" id="mgl-delete-btn" style="display:none" onclick="supprimerMglItem()">&#128465;</button>
+      <button class="btn-cancel" onclick="fermerModal('modal-mgl')">Annuler</button>
+      <button class="btn-gold primary" onclick="sauvegarderMglItem()">&#128190; Sauvegarder</button>
     </div>
   </div>
 </div>
 
-
-<!-- TRUC — Form -->
+<!-- MODAL TRUC -->
 <div class="modal-overlay" id="modal-truc">
   <div class="modal">
     <div class="modal-title" id="truc-modal-title">Nouveau truc utile</div>
@@ -556,28 +308,28 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
       <input type="text" id="truc-titre" placeholder="Ex: Enlever une tache de vin">
     </div>
     <div>
-      <div class="modal-label">Catégorie</div>
+      <div class="modal-label">Categorie</div>
       <select id="truc-cat">
-        <option value="maison">🏠 Maison</option>
-        <option value="cuisine">🍳 Cuisine</option>
-        <option value="sante">💊 Santé</option>
-        <option value="techno">💻 Techno</option>
-        <option value="autre">✨ Autre</option>
+        <option value="maison">Maison</option>
+        <option value="cuisine">Cuisine</option>
+        <option value="sante">Sante</option>
+        <option value="techno">Techno</option>
+        <option value="autre">Autre</option>
       </select>
     </div>
     <div>
-      <div class="modal-label">Description / Astuce</div>
+      <div class="modal-label">Description</div>
       <textarea id="truc-desc" placeholder="Explique le truc..."></textarea>
     </div>
     <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" id="truc-delete-btn" style="display:none" onclick="supprimerTruc()">🗑️</button>
+      <button class="btn-gold btn-danger btn-sm" id="truc-delete-btn" style="display:none" onclick="supprimerTruc()">&#128465;</button>
       <button class="btn-cancel" onclick="fermerModal('modal-truc')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderTruc()">💾 Sauvegarder</button>
+      <button class="btn-gold primary" onclick="sauvegarderTruc()">&#128190; Sauvegarder</button>
     </div>
   </div>
 </div>
 
-<!-- TROUVAILLE — Form -->
+<!-- MODAL TROUVAILLE -->
 <div class="modal-overlay" id="modal-trouvaille">
   <div class="modal">
     <div class="modal-title" id="trouvaille-modal-title">Nouvelle trouvaille</div>
@@ -585,7 +337,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     <div>
       <div class="modal-label">Photo</div>
       <div class="photo-upload-wrap" id="trouvaille-photo-wrap" onclick="document.getElementById('trouvaille-photo-input').click()">
-        <div class="photo-upload-icon">📷</div>
+        <div class="photo-upload-icon">&#128247;</div>
         <div class="photo-upload-label">Appuyer pour ajouter une photo</div>
         <input type="file" id="trouvaille-photo-input" class="photo-upload-input" accept="image/*" onchange="previewTrouvaillePhoto(this)">
         <button class="photo-change-btn" id="trouvaille-change-btn" style="display:none" onclick="event.stopPropagation();document.getElementById('trouvaille-photo-input').click()">Changer</button>
@@ -593,41 +345,55 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:#C8D8E8;min-heig
     </div>
     <div>
       <div class="modal-label">Nom</div>
-      <input type="text" id="trouvaille-nom" placeholder="Ex: Café découvert rue St-Denis">
+      <input type="text" id="trouvaille-nom" placeholder="Ex: Cafe rue St-Denis">
     </div>
     <div>
       <div class="modal-label">Description</div>
-      <textarea id="trouvaille-desc" placeholder="Pourquoi on aime ça..."></textarea>
+      <textarea id="trouvaille-desc" placeholder="Pourquoi on aime ca..."></textarea>
     </div>
     <div class="modal-actions">
-      <button class="btn-gold btn-danger btn-sm" id="trouvaille-delete-btn" style="display:none" onclick="supprimerTrouvaille()">🗑️</button>
+      <button class="btn-gold btn-danger btn-sm" id="trouvaille-delete-btn" style="display:none" onclick="supprimerTrouvaille()">&#128465;</button>
       <button class="btn-cancel" onclick="fermerModal('modal-trouvaille')">Annuler</button>
-      <button class="btn-gold primary" onclick="sauvegarderTrouvaille()">💾 Sauvegarder</button>
+      <button class="btn-gold primary" onclick="sauvegarderTrouvaille()">&#128190; Sauvegarder</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ FIREBASE + JS ═══════════ -->
+<!-- MODAL SETTINGS -->
+<div class="modal-overlay" id="modal-settings">
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-title">Parametres</div>
+    <div>
+      <div class="modal-label">Cle API Anthropic</div>
+      <div style="display:flex;align-items:center;gap:.5rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;margin-top:.3rem;">
+        <input type="text" id="api-key-input" placeholder="sk-ant-..." autocomplete="off" autocorrect="off" spellcheck="false"
+          style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none;-webkit-text-security:disc"/>
+        <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;">&#128065;&#65039;</button>
+      </div>
+      <div id="api-key-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="fermerModal('modal-settings')">Fermer</button>
+      <button class="btn-gold primary" onclick="saveApiKey()">&#128190; Sauver</button>
+    </div>
+  </div>
+</div>
+
+<!-- FIREBASE + JS -->
 <script>
-function signInWithGoogle() {
-  // délégué au module Firebase
-  window._signInWithGoogle && window._signInWithGoogle();
-}
-function logout() {
-  window._logout && window._logout();
-}
+function signInWithGoogle() { window._signInWithGoogle && window._signInWithGoogle(); }
+function logout() { window._logout && window._logout(); }
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, getDocs, onSnapshot, collection,
+import { getFirestore, doc, onSnapshot, collection,
          addDoc, deleteDoc, updateDoc, orderBy, query, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref as sRef, uploadString, uploadBytes, getDownloadURL, deleteObject }
+import { getStorage, ref as sRef, uploadString, getDownloadURL }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-// ── CONFIG FIREBASE — remplace avec ta config ──
 const firebaseConfig = {
   apiKey: "AIzaSyAq-iBu8NyXPc_yvcV_Is3Rw70jkalz_z8",
   authDomain: "beccarichq.firebaseapp.com",
@@ -642,14 +408,55 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// ── ALLOWED USERS ──
 const ALLOWED_EMAILS = ['stonecold93@gmail.com', 'rebeccamontambeault20@gmail.com'];
 
-let currentUser = null;
-let currentDetailId = null;
-let trouvaillePhotoBase64 = null;
+const USER_CONFIG = {
+  'stonecold93@gmail.com': {
+    nom: 'Eric',
+    onglets: [
+      { id: 'accueil',     label: 'Accueil',       shared: false },
+      { id: 'dollo',       label: 'Dollo',         shared: false },
+      { id: 'walmart',     label: 'Walmart',       shared: false },
+      { id: 'quinc',       label: 'Quincaillerie', shared: false },
+      { id: 'pharmacie',   label: 'Pharmacie',     shared: false },
+      { id: 'autres',      label: 'Autres',        shared: false },
+      { id: 'aprevoir',    label: 'A prevoir',     shared: true  },
+      { id: 'trucs',       label: 'Trucs Utiles',  shared: true  },
+      { id: 'trouvailles', label: 'Trouvailles',   shared: true  },
+    ]
+  },
+  'rebeccamontambeault20@gmail.com': {
+    nom: 'Becca',
+    onglets: [
+      { id: 'accueil',     label: 'Accueil',     shared: false },
+      { id: 'dollo',       label: 'Dollo',       shared: false },
+      { id: 'pharmacie',   label: 'Pharmacie',   shared: false },
+      { id: 'vetements',   label: 'Vetements',   shared: false },
+      { id: 'maquillage',  label: 'Maquillage',  shared: false },
+      { id: 'epicerie',    label: 'Epicerie',    shared: false },
+      { id: 'autres',      label: 'Autres',      shared: false },
+      { id: 'aprevoir',    label: 'A prevoir',   shared: true  },
+      { id: 'trucs',       label: 'Trucs Utiles',shared: true  },
+      { id: 'trouvailles', label: 'Trouvailles', shared: true  },
+    ]
+  }
+};
 
-// ── TOAST ──
+const MAGASINS = [
+  'Dollarama','Walmart','IGA','Maxi','Canadian Tire',
+  'Home Depot','RONA','Pharmaprix','Jean Coutu','Autre...'
+];
+
+let currentUser = null;
+let userCfg = null;
+let mglData = {};
+let mglUnsubs = {};
+let trucs = [];
+let trouvailles = [];
+let trouvaillePhotoBase64 = null;
+let selectedMagasin = '';
+
+// TOAST
 function toast(msg, dur=2800) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
@@ -657,679 +464,196 @@ function toast(msg, dur=2800) {
 }
 window.showToast = toast;
 
-// ── TABS ──
+// TABS
 window.goTab = (id, btn) => {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
+  const sec = document.getElementById('tab-' + id);
+  if (sec) sec.classList.add('active');
   if (btn) btn.classList.add('active');
-  else document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
+  else document.querySelector('[data-tab="' + id + '"]')?.classList.add('active');
 };
 
-// ── MODAL ──
+// MODAL
 window.fermerModal = (id) => document.getElementById(id).classList.remove('open');
 function ouvrirModal(id) { document.getElementById(id).classList.add('open'); }
 
-// ── AUTH ──
+// AUTH
 const provider = new GoogleAuthProvider();
 window._signInWithGoogle = async () => {
   try { await signInWithPopup(auth, provider); }
-  catch(e) { toast('❌ Erreur connexion: ' + e.message); }
+  catch(e) { toast('Erreur connexion: ' + e.message); }
 };
 window._logout = () => signOut(auth);
 
 onAuthStateChanged(auth, async user => {
   if (user) {
     if (!ALLOWED_EMAILS.includes(user.email)) {
-      toast('❌ Accès refusé');
+      toast('Acces refuse');
       await signOut(auth); return;
     }
     currentUser = user;
+    userCfg = USER_CONFIG[user.email];
     document.getElementById('auth-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     const av = document.getElementById('user-avatar');
     if (user.photoURL) av.src = user.photoURL;
-    const emailToName = {'stonecold93@gmail.com':'Eric','rebeccamontambeault20@gmail.com':'Becca'};
-    const firstName = emailToName[user.email] || (user.displayName ? user.displayName.split(' ')[0] : 'toi');
-    document.getElementById('accueil-welcome').textContent = 'Bonjour, ' + firstName + ' 👋';
     initApp(user.uid);
   } else {
-    currentUser = null;
+    currentUser = null; userCfg = null;
     document.getElementById('auth-screen').style.display = 'flex';
     document.getElementById('app').style.display = 'none';
   }
 });
 
-// ── INIT ──
+// INIT
 function initApp(uid) {
-  listenDollo();
-  listenWalmart();
-  listenMgl('quinc');
-  listenMgl('pharmacie');
-  listenMgl('aprevoir');
-  listenTrucs(uid);
-  listenTrouvailles(uid);
-}
-
-// ════════════════════════════════
-// LISTES D ACHAT — generique (Dollo / Quincaillerie / Walmart)
-// ════════════════════════════════
-
-let listeData = { dollo: [], walmart: [] };
-
-const LISTE_CONFIG = {
-  dollo:   { col: 'beccaric_dollo',   emoji: '🛒' },
-  walmart: { col: 'beccaric_walmart', emoji: '🏪' },
-};
-
-// Dollo — 3 collections selon la vue
-const DOLLO_COLS = {
-  partage: 'beccaric_dollo',
-  eric:    'beccaric_dollo_eric',
-  becca:   'beccaric_dollo_becca',
-};
-let dolloVue = 'partage';
-let dolloUnsub = null;
-
-window.setDolloVue = (vue, btn) => {
-  dolloVue = vue;
-  document.querySelectorAll('.dollo-subtab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (dolloUnsub) { dolloUnsub(); dolloUnsub = null; }
-  listeData['dollo'] = [];
-  const ulNow = document.getElementById('dollo-list');
-  const emptyNow = document.getElementById('dollo-empty');
-  if (ulNow) ulNow.innerHTML = '';
-  if (emptyNow) emptyNow.style.display = 'block';
-  listenDolloVue();
-};
-
-function listenDolloVue() {
-  const col = DOLLO_COLS[dolloVue];
-  const vueAuMomentDuLancement = dolloVue;
-  const q = query(collection(db, col), orderBy('createdAt','desc'));
-  dolloUnsub = onSnapshot(q, snap => {
-    if (dolloVue !== vueAuMomentDuLancement) return;
-    listeData['dollo'] = snap.docs
-      .map(d => ({id:d.id,...d.data()}))
-      .filter(d => d.createdAt != null);
-    renderListe('dollo');
-  });
-}
-
-// Override col pour add/toggle/delete selon vue active
-function getDolloCol() { return DOLLO_COLS[dolloVue]; }
-
-function listenDollo()   { listenDolloVue(); }
-function listenWalmart() { listenListe('walmart'); }
-
-function listenListe(section) {
-  const col = LISTE_CONFIG[section].col;
-  const q = query(collection(db, col), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    listeData[section] = snap.docs
-      .map(d => ({id:d.id,...d.data()}))
-      .filter(d => d.createdAt != null);
-    renderListe(section);
-  });
-}
-
-function renderListe(section) {
-  const ul    = document.getElementById(section + '-list');
-  const empty = document.getElementById(section + '-empty');
-  const cpt   = document.getElementById(section + '-compteur');
-  if (!ul || !empty) return;
-  const items = listeData[section] || [];
-  const reste = items.filter(i => !i.achete).length;
-  if (!items.length) {
-    empty.style.display = 'block';
-    ul.innerHTML = '';
-    ul.appendChild(empty);
-    if (cpt) cpt.textContent = '';
-    return;
-  }
-  if (!ul.contains(empty)) ul.appendChild(empty);
-  empty.style.display = 'none';
-  if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
-  const showShare = section === 'dollo' && dolloVue !== 'partage';
-  ul.innerHTML = items.map(item => `
-    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}" data-id="${item.id}" data-section="${section}" data-achete="${item.achete ? '1' : '0'}">
-      <div class="liste-check liste-check-btn">${item.achete ? '✓' : ''}</div>
-      <div class="liste-item-body liste-item-edit">
-        <div class="liste-item-nom">${item.nom || ''}</div>
-        ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
-      </div>
-      ${showShare ? `<button class="liste-item-share liste-item-share-btn" title="Partager">🤝</button>` : ''}
-      <button class="liste-item-del liste-item-del-btn">✕</button>
-    </div>`).join('');
-  // event listeners directs — plus fiables que onclick inline
-  ul.querySelectorAll('.liste-item').forEach(el => {
-    const id  = el.dataset.id;
-    const sec = el.dataset.section;
-    el.querySelector('.liste-check-btn').addEventListener('click', e => {
-      e.stopPropagation();
-      const achete = el.dataset.achete === '1';
-      toggleAchete(sec, id, !achete);
-    });
-    el.querySelector('.liste-item-edit').addEventListener('click', () => ouvrirListeEdit(sec, id));
-    el.querySelector('.liste-item-del-btn').addEventListener('click', e => {
-      e.stopPropagation();
-      supprimerListeItemDirect(sec, id);
-    });
-    const shareBtn = el.querySelector('.liste-item-share-btn');
-    if (shareBtn) shareBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      partagerItemDollo(id);
-    });
-  });
-}
-
-window.filterDollo = () => filterListe('dollo');
-window.filterListe = (section) => {
-  const q = document.getElementById(section + '-search').value.toLowerCase();
-  const filtered = q ? listeData[section].filter(i =>
-    (i.nom||'').toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q)
-  ) : listeData[section];
-  // render directement avec filtre
-  const ul    = document.getElementById(section + '-list');
-  const empty = document.getElementById(section + '-empty');
-  const cpt   = document.getElementById(section + '-compteur');
-  if (!filtered.length) {
-    ul.innerHTML = ''; ul.appendChild(empty); empty.style.display='block';
-    if (cpt) cpt.textContent = '';
-    return;
-  }
-  empty.style.display = 'none';
-  const reste = filtered.filter(i => !i.achete).length;
-  if (cpt) cpt.textContent = reste + ' restant' + (reste > 1 ? 's' : '');
-  const showShareF = section === 'dollo' && dolloVue !== 'partage';
-  ul.innerHTML = filtered.map(item => `
-    <div class="liste-item${item.achete ? ' achete' : ''}" id="li-${item.id}" data-id="${item.id}" data-section="${section}" data-achete="${item.achete ? '1' : '0'}">
-      <div class="liste-check liste-check-btn">${item.achete ? '✓' : ''}</div>
-      <div class="liste-item-body liste-item-edit">
-        <div class="liste-item-nom">${item.nom || ''}</div>
-        ${item.desc ? `<div class="liste-item-desc">${item.desc}</div>` : ''}
-      </div>
-      ${showShareF ? `<button class="liste-item-share liste-item-share-btn" title="Partager">🤝</button>` : ''}
-      <button class="liste-item-del liste-item-del-btn">✕</button>
-    </div>`).join('');
-  ul.querySelectorAll('.liste-item').forEach(el => {
-    const id  = el.dataset.id;
-    const sec = el.dataset.section;
-    el.querySelector('.liste-check-btn').addEventListener('click', e => {
-      e.stopPropagation();
-      const achete = el.dataset.achete === '1';
-      toggleAchete(sec, id, !achete);
-    });
-    el.querySelector('.liste-item-edit').addEventListener('click', () => ouvrirListeEdit(sec, id));
-    el.querySelector('.liste-item-del-btn').addEventListener('click', e => {
-      e.stopPropagation();
-      supprimerListeItemDirect(sec, id);
-    });
-    const shareBtn = el.querySelector('.liste-item-share-btn');
-    if (shareBtn) shareBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      partagerItemDollo(id);
-    });
-  });
-};
-
-window.partagerItemDollo = async (id) => {
-  const item = listeData['dollo'].find(i => i.id === id);
-  if (!item) return;
-  try {
-    await addDoc(collection(db, 'beccaric_dollo'), {
-      nom: item.nom,
-      desc: item.desc || '',
-      achete: false,
-      createdAt: serverTimestamp(),
-      partageePar: dolloVue
-    });
-    toast('🤝 Partage !');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-window.toggleAchete = async (section, id, achete) => {
-  const col = section === 'dollo' ? getDolloCol() : LISTE_CONFIG[section].col;
-  try { await updateDoc(doc(db, col, id), { achete }); }
-  catch(e) { toast('❌ ' + e.message); }
-};
-
-window.ouvrirListeModal = (section) => {
-  document.getElementById('liste-section').value = section;
-  document.getElementById('liste-edit-id').value = '';
-  document.getElementById('liste-nom').value = '';
-  document.getElementById('liste-desc').value = '';
-  document.getElementById('liste-modal-title').textContent = 'Nouvel item';
-  document.getElementById('liste-delete-btn').style.display = 'none';
-  ouvrirModal('modal-liste');
-};
-
-window.ouvrirListeEdit = (section, id) => {
-  const item = listeData[section].find(i => i.id === id);
-  if (!item) return;
-  document.getElementById('liste-section').value = section;
-  document.getElementById('liste-edit-id').value = id;
-  document.getElementById('liste-nom').value = item.nom || '';
-  document.getElementById('liste-desc').value = item.desc || '';
-  document.getElementById('liste-modal-title').textContent = 'Modifier';
-  document.getElementById('liste-delete-btn').style.display = 'inline-flex';
-  ouvrirModal('modal-liste');
-};
-
-window.sauvegarderListeItem = async () => {
-  const section = document.getElementById('liste-section').value;
-  const id      = document.getElementById('liste-edit-id').value;
-  const nom     = document.getElementById('liste-nom').value.trim();
-  if (!nom) { toast('⚠️ Entre un nom'); return; }
-  const col  = section === 'dollo' ? getDolloCol() : LISTE_CONFIG[section].col;
-  const desc = document.getElementById('liste-desc').value.trim();
-  try {
-    if (id) {
-      await updateDoc(doc(db, col, id), { nom, desc });
-      toast('✅ Mis a jour !');
-    } else {
-      await addDoc(collection(db, col), { nom, desc, achete: false, createdAt: serverTimestamp() });
-      toast('✅ Ajoute !');
-    }
-    fermerModal('modal-liste');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-window.supprimerListeItem = async () => {
-  const section = document.getElementById('liste-section').value;
-  const id      = document.getElementById('liste-edit-id').value;
-  if (!id) return;
-  const col = section === 'dollo' ? getDolloCol() : LISTE_CONFIG[section].col;
-  try {
-    await deleteDoc(doc(db, col, id));
-    fermerModal('modal-liste');
-    toast('🗑️ Supprime');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-window.supprimerListeItemDirect = async (section, id) => {
-  const col = section === 'dollo' ? getDolloCol() : LISTE_CONFIG[section].col;
-  try {
-    await deleteDoc(doc(db, col, id));
-    toast('🗑️ Supprime');
-  } catch(e) { toast('❌ ' + e.message); }
-};
-
-// ════════════════════════════════
-// ════════════════════════════════
-// TRUCS UTILES
-// ════════════════════════════════
-let trucs=[];
-
-function listenTrucs(uid) {
-  const q=query(collection(db,'beccaric_trucs'), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    trucs=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderTrucs();
-  });
-}
-
-const CAT_LABELS={'maison':'🏠 Maison','cuisine':'🍳 Cuisine','sante':'💊 Santé','techno':'💻 Techno','autre':'✨ Autre'};
-
-function renderTrucs() {
-  const list=document.getElementById('trucs-list');
-  const empty=document.getElementById('trucs-empty');
-  if (!trucs.length) { list.innerHTML=''; list.appendChild(empty); empty.style.display='block'; return; }
-  empty.style.display='none';
-  list.innerHTML=trucs.map(t=>`
-    <div class="truc-card" onclick="ouvrirTrucEdit('${t.id}')">
-      <div class="truc-card-left">
-        <div class="truc-card-name">${t.titre}</div>
-        <div class="truc-card-desc">${t.desc||''}</div>
-        <div class="truc-card-cat">${CAT_LABELS[t.cat]||t.cat||''}</div>
-      </div>
-      <span style="color:var(--muted);font-size:.8rem">›</span>
-    </div>`).join('');
-}
-
-window.ouvrirTruc = () => {
-  document.getElementById('truc-id').value='';
-  document.getElementById('truc-titre').value='';
-  document.getElementById('truc-desc').value='';
-  document.getElementById('truc-cat').value='maison';
-  document.getElementById('truc-modal-title').textContent='Nouveau truc utile';
-  document.getElementById('truc-delete-btn').style.display='none';
-  ouvrirModal('modal-truc');
-};
-
-window.ouvrirTrucEdit = (id) => {
-  const t=trucs.find(x=>x.id===id);
-  if (!t) return;
-  document.getElementById('truc-id').value=id;
-  document.getElementById('truc-titre').value=t.titre||'';
-  document.getElementById('truc-desc').value=t.desc||'';
-  document.getElementById('truc-cat').value=t.cat||'autre';
-  document.getElementById('truc-modal-title').textContent='Modifier';
-  document.getElementById('truc-delete-btn').style.display='inline-flex';
-  ouvrirModal('modal-truc');
-};
-
-window.sauvegarderTruc = async () => {
-  const titre=document.getElementById('truc-titre').value.trim();
-  if (!titre) { toast('⚠️ Entre un titre'); return; }
-  const uid=currentUser.uid;
-  const data={titre,desc:document.getElementById('truc-desc').value.trim(),cat:document.getElementById('truc-cat').value};
-  try {
-    const id=document.getElementById('truc-id').value;
-    if (id) await updateDoc(doc(db,'beccaric_trucs',id),data);
-    else await addDoc(collection(db,'beccaric_trucs'),{...data,createdAt:serverTimestamp()});
-    fermerModal('modal-truc'); toast('✅ Sauvegardé !');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
-window.supprimerTruc = async () => {
-  if (!confirm('Supprimer ?')) return;
-  const id=document.getElementById('truc-id').value;
-  try {
-    await deleteDoc(doc(db,'beccaric_trucs',id));
-    fermerModal('modal-truc'); toast('🗑️ Supprimé');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
-// ════════════════════════════════
-// TROUVAILLES
-// ════════════════════════════════
-let trouvailles=[];
-
-function listenTrouvailles(uid) {
-  const q=query(collection(db,'beccaric_trouvailles'), orderBy('createdAt','desc'));
-  onSnapshot(q, snap => {
-    trouvailles=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderTrouvailles();
-  });
-}
-
-function renderTrouvailles() {
-  const grid=document.getElementById('trouvailles-grid');
-  const empty=document.getElementById('trouvailles-empty');
-  if (!trouvailles.length) { grid.innerHTML=''; grid.appendChild(empty); empty.style.display='block'; return; }
-  empty.style.display='none';
-  grid.innerHTML=trouvailles.map(t=>`
-    <div class="trouvaille-card" onclick="ouvrirTrouvailleEdit('${t.id}')">
-      <div class="trouvaille-img ${t.photoURL?'':''}">
-        ${t.photoURL?`<img src="${t.photoURL}" alt="${t.nom}" loading="lazy">`:'❤️'}
-      </div>
-      <div class="trouvaille-body">
-        <div class="trouvaille-name">${t.nom||'Trouvaille'}</div>
-        <div class="trouvaille-desc">${t.desc||''}</div>
-      </div>
-    </div>`).join('');
-}
-
-window.ouvrirTrouvaille = () => {
-  document.getElementById('trouvaille-id').value='';
-  document.getElementById('trouvaille-nom').value='';
-  document.getElementById('trouvaille-desc').value='';
-  trouvaillePhotoBase64=null;
-  resetPhotoWrap('trouvaille-photo-wrap','trouvaille-photo-input','trouvaille-change-btn');
-  document.getElementById('trouvaille-modal-title').textContent='Nouvelle trouvaille';
-  document.getElementById('trouvaille-delete-btn').style.display='none';
-  ouvrirModal('modal-trouvaille');
-};
-
-window.ouvrirTrouvailleEdit = (id) => {
-  const t=trouvailles.find(x=>x.id===id);
-  if (!t) return;
-  document.getElementById('trouvaille-id').value=id;
-  document.getElementById('trouvaille-nom').value=t.nom||'';
-  document.getElementById('trouvaille-desc').value=t.desc||'';
-  trouvaillePhotoBase64=null;
-  const wrap=document.getElementById('trouvaille-photo-wrap');
-  wrap.innerHTML='';
-  if (t.photoURL) {
-    const img=document.createElement('img');
-    img.src=t.photoURL;
-    img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-    wrap.appendChild(img);
-  } else {
-    wrap.innerHTML=`<div class="photo-upload-icon">📷</div><div class="photo-upload-label">Appuyer pour ajouter</div>`;
-  }
-  const inp=document.createElement('input');
-  inp.type='file'; inp.accept='image/*'; inp.className='photo-upload-input';
-  inp.onchange=e=>previewTrouvaillePhoto(e.target);
-  wrap.appendChild(inp);
-  wrap.onclick=()=>inp.click();
-  const chgBtn=document.createElement('button');
-  chgBtn.className='photo-change-btn'; chgBtn.textContent='Changer';
-  chgBtn.onclick=e=>{e.stopPropagation();inp.click();};
-  wrap.appendChild(chgBtn);
-  document.getElementById('trouvaille-modal-title').textContent='Modifier';
-  document.getElementById('trouvaille-delete-btn').style.display='inline-flex';
-  ouvrirModal('modal-trouvaille');
-};
-
-window.previewTrouvaillePhoto = (input) => {
-  if (!input.files[0]) return;
-  const reader=new FileReader();
-  reader.onload=e=>{ trouvaillePhotoBase64=e.target.result; showPhotoPreview('trouvaille-photo-wrap',e.target.result,'trouvaille-change-btn'); };
-  reader.readAsDataURL(input.files[0]);
-};
-
-window.sauvegarderTrouvaille = async () => {
-  const nom=document.getElementById('trouvaille-nom').value.trim();
-  if (!nom) { toast('⚠️ Entre un nom'); return; }
-  const uid=currentUser.uid;
-  const data={nom,desc:document.getElementById('trouvaille-desc').value.trim()};
-  try {
-    let photoURL=null;
-    if (trouvaillePhotoBase64) {
-      const path=`beccaric_trouvailles/${Date.now()}.jpg`;
-      const storageRef=sRef(storage,path);
-      await uploadString(storageRef,trouvaillePhotoBase64,'data_url');
-      photoURL=await getDownloadURL(storageRef);
-    }
-    const id=document.getElementById('trouvaille-id').value;
-    if (id) {
-      const updates={...data};
-      if (trouvaillePhotoBase64) updates.photoURL=photoURL;
-      await updateDoc(doc(db,'beccaric_trouvailles',id),updates);
-    } else {
-      await addDoc(collection(db,'beccaric_trouvailles'),{...data,photoURL,createdAt:serverTimestamp()});
-    }
-    fermerModal('modal-trouvaille'); toast('✅ Sauvegardé !');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
-window.supprimerTrouvaille = async () => {
-  if (!confirm('Supprimer ?')) return;
-  const id=document.getElementById('trouvaille-id').value;
-  try {
-    await deleteDoc(doc(db,'beccaric_trouvailles',id));
-    fermerModal('modal-trouvaille'); toast('🗑️ Supprimé');
-  } catch(e) { toast('❌ '+e.message); }
-};
-
-// ════════════════════════════════
-// UTILS PHOTO
-// ════════════════════════════════
-function showPhotoPreview(wrapId, dataUrl, changeBtnId) {
-  const wrap=document.getElementById(wrapId);
-  let img=wrap.querySelector('img.preview');
-  if (!img) {
-    wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e=>e.style.display='none');
-    img=document.createElement('img');
-    img.className='preview';
-    img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-    wrap.insertBefore(img, wrap.firstChild);
-  }
-  img.src=dataUrl;
-  if (changeBtnId) { const b=document.getElementById(changeBtnId); if(b) b.style.display='block'; }
-}
-
-function resetPhotoWrap(wrapId, inputId, changeBtnId) {
-  const wrap=document.getElementById(wrapId);
-  wrap.querySelectorAll('img.preview').forEach(e=>e.remove());
-  wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e=>e.style.display='');
-  if (changeBtnId) { const b=document.getElementById(changeBtnId); if(b) b.style.display='none'; }
-  const inp=document.getElementById(inputId);
-  if (inp) inp.value='';
-}
-
-// ── API KEY ──
-window.migrerDolloVersEric = async () => {
-  const status = document.getElementById('migration-status');
-  status.style.display = 'block';
-  status.textContent = 'Migration en cours...';
-  try {
-    const snap = await getDocs(query(collection(db, 'beccaric_dollo'), orderBy('createdAt','desc')));
-    if (snap.empty) { status.textContent = 'Partage est deja vide.'; return; }
-    let count = 0;
-    for (const d of snap.docs) {
-      await addDoc(collection(db, 'beccaric_dollo_eric'), d.data());
-      await deleteDoc(doc(db, 'beccaric_dollo', d.id));
-      count++;
-    }
-    status.textContent = count + ' items migres vers Eric.';
-    toast('Migration complete !');
-  } catch(e) {
-    status.textContent = 'Erreur : ' + e.message;
-  }
-};
-
-window.saveApiKey = () => {
-  const input = document.getElementById('api-key-input');
-  const key = input?.value.trim();
-  if (key && key.startsWith('sk-ant-')) {
-    localStorage.setItem('bhq_api_key', key);
-    const status = document.getElementById('api-key-status');
-    if (status) { status.style.display='block'; status.textContent='✅ Clé active'; status.style.color='#34C472'; }
-  } else {
-    const status = document.getElementById('api-key-status');
-    if (status) { status.style.display='block'; status.textContent='❌ Clé invalide (doit commencer par sk-ant-)'; status.style.color='#F06060'; }
-  }
-};
-window.toggleApiKey = () => {
-  const input = document.getElementById('api-key-input');
-  if (input) input.type = input.type === 'password' ? 'text' : 'password';
-};
-setTimeout(() => {
-  const saved = localStorage.getItem('bhq_api_key');
-  if (saved) {
-    const input = document.getElementById('api-key-input');
-    if (input) input.value = saved;
-    const status = document.getElementById('api-key-status');
-    if (status) { status.style.display='block'; status.textContent='✅ Clé active'; status.style.color='#34C472'; }
-  }
-}, 800);
-
-// ── TÉLÉCHARGER PHOTO ──
-window.telechargerPhoto = () => {
-  const img = document.getElementById('fullscreen-img');
-  const a = document.createElement('a');
-  a.href = img.src;
-  a.download = 'beccarichq_photo.jpg';
-  a.target = '_blank';
-  a.click();
-};
-
-// ── SETTINGS ──
-window.ouvrirSettings = () => {
-  const pwd = prompt('🔐 Mot de passe paramètres :');
-  if (pwd === 'Leia2022') {
-    ouvrirModal('modal-settings');
-  } else if (pwd !== null) {
-    toast('❌ Mot de passe incorrect');
-  }
-};
-
-// ── PREVENT BACK BUTTON EXIT ──
-// Push a state so back button comes back here instead of leaving
-history.pushState(null, '', window.location.href);
-window.addEventListener('popstate', () => {
-  history.pushState(null, '', window.location.href);
-  // Go back to accueil instead of leaving
+  Object.values(mglUnsubs).forEach(u => u && u());
+  mglUnsubs = {}; mglData = {}; trucs = []; trouvailles = [];
+  buildUI(uid);
   goTab('accueil', null);
-});
+}
 
-// Confirm before closing tab/window
-window.addEventListener('beforeunload', (e) => {
-  e.preventDefault();
-  e.returnValue = '';
-});
+// BUILD UI DYNAMIQUE
+function buildUI(uid) {
+  const onglets = userCfg.onglets;
+  const tabsBar = document.getElementById('tabs-bar');
+  const content = document.getElementById('app-content');
 
-// close modal on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => { if(e.target===overlay) overlay.classList.remove('open'); });
-});
+  tabsBar.innerHTML = onglets.map(o =>
+    '<button class="tab' + (o.shared ? ' shared' : '') + '" data-tab="' + o.id + '" onclick="goTab(\'' + o.id + '\',this)">' + o.label + '</button>'
+  ).join('');
 
-// ════════════════════════════════
-// MAGASIN LISTE — Quincaillerie / Pharmacie / A prevoir
-// ════════════════════════════════
+  content.innerHTML = '';
+  onglets.forEach(o => {
+    const div = document.createElement('div');
+    div.className = 'section';
+    div.id = 'tab-' + o.id;
+    content.appendChild(div);
+    if (o.id === 'accueil') buildAccueil(div);
+    else if (o.id === 'trucs') buildSectionTrucs(div, o.shared);
+    else if (o.id === 'trouvailles') buildSectionTrouvailles(div, o.shared);
+    else buildSectionMgl(div, o);
+  });
 
-const MGL_CONFIG = {
-  quinc:     { col: 'beccaric_quincaillerie', magasins: ['Rona','Home Depot','Canac','BMR','Home Hardware','Autre'] },
-  pharmacie: { col: 'beccaric_pharmacie',     magasins: ['Pharmaprix','Jean Coutu','Uniprix','Brunet','Walmart Pharmacie','Familiprix','Proxim','Autre'] },
-  aprevoir:  { col: 'beccaric_aprevoir',      magasins: null },
-};
-let mglData = { quinc: [], pharmacie: [], aprevoir: [] };
-let mglUnsubs = {};
-
-function listenMgl(section) {
-  if (mglUnsubs[section]) mglUnsubs[section]();
-  const col = MGL_CONFIG[section].col;
-  const q = query(collection(db, col), orderBy('createdAt','desc'));
-  mglUnsubs[section] = onSnapshot(q, snap => {
-    mglData[section] = snap.docs
-      .map(d => ({id:d.id,...d.data()}))
-      .filter(d => d.createdAt != null);
-    renderMgl(section);
+  onglets.forEach(o => {
+    if (o.id === 'accueil') return;
+    if (o.id === 'trucs') { listenTrucs(); return; }
+    if (o.id === 'trouvailles') { listenTrouvailles(); return; }
+    listenMgl(o.id, uid, o.shared);
   });
 }
 
-function renderMgl(section) {
+// ACCUEIL
+function buildAccueil(div) {
+  const onglets = userCfg.onglets.filter(o => o.id !== 'accueil');
+  div.innerHTML = '<div class="accueil-welcome">Bonjour, ' + userCfg.nom + ' &#128075;</div>'
+    + '<div class="home-grid">'
+    + onglets.map(o =>
+        '<div class="home-tile ' + (o.shared ? 'home-tile-shared' : 'home-tile-priv') + '" onclick="goTab(\'' + o.id + '\',null)">'
+        + '<div class="home-tile-name">' + o.label + '</div>'
+        + '<div class="home-tile-sub">' + (o.shared ? 'Partage' : 'Prive') + '</div>'
+        + '</div>'
+      ).join('')
+    + '</div>';
+}
+
+// SECTION MGL
+function buildSectionMgl(div, onglet) {
+  const s = onglet.id;
+  div.innerHTML = '<div class="section-title">' + onglet.label + '</div>'
+    + (onglet.shared ? '<div class="section-shared-badge">&#9733; Partage</div>' : '')
+    + '<div class="mgl-toolbar">'
+    + '<input class="mgl-input" id="' + s + '-input" placeholder="Ajouter un item..." onkeydown="if(event.key===\'Enter\')ajouterRapide(\'' + s + '\')">'
+    + '<button class="mgl-btn-add" onclick="ouvrirMglModal(\'' + s + '\')">+ Ajouter</button>'
+    + '</div>'
+    + '<button class="mgl-btn-clear" onclick="effacerCoches(\'' + s + '\')">Effacer les coches</button>'
+    + '<div class="mgl-ul" id="' + s + '-list"><div class="mgl-empty" id="' + s + '-empty">Aucun item pour l instant</div></div>';
+}
+
+// SECTION TRUCS
+function buildSectionTrucs(div, shared) {
+  div.innerHTML = '<div class="section-title">Trucs Utiles</div>'
+    + (shared ? '<div class="section-shared-badge">&#9733; Partage</div>' : '')
+    + '<button class="btn-gold primary" onclick="ouvrirTruc()">+ Ajouter un truc</button>'
+    + '<div class="trucs-list" id="trucs-list"><div class="trucs-empty" id="trucs-empty">Aucun truc utile encore</div></div>';
+}
+
+// SECTION TROUVAILLES
+function buildSectionTrouvailles(div, shared) {
+  div.innerHTML = '<div class="section-title">Trouvailles</div>'
+    + (shared ? '<div class="section-shared-badge">&#9733; Partage</div>' : '')
+    + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">'
+    + '<span style="font-size:.7rem;color:var(--muted);letter-spacing:.1em">Nos decouvertes et coups de coeur</span>'
+    + '<button class="btn-gold primary" onclick="ouvrirTrouvaille()">+ Ajouter</button></div>'
+    + '<div class="trouvailles-grid" id="trouvailles-grid">'
+    + '<div class="trouvailles-empty" id="trouvailles-empty" style="grid-column:1/-1">Aucune trouvaille encore</div></div>';
+}
+
+// COLLECTION PATH
+function getCol(section, uid, shared) {
+  if (shared) return 'beccaric_' + section;
+  return 'users/' + uid + '/' + section;
+}
+
+// LISTEN MGL
+function listenMgl(section, uid, shared) {
+  if (mglUnsubs[section]) mglUnsubs[section]();
+  mglData[section] = [];
+  const colPath = getCol(section, uid, shared);
+  const q = query(collection(db, colPath), orderBy('createdAt','desc'));
+  mglUnsubs[section] = onSnapshot(q, snap => {
+    mglData[section] = snap.docs.map(d => ({id:d.id,...d.data()})).filter(d => d.createdAt != null);
+    renderMgl(section, uid, shared);
+  });
+}
+
+// RENDER MGL
+function renderMgl(section, uid, shared) {
   const ul    = document.getElementById(section + '-list');
   const empty = document.getElementById(section + '-empty');
-  // Ne pas re-render si un champ prix est actif (evite le "etes-vous sur")
+  if (!ul) return;
   if (ul.contains(document.activeElement) && document.activeElement.classList.contains('mgl-prix-edit')) return;
-  const items = mglData[section];
+  const items = mglData[section] || [];
   if (!items.length) {
-    ul.innerHTML = '';
-    ul.appendChild(empty);
-    empty.style.display = 'block';
-    return;
+    ul.innerHTML = ''; ul.appendChild(empty); empty.style.display = 'block'; return;
   }
   if (!ul.contains(empty)) ul.appendChild(empty);
   empty.style.display = 'none';
-  const magasins = MGL_CONFIG[section].magasins;
+  const colPath = getCol(section, uid, shared);
+
   ul.innerHTML = items.map(item => {
-    const magSelect = magasins
-      ? `<select class="mgl-select mgl-mag-sel" data-id="${item.id}">
-          ${magasins.map(m => `<option${item.magasin===m?' selected':''}>${m}</option>`).join('')}
-         </select>`
-      : item.lieu
-        ? `<span class="mgl-mag">${item.lieu}</span>`
-        : '';
-    return `<div class="mgl-item${item.achete?' achete':''}" data-id="${item.id}" data-achete="${item.achete?'1':'0'}">
-      <div class="mgl-check mgl-chk">${item.achete?'✓':''}</div>
-      <span class="mgl-nom">${item.nom||''}</span>
-      ${magSelect}
-      <span class="mgl-prix-field mgl-prix-badge" data-prix="${item.prix||''}">${item.prix||'<span style="opacity:.3">prix</span>'}</span>
-      <button class="mgl-del mgl-del-btn">✕</button>
-    </div>`;
+    const magBadge = item.magasin ? '<span class="mgl-mag">' + item.magasin + '</span>' : '';
+    const prixVal = item.prix || '';
+    return '<div class="mgl-item' + (item.achete ? ' achete' : '') + '" data-id="' + item.id + '" data-achete="' + (item.achete ? '1' : '0') + '">'
+      + '<div class="mgl-check mgl-chk">' + (item.achete ? '&#10003;' : '') + '</div>'
+      + '<span class="mgl-nom">' + (item.nom || '') + '</span>'
+      + magBadge
+      + '<span class="mgl-prix-field mgl-prix-badge" data-prix="' + prixVal + '">' + (prixVal || '<span style="opacity:.3">prix</span>') + '</span>'
+      + '<button class="mgl-del mgl-del-btn">&#10005;</button>'
+      + '</div>';
   }).join('');
-  // event listeners
+
   ul.querySelectorAll('.mgl-item').forEach(el => {
     const id = el.dataset.id;
+    const item = (mglData[section] || []).find(i => i.id === id);
+
     el.querySelector('.mgl-chk').addEventListener('click', e => {
       e.stopPropagation();
       const achete = el.dataset.achete === '1';
-      toggleMgl(section, id, !achete);
+      updateDoc(doc(db, colPath, id), { achete: !achete }).catch(err => toast('Erreur: ' + err.message));
     });
+
+    el.querySelector('.mgl-nom').addEventListener('click', () => {
+      if (!item) return;
+      ouvrirMglEdit(section, id, item, uid, shared);
+    });
+
     el.querySelector('.mgl-del-btn').addEventListener('click', e => {
       e.stopPropagation();
-      supprimerMgl(section, id);
+      deleteDoc(doc(db, colPath, id)).catch(err => toast('Erreur: ' + err.message));
     });
-    const sel = el.querySelector('.mgl-mag-sel');
-    if (sel) sel.addEventListener('change', e => {
-      e.stopPropagation();
-      updateDoc(doc(db, MGL_CONFIG[section].col, id), { magasin: sel.value }).catch(e => toast('❌ ' + e.message));
-    });
+
     const prixBadge = el.querySelector('.mgl-prix-badge');
     if (prixBadge) {
       prixBadge.addEventListener('click', e => {
@@ -1337,17 +661,14 @@ function renderMgl(section) {
         if (prixBadge.querySelector('input')) return;
         const cur = prixBadge.dataset.prix || '';
         const inp = document.createElement('input');
-        inp.value = cur;
-        inp.placeholder = 'prix';
+        inp.value = cur; inp.placeholder = 'prix';
         inp.className = 'mgl-prix-edit';
-        inp.autocomplete = 'off';
-        prixBadge.innerHTML = '';
-        prixBadge.appendChild(inp);
-        inp.focus();
-        inp.select();
+        inp.autocomplete = 'off'; inp.inputMode = 'decimal';
+        prixBadge.innerHTML = ''; prixBadge.appendChild(inp);
+        inp.focus(); inp.select();
         const save = () => {
           const val = inp.value.trim();
-          updateDoc(doc(db, MGL_CONFIG[section].col, id), { prix: val }).catch(e => toast('❌ ' + e.message));
+          updateDoc(doc(db, colPath, id), { prix: val }).catch(err => toast('Erreur: ' + err.message));
           prixBadge.dataset.prix = val;
           prixBadge.innerHTML = val || '<span style="opacity:.3">prix</span>';
         };
@@ -1358,70 +679,395 @@ function renderMgl(section) {
   });
 }
 
-window.ajouterMgl = async (section) => {
+// OUVRIR MODAL MGL AJOUT
+window.ouvrirMglModal = (section) => {
+  const onglet = userCfg.onglets.find(o => o.id === section);
+  document.getElementById('mgl-section').value = section;
+  document.getElementById('mgl-edit-id').value = '';
+  document.getElementById('mgl-nom').value = '';
+  document.getElementById('mgl-prix').value = '';
+  document.getElementById('mgl-modal-title').textContent = 'Nouvel item - ' + (onglet ? onglet.label : '');
+  document.getElementById('mgl-delete-btn').style.display = 'none';
+  selectedMagasin = '';
+  buildMagPills('');
+  ouvrirModal('modal-mgl');
+  setTimeout(() => document.getElementById('mgl-nom').focus(), 150);
+};
+
+// OUVRIR MODAL MGL EDIT
+function ouvrirMglEdit(section, id, item, uid, shared) {
+  const onglet = userCfg.onglets.find(o => o.id === section);
+  document.getElementById('mgl-section').value = section;
+  document.getElementById('mgl-edit-id').value = id;
+  document.getElementById('mgl-nom').value = item.nom || '';
+  document.getElementById('mgl-prix').value = item.prix || '';
+  document.getElementById('mgl-modal-title').textContent = 'Modifier - ' + (onglet ? onglet.label : '');
+  document.getElementById('mgl-delete-btn').style.display = 'inline-flex';
+  selectedMagasin = item.magasin || '';
+  buildMagPills(selectedMagasin);
+  ouvrirModal('modal-mgl');
+}
+
+// BUILD PILLS MAGASIN
+function buildMagPills(selected) {
+  selectedMagasin = selected;
+  const container = document.getElementById('mag-pills-container');
+  const autreInput = document.getElementById('mag-autre-text');
+  const listeDefaut = MAGASINS.slice(0, -1);
+  const isAutre = selected && !listeDefaut.includes(selected);
+
+  container.innerHTML = MAGASINS.map(m => {
+    const isSel = m === 'Autre...' ? isAutre : m === selected;
+    return '<button type="button" class="mag-pill' + (m === 'Autre...' ? ' autre-pill' : '') + (isSel ? ' selected' : '')
+      + '" onclick="selectMagPill(this,\'' + m + '\')">' + m + '</button>';
+  }).join('');
+
+  if (isAutre) {
+    autreInput.style.display = 'block';
+    autreInput.value = selected;
+    autreInput.oninput = () => { selectedMagasin = autreInput.value.trim(); };
+  } else {
+    autreInput.style.display = 'none';
+    autreInput.value = '';
+  }
+}
+
+window.selectMagPill = (el, val) => {
+  document.querySelectorAll('.mag-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  const autreInput = document.getElementById('mag-autre-text');
+  if (val === 'Autre...') {
+    autreInput.style.display = 'block';
+    autreInput.focus();
+    selectedMagasin = autreInput.value.trim() || '';
+    autreInput.oninput = () => { selectedMagasin = autreInput.value.trim(); };
+  } else {
+    autreInput.style.display = 'none';
+    autreInput.value = '';
+    selectedMagasin = val;
+  }
+};
+
+// AJOUT RAPIDE ENTER
+window.ajouterRapide = async (section) => {
   const input = document.getElementById(section + '-input');
+  if (!input) return;
   const nom = input.value.trim();
-  if (!nom) { toast('Entre un nom'); return; }
-  const cfg = MGL_CONFIG[section];
-  const data = { nom, achete: false, createdAt: serverTimestamp() };
-  if (cfg.magasins) data.magasin = cfg.magasins[0];
-  else data.lieu = '';
+  if (!nom) return;
+  const uid = currentUser.uid;
+  const onglet = userCfg.onglets.find(o => o.id === section);
+  const shared = onglet ? onglet.shared : false;
+  const colPath = getCol(section, uid, shared);
   try {
-    await addDoc(collection(db, cfg.col), data);
-    input.value = '';
-    input.focus();
-  } catch(e) { toast('❌ ' + e.message); }
+    await addDoc(collection(db, colPath), { nom, achete: false, createdAt: serverTimestamp() });
+    input.value = ''; input.focus();
+  } catch(e) { toast('Erreur: ' + e.message); }
 };
 
-window.toggleMgl = async (section, id, achete) => {
-  const col = MGL_CONFIG[section].col;
-  try { await updateDoc(doc(db, col, id), { achete }); }
-  catch(e) { toast('❌ ' + e.message); }
+// SAUVEGARDER MGL
+window.sauvegarderMglItem = async () => {
+  const section = document.getElementById('mgl-section').value;
+  const id      = document.getElementById('mgl-edit-id').value;
+  const nom     = document.getElementById('mgl-nom').value.trim();
+  if (!nom) { toast('Entre un nom'); return; }
+  const prix = document.getElementById('mgl-prix').value.trim();
+  const autreInput = document.getElementById('mag-autre-text');
+  let magasin = selectedMagasin;
+  if (autreInput.style.display !== 'none' && autreInput.value.trim()) {
+    magasin = autreInput.value.trim();
+  }
+  const uid = currentUser.uid;
+  const onglet = userCfg.onglets.find(o => o.id === section);
+  const shared = onglet ? onglet.shared : false;
+  const colPath = getCol(section, uid, shared);
+  try {
+    if (id) {
+      await updateDoc(doc(db, colPath, id), { nom, magasin: magasin || '', prix: prix || '' });
+      toast('Mis a jour');
+    } else {
+      await addDoc(collection(db, colPath), { nom, magasin: magasin || '', prix: prix || '', achete: false, createdAt: serverTimestamp() });
+      toast('Ajoute');
+    }
+    fermerModal('modal-mgl');
+  } catch(e) { toast('Erreur: ' + e.message); }
 };
 
-window.supprimerMgl = async (section, id) => {
-  const col = MGL_CONFIG[section].col;
-  try { await deleteDoc(doc(db, col, id)); }
-  catch(e) { toast('❌ ' + e.message); }
+// SUPPRIMER MGL
+window.supprimerMglItem = async () => {
+  const section = document.getElementById('mgl-section').value;
+  const id      = document.getElementById('mgl-edit-id').value;
+  if (!id) return;
+  const uid = currentUser.uid;
+  const onglet = userCfg.onglets.find(o => o.id === section);
+  const shared = onglet ? onglet.shared : false;
+  const colPath = getCol(section, uid, shared);
+  try {
+    await deleteDoc(doc(db, colPath, id));
+    fermerModal('modal-mgl'); toast('Supprime');
+  } catch(e) { toast('Erreur: ' + e.message); }
 };
 
-window.effacerCochesMgl = async (section) => {
-  const col = MGL_CONFIG[section].col;
-  const coches = mglData[section].filter(i => i.achete);
+// EFFACER COCHES
+window.effacerCoches = async (section) => {
+  const uid = currentUser.uid;
+  const onglet = userCfg.onglets.find(o => o.id === section);
+  const shared = onglet ? onglet.shared : false;
+  const colPath = getCol(section, uid, shared);
+  const coches = (mglData[section] || []).filter(i => i.achete);
   if (!coches.length) { toast('Aucun item coche'); return; }
   try {
-    await Promise.all(coches.map(i => deleteDoc(doc(db, col, i.id))));
+    await Promise.all(coches.map(i => deleteDoc(doc(db, colPath, i.id))));
     toast('Items coches supprimes');
-  } catch(e) { toast('❌ ' + e.message); }
+  } catch(e) { toast('Erreur: ' + e.message); }
 };
 
-window.addEventListener('beforeunload', () => {});
-</script>
-<!-- SETTINGS MODAL -->
-<div class="modal-overlay" id="modal-settings">
-  <div class="modal" style="max-width:380px;">
-    <div class="modal-title">⚙️ Paramètres</div>
-    <div>
-      <div class="modal-label">Clé API Anthropic</div>
-      <div style="display:flex;align-items:center;gap:.5rem;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:.4rem .7rem;margin-top:.3rem;">
-        <input type="text" id="api-key-input" placeholder="sk-ant-..." autocomplete="off" autocorrect="off" spellcheck="false"
-          style="flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.7rem;color:#C8D8E8;outline:none;-webkit-text-security:disc"/>
-        <button onclick="toggleApiKey()" style="background:transparent;border:none;cursor:pointer;font-size:.85rem;padding:0 4px;">👁️</button>
-      </div>
-      <div id="api-key-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
-    </div>
-    <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);">
-      <div class="modal-label">Migration Dollo</div>
-      <div style="font-size:.65rem;color:var(--muted);margin:.3rem 0 .6rem;">Deplace les items de Partage vers Eric (a faire une seule fois)</div>
-      <button class="btn-gold" onclick="migrerDolloVersEric()" style="width:100%;padding:.5rem;">🔄 Migrer Partage → Eric</button>
-      <div id="migration-status" style="font-size:.65rem;margin-top:.4rem;display:none;"></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="fermerModal('modal-settings')">Fermer</button>
-      <button class="btn-gold primary" onclick="saveApiKey()">💾 Sauver</button>
-    </div>
-  </div>
-</div>
+// TRUCS UTILES
+const CAT_LABELS = { maison:'Maison', cuisine:'Cuisine', sante:'Sante', techno:'Techno', autre:'Autre' };
 
+function listenTrucs() {
+  const q = query(collection(db, 'beccaric_trucs'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap => {
+    trucs = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderTrucs();
+  });
+}
+
+function renderTrucs() {
+  const list  = document.getElementById('trucs-list');
+  const empty = document.getElementById('trucs-empty');
+  if (!list) return;
+  if (!trucs.length) { list.innerHTML = ''; list.appendChild(empty); empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  list.innerHTML = trucs.map(t =>
+    '<div class="truc-card" onclick="ouvrirTrucEdit(\'' + t.id + '\')">'
+    + '<div class="truc-card-left">'
+    + '<div class="truc-card-name">' + t.titre + '</div>'
+    + '<div class="truc-card-desc">' + (t.desc || '') + '</div>'
+    + '<div class="truc-card-cat">' + (CAT_LABELS[t.cat] || t.cat || '') + '</div>'
+    + '</div><span style="color:var(--muted);font-size:.8rem">&#8250;</span></div>'
+  ).join('');
+}
+
+window.ouvrirTruc = () => {
+  document.getElementById('truc-id').value = '';
+  document.getElementById('truc-titre').value = '';
+  document.getElementById('truc-desc').value = '';
+  document.getElementById('truc-cat').value = 'maison';
+  document.getElementById('truc-modal-title').textContent = 'Nouveau truc utile';
+  document.getElementById('truc-delete-btn').style.display = 'none';
+  ouvrirModal('modal-truc');
+};
+
+window.ouvrirTrucEdit = (id) => {
+  const t = trucs.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('truc-id').value = id;
+  document.getElementById('truc-titre').value = t.titre || '';
+  document.getElementById('truc-desc').value = t.desc || '';
+  document.getElementById('truc-cat').value = t.cat || 'autre';
+  document.getElementById('truc-modal-title').textContent = 'Modifier';
+  document.getElementById('truc-delete-btn').style.display = 'inline-flex';
+  ouvrirModal('modal-truc');
+};
+
+window.sauvegarderTruc = async () => {
+  const titre = document.getElementById('truc-titre').value.trim();
+  if (!titre) { toast('Entre un titre'); return; }
+  const data = { titre, desc: document.getElementById('truc-desc').value.trim(), cat: document.getElementById('truc-cat').value };
+  try {
+    const id = document.getElementById('truc-id').value;
+    if (id) await updateDoc(doc(db, 'beccaric_trucs', id), data);
+    else await addDoc(collection(db, 'beccaric_trucs'), {...data, createdAt: serverTimestamp()});
+    fermerModal('modal-truc'); toast('Sauvegarde');
+  } catch(e) { toast('Erreur: ' + e.message); }
+};
+
+window.supprimerTruc = async () => {
+  if (!confirm('Supprimer ?')) return;
+  const id = document.getElementById('truc-id').value;
+  try {
+    await deleteDoc(doc(db, 'beccaric_trucs', id));
+    fermerModal('modal-truc'); toast('Supprime');
+  } catch(e) { toast('Erreur: ' + e.message); }
+};
+
+// TROUVAILLES
+function listenTrouvailles() {
+  const q = query(collection(db, 'beccaric_trouvailles'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap => {
+    trouvailles = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderTrouvailles();
+  });
+}
+
+function renderTrouvailles() {
+  const grid  = document.getElementById('trouvailles-grid');
+  const empty = document.getElementById('trouvailles-empty');
+  if (!grid) return;
+  if (!trouvailles.length) { grid.innerHTML = ''; grid.appendChild(empty); empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = trouvailles.map(t =>
+    '<div class="trouvaille-card" onclick="ouvrirTrouvailleEdit(\'' + t.id + '\')">'
+    + '<div class="trouvaille-img">'
+    + (t.photoURL ? '<img src="' + t.photoURL + '" alt="' + (t.nom || '') + '" loading="lazy">' : '&#10084;&#65039;')
+    + '</div><div class="trouvaille-body">'
+    + '<div class="trouvaille-name">' + (t.nom || 'Trouvaille') + '</div>'
+    + '<div class="trouvaille-desc">' + (t.desc || '') + '</div>'
+    + '</div></div>'
+  ).join('');
+}
+
+window.ouvrirTrouvaille = () => {
+  document.getElementById('trouvaille-id').value = '';
+  document.getElementById('trouvaille-nom').value = '';
+  document.getElementById('trouvaille-desc').value = '';
+  trouvaillePhotoBase64 = null;
+  resetPhotoWrap();
+  document.getElementById('trouvaille-modal-title').textContent = 'Nouvelle trouvaille';
+  document.getElementById('trouvaille-delete-btn').style.display = 'none';
+  ouvrirModal('modal-trouvaille');
+};
+
+window.ouvrirTrouvailleEdit = (id) => {
+  const t = trouvailles.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('trouvaille-id').value = id;
+  document.getElementById('trouvaille-nom').value = t.nom || '';
+  document.getElementById('trouvaille-desc').value = t.desc || '';
+  trouvaillePhotoBase64 = null;
+  const wrap = document.getElementById('trouvaille-photo-wrap');
+  wrap.innerHTML = '';
+  if (t.photoURL) {
+    const img = document.createElement('img');
+    img.src = t.photoURL;
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    wrap.appendChild(img);
+  } else {
+    wrap.innerHTML = '<div class="photo-upload-icon">&#128247;</div><div class="photo-upload-label">Appuyer pour ajouter</div>';
+  }
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*'; inp.className = 'photo-upload-input';
+  inp.onchange = e => previewTrouvaillePhoto(e.target);
+  wrap.appendChild(inp);
+  wrap.onclick = () => inp.click();
+  const chgBtn = document.createElement('button');
+  chgBtn.className = 'photo-change-btn'; chgBtn.textContent = 'Changer';
+  chgBtn.onclick = e => { e.stopPropagation(); inp.click(); };
+  wrap.appendChild(chgBtn);
+  document.getElementById('trouvaille-modal-title').textContent = 'Modifier';
+  document.getElementById('trouvaille-delete-btn').style.display = 'inline-flex';
+  ouvrirModal('modal-trouvaille');
+};
+
+window.previewTrouvaillePhoto = (input) => {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    trouvaillePhotoBase64 = e.target.result;
+    const wrap = document.getElementById('trouvaille-photo-wrap');
+    let img = wrap.querySelector('img.preview');
+    if (!img) {
+      wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(el => el.style.display = 'none');
+      img = document.createElement('img'); img.className = 'preview';
+      img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+      wrap.insertBefore(img, wrap.firstChild);
+    }
+    img.src = e.target.result;
+    const btn = document.getElementById('trouvaille-change-btn');
+    if (btn) btn.style.display = 'block';
+  };
+  reader.readAsDataURL(input.files[0]);
+};
+
+window.sauvegarderTrouvaille = async () => {
+  const nom = document.getElementById('trouvaille-nom').value.trim();
+  if (!nom) { toast('Entre un nom'); return; }
+  const data = { nom, desc: document.getElementById('trouvaille-desc').value.trim() };
+  try {
+    let photoURL = null;
+    if (trouvaillePhotoBase64) {
+      const path = 'beccaric_trouvailles/' + Date.now() + '.jpg';
+      const storageRef = sRef(storage, path);
+      await uploadString(storageRef, trouvaillePhotoBase64, 'data_url');
+      photoURL = await getDownloadURL(storageRef);
+    }
+    const id = document.getElementById('trouvaille-id').value;
+    if (id) {
+      const updates = {...data};
+      if (trouvaillePhotoBase64) updates.photoURL = photoURL;
+      await updateDoc(doc(db, 'beccaric_trouvailles', id), updates);
+    } else {
+      await addDoc(collection(db, 'beccaric_trouvailles'), {...data, photoURL, createdAt: serverTimestamp()});
+    }
+    fermerModal('modal-trouvaille'); toast('Sauvegarde');
+  } catch(e) { toast('Erreur: ' + e.message); }
+};
+
+window.supprimerTrouvaille = async () => {
+  if (!confirm('Supprimer ?')) return;
+  const id = document.getElementById('trouvaille-id').value;
+  try {
+    await deleteDoc(doc(db, 'beccaric_trouvailles', id));
+    fermerModal('modal-trouvaille'); toast('Supprime');
+  } catch(e) { toast('Erreur: ' + e.message); }
+};
+
+function resetPhotoWrap() {
+  const wrap = document.getElementById('trouvaille-photo-wrap');
+  wrap.querySelectorAll('img.preview').forEach(e => e.remove());
+  wrap.querySelectorAll('.photo-upload-icon,.photo-upload-label').forEach(e => e.style.display = '');
+  const btn = document.getElementById('trouvaille-change-btn');
+  if (btn) btn.style.display = 'none';
+  const inp = document.getElementById('trouvaille-photo-input');
+  if (inp) inp.value = '';
+}
+
+// API KEY
+window.saveApiKey = () => {
+  const input = document.getElementById('api-key-input');
+  const key = input?.value.trim();
+  const status = document.getElementById('api-key-status');
+  if (key && key.startsWith('sk-ant-')) {
+    localStorage.setItem('bhq_api_key', key);
+    if (status) { status.style.display = 'block'; status.textContent = 'Cle active'; status.style.color = '#34C472'; }
+  } else {
+    if (status) { status.style.display = 'block'; status.textContent = 'Cle invalide'; status.style.color = '#F06060'; }
+  }
+};
+window.toggleApiKey = () => {
+  const input = document.getElementById('api-key-input');
+  if (input) input.type = input.type === 'password' ? 'text' : 'password';
+};
+
+// SETTINGS
+window.ouvrirSettings = () => {
+  const pwd = prompt('Mot de passe parametres :');
+  if (pwd === 'Leia2022') {
+    const saved = localStorage.getItem('bhq_api_key');
+    if (saved) {
+      const input = document.getElementById('api-key-input');
+      if (input) input.value = saved;
+      const status = document.getElementById('api-key-status');
+      if (status) { status.style.display = 'block'; status.textContent = 'Cle active'; status.style.color = '#34C472'; }
+    }
+    ouvrirModal('modal-settings');
+  } else if (pwd !== null) {
+    toast('Mot de passe incorrect');
+  }
+};
+
+// PREVENT BACK BUTTON
+history.pushState(null, '', window.location.href);
+window.addEventListener('popstate', () => {
+  history.pushState(null, '', window.location.href);
+  goTab('accueil', null);
+});
+
+// CLOSE MODAL ON OVERLAY CLICK
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
+});
+
+</script>
 </body>
 </html>
