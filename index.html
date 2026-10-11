@@ -737,8 +737,6 @@ window.setDolloVue = (vue, btn) => {
   btn.classList.add('active');
   if (dolloUnsub) { dolloUnsub(); dolloUnsub = null; }
   listeData['dollo'] = [];
-  const ul = document.getElementById('dollo-list');
-  if (ul) ul.innerHTML = '';
   listenDolloVue();
 };
 
@@ -775,7 +773,7 @@ function renderListe(section) {
   const empty = document.getElementById(section + '-empty');
   const cpt   = document.getElementById(section + '-compteur');
   if (!ul || !empty) return;
-  const items = listeData[section];
+  const items = (listeData[section] || []);
   const reste = items.filter(i => !i.achete).length;
   if (!items.length) {
     empty.style.display = 'block';
