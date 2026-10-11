@@ -737,7 +737,8 @@ window.setDolloVue = (vue, btn) => {
   btn.classList.add('active');
   if (dolloUnsub) { dolloUnsub(); dolloUnsub = null; }
   listeData['dollo'] = [];
-  renderListe('dollo');
+  const ul = document.getElementById('dollo-list');
+  if (ul) ul.innerHTML = '';
   listenDolloVue();
 };
 
