@@ -736,6 +736,8 @@ window.setDolloVue = (vue, btn) => {
   document.querySelectorAll('.dollo-subtab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   if (dolloUnsub) { dolloUnsub(); dolloUnsub = null; }
+  listeData['dollo'] = [];
+  renderListe('dollo');
   listenDolloVue();
 };
 
