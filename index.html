@@ -747,7 +747,8 @@ window.setDolloVue = (vue, btn) => {
 function listenDolloVue() {
   const col = DOLLO_COLS[dolloVue];
   const q = query(collection(db, col), orderBy('createdAt','desc'));
-  dolloUnsub = onSnapshot(q, { includeMetadataChanges: false }, snap => {
+  dolloUnsub = onSnapshot(q, snap => {
+    if (snap.metadata.fromCache && snap.empty) return;
     listeData['dollo'] = snap.docs
       .map(d => ({id:d.id,...d.data()}))
       .filter(d => d.createdAt != null);
