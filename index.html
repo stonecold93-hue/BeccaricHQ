@@ -737,6 +737,10 @@ window.setDolloVue = (vue, btn) => {
   btn.classList.add('active');
   if (dolloUnsub) { dolloUnsub(); dolloUnsub = null; }
   listeData['dollo'] = [];
+  const ulNow = document.getElementById('dollo-list');
+  const emptyNow = document.getElementById('dollo-empty');
+  if (ulNow) ulNow.innerHTML = '';
+  if (emptyNow) emptyNow.style.display = 'block';
   listenDolloVue();
 };
 
@@ -773,7 +777,7 @@ function renderListe(section) {
   const empty = document.getElementById(section + '-empty');
   const cpt   = document.getElementById(section + '-compteur');
   if (!ul || !empty) return;
-  const items = (listeData[section] || []);
+  const items = listeData[section] || [];
   const reste = items.filter(i => !i.achete).length;
   if (!items.length) {
     empty.style.display = 'block';
