@@ -604,7 +604,7 @@ function listenListe(o){
   listeData[o.id]=[];
   const q=query(collection(db,o.col),orderBy('createdAt','desc'));
   listeUnsubs[o.id]=onSnapshot(q,snap=>{
-    listeData[o.id]=snap.docs.map(d=>({id:d.id,...d.data()})).filter(d=>d.createdAt!=null);
+    listeData[o.id]=snap.docs.map(d=>({id:d.id,...d.data()}));
     renderListe(o);
   });
 }
@@ -670,7 +670,7 @@ function listenMgl(o){
   mglData[o.id]=[];
   const q=query(collection(db,o.col),orderBy('createdAt','desc'));
   mglUnsubs[o.id]=onSnapshot(q,snap=>{
-    mglData[o.id]=snap.docs.map(d=>({id:d.id,...d.data()})).filter(d=>d.createdAt!=null);
+    mglData[o.id]=snap.docs.map(d=>({id:d.id,...d.data()}));
     renderMgl(o);
   });
 }
