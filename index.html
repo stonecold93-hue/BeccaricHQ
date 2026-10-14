@@ -858,10 +858,8 @@ function listenTrucs(){
 }
 function renderTrucs(){
   const list=document.getElementById('trucs-list');
-  const empty=document.getElementById('trucs-empty');
   if(!list)return;
-  if(!trucs.length){list.innerHTML='';list.appendChild(empty);empty.style.display='block';return;}
-  empty.style.display='none';
+  if(!trucs.length){list.innerHTML='<div class="trucs-empty">Aucun truc utile encore</div>';return;}
   list.innerHTML=trucs.map(t=>
     '<div class="truc-card" onclick="ouvrirTrucEdit(\''+t.id+'\')">'
     +'<div class="truc-card-left">'
@@ -915,10 +913,8 @@ function listenTrouvailles(){
 }
 function renderTrouvailles(){
   const grid=document.getElementById('trouvailles-grid');
-  const empty=document.getElementById('trouvailles-empty');
   if(!grid)return;
-  if(!trouvailles.length){grid.innerHTML='';grid.appendChild(empty);empty.style.display='block';return;}
-  empty.style.display='none';
+  if(!trouvailles.length){grid.innerHTML='<div class="trouvailles-empty" style="grid-column:1/-1">Aucune trouvaille encore</div>';return;}
   grid.innerHTML=trouvailles.map(t=>
     '<div class="trouvaille-card" onclick="ouvrirTrouvailleEdit(\''+t.id+'\')">'
     +'<div class="trouvaille-img">'+(t.photoURL?'<img src="'+t.photoURL+'" alt="'+(t.nom||'')+'" loading="lazy">':'&#10084;&#65039;')+'</div>'
