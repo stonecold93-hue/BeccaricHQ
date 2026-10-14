@@ -625,7 +625,13 @@ function renderListe(o,filtreQ){
     el.querySelector('.liste-check-btn').addEventListener('click',e=>{
       e.preventDefault();e.stopPropagation();
       const achete=el.dataset.achete==='1';
-      updateDoc(doc(db,o.col,id),{achete:!achete}).catch(err=>toast('Erreur: '+err.message));
+      const nouvel=!achete;
+      el.dataset.achete=nouvel?'1':'0';
+      el.classList.toggle('achete',nouvel);
+      el.querySelector('.liste-check-btn').innerHTML=nouvel?'&#10003;':'';
+      if(nouvel)el.querySelector('.liste-check-btn').style.background='#3A6A9A';
+      else el.querySelector('.liste-check-btn').style.background='transparent';
+      updateDoc(doc(db,o.col,id),{achete:nouvel}).catch(err=>toast('Erreur: '+err.message));
     });
     el.querySelector('.liste-item-edit').addEventListener('click',()=>ouvrirListeEdit(o.id,id));
     el.querySelector('.liste-item-del-btn').addEventListener('click',e=>{
@@ -681,7 +687,13 @@ function renderMgl(o){
     el.querySelector('.mgl-chk').addEventListener('click',e=>{
       e.preventDefault();e.stopPropagation();
       const achete=el.dataset.achete==='1';
-      updateDoc(doc(db,o.col,id),{achete:!achete}).catch(err=>toast('Erreur: '+err.message));
+      const nouvel=!achete;
+      el.dataset.achete=nouvel?'1':'0';
+      el.classList.toggle('achete',nouvel);
+      el.querySelector('.mgl-chk').innerHTML=nouvel?'&#10003;':'';
+      if(nouvel)el.querySelector('.mgl-chk').style.background='#3A6A9A';
+      else el.querySelector('.mgl-chk').style.background='transparent';
+      updateDoc(doc(db,o.col,id),{achete:nouvel}).catch(err=>toast('Erreur: '+err.message));
     });
     el.querySelector('.mgl-del-btn').addEventListener('click',e=>{
       e.stopPropagation();
