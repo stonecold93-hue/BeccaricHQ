@@ -523,15 +523,15 @@ function buildUI(){
     div.className='section';div.id='tab-'+o.id;
     content.appendChild(div);
     if(o.type==='accueil') buildAccueil(div);
-    else if(o.type==='liste'||o.type==='libre') buildSectionListe(div,o);
-    else if(o.type==='mgl') buildSectionMgl(div,o);
+    else if(o.type==='liste') buildSectionListe(div,o);
+    else if(o.type==='mgl'||o.type==='libre') buildSectionMgl(div,o);
     else if(o.type==='trucs') buildSectionTrucs(div,o.shared);
     else if(o.type==='trouvailles') buildSectionTrouvailles(div,o.shared);
   });
   // listeners
   onglets.forEach(o=>{
-    if(o.type==='liste'||o.type==='libre') listenListe(o);
-    else if(o.type==='mgl') listenMgl(o);
+    if(o.type==='liste') listenListe(o);
+    else if(o.type==='mgl'||o.type==='libre') listenMgl(o);
     else if(o.type==='trucs') listenTrucs();
     else if(o.type==='trouvailles') listenTrouvailles();
   });
@@ -569,6 +569,10 @@ function buildSectionMgl(div,o){
     +(o.shared?'<div class="section-shared-badge">&#9733; Partage</div>':'')
     +'<div class="mgl-toolbar">'
     +'<input class="mgl-input" id="'+o.id+'-input" placeholder="Ajouter un item..." onkeydown="if(event.key===\'Enter\')ajouterMgl(\''+o.id+'\')">'
+    +(o.type==='libre'
+      ?'<input class="mgl-input" id="'+o.id+'-magasin" style="max-width:150px;min-width:100px" placeholder="Magasin">'
+       +'<input class="mgl-input" id="'+o.id+'-prix" style="max-width:80px;min-width:60px" placeholder="Prix" inputmode="decimal">'
+      :'')
     +'<button class="mgl-btn-add" onclick="ajouterMgl(\''+o.id+'\')">+ Ajouter</button>'
     +'</div>'
     +'<button class="mgl-btn-clear" onclick="effacerCochesMgl(\''+o.id+'\')">Effacer les coches</button>'
@@ -675,13 +679,15 @@ function renderMgl(o){
   const ul=document.getElementById(o.id+'-list');
   const empty=document.getElementById(o.id+'-empty');
   if(!ul)return;
-  if(ul.contains(document.activeElement)&&document.activeElement.classList.contains('mgl-prix-edit'))return;
+  if(ul.contains(document.activeElement)&&(document.activeElement.classList.contains('mgl-prix-edit')||document.activeElement.classList.contains('mgl-mag-input')))return;
   const items=mglData[o.id]||[];
   if(!items.length){ul.innerHTML='';ul.appendChild(empty);empty.style.display='block';return;}
   if(!ul.contains(empty))ul.appendChild(empty);
   empty.style.display='none';
   ul.innerHTML=items.map(item=>{
-    const magSelect=o.magasins
+    const magSelect=o.type==='libre'
+      ?'<input class="mgl-select mgl-mag-input" data-id="'+item.id+'" style="width:130px" placeholder="magasin" autocomplete="off" value="'+(item.magasin||'').replace(/"/g,'&quot;')+'">'
+      :o.magasins
       ?'<select class="mgl-select mgl-mag-sel" data-id="'+item.id+'">'
         +o.magasins.map(m=>'<option'+(item.magasin===m?' selected':'')+'>'+m+'</option>').join('')
         +'</select>'
@@ -716,6 +722,14 @@ function renderMgl(o){
       e.stopPropagation();
       updateDoc(doc(db,o.col,id),{magasin:sel.value}).catch(err=>toast('Erreur: '+err.message));
     });
+    const magInp=el.querySelector('.mgl-mag-input');
+    if(magInp){
+      magInp.addEventListener('click',e=>e.stopPropagation());
+      magInp.addEventListener('change',()=>{
+        updateDoc(doc(db,o.col,id),{magasin:magInp.value.trim()}).catch(err=>toast('Erreur: '+err.message));
+      });
+      magInp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')magInp.blur();});
+    }
     const prixBadge=el.querySelector('.mgl-prix-badge');
     if(prixBadge)prixBadge.addEventListener('click',e=>{
       e.stopPropagation();
@@ -746,9 +760,19 @@ window.ajouterMgl=async(sid)=>{
   const o=userCfg.onglets.find(x=>x.id===sid);
   if(!o)return;
   const data={nom,achete:false,createdAt:serverTimestamp()};
-  if(o.magasins)data.magasin=o.magasins[0];
+  if(o.type==='libre'){
+    data.magasin=(document.getElementById(sid+'-magasin')?.value||'').trim();
+    data.prix=(document.getElementById(sid+'-prix')?.value||'').trim();
+  }
+  else if(o.magasins)data.magasin=o.magasins[0];
   else data.lieu='';
-  try{await addDoc(collection(db,o.col),data);input.value='';input.focus();}
+  try{
+    await addDoc(collection(db,o.col),data);
+    input.value='';
+    const m=document.getElementById(sid+'-magasin');if(m)m.value='';
+    const p=document.getElementById(sid+'-prix');if(p)p.value='';
+    input.focus();
+  }
   catch(e){toast('Erreur: '+e.message);}
 };
 
