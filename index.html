@@ -611,17 +611,14 @@ function listenListe(o){
 
 function renderListe(o,filtreQ){
   const ul=document.getElementById(o.id+'-list');
-  const empty=document.getElementById(o.id+'-empty');
   const cpt=document.getElementById(o.id+'-compteur');
   if(!ul)return;
   let items=listeData[o.id]||[];
   if(filtreQ){items=items.filter(i=>(i.nom||'').toLowerCase().includes(filtreQ)||(i.desc||'').toLowerCase().includes(filtreQ));}
   if(!items.length){
-    ul.innerHTML='';ul.appendChild(empty);empty.style.display='block';
+    ul.innerHTML='<div class="liste-empty">Aucun item pour l instant</div>';
     if(cpt)cpt.textContent='';return;
   }
-  if(!ul.contains(empty))ul.appendChild(empty);
-  empty.style.display='none';
   const reste=items.filter(i=>!i.achete).length;
   if(cpt)cpt.textContent=reste+' restant'+(reste>1?'s':'');
   ul.innerHTML=items.map(item=>
@@ -677,13 +674,10 @@ function listenMgl(o){
 
 function renderMgl(o){
   const ul=document.getElementById(o.id+'-list');
-  const empty=document.getElementById(o.id+'-empty');
   if(!ul)return;
   if(ul.contains(document.activeElement)&&(document.activeElement.classList.contains('mgl-prix-edit')||document.activeElement.classList.contains('mgl-mag-input')))return;
   const items=mglData[o.id]||[];
-  if(!items.length){ul.innerHTML='';ul.appendChild(empty);empty.style.display='block';return;}
-  if(!ul.contains(empty))ul.appendChild(empty);
-  empty.style.display='none';
+  if(!items.length){ul.innerHTML='<div class="mgl-empty">Aucun item pour l instant</div>';return;}
   ul.innerHTML=items.map(item=>{
     const magSelect=o.type==='libre'
       ?'<input class="mgl-select mgl-mag-input" data-id="'+item.id+'" style="width:130px" placeholder="magasin" autocomplete="off" value="'+(item.magasin||'').replace(/"/g,'&quot;')+'">'
